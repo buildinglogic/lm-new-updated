@@ -38,6 +38,30 @@ export function ProductsSection() {
   const [activeTab, setActiveTab] = useState("tradeguard")
   const { ref, isInView } = useInView()
 
+  // Listen for tab change events from navigation
+  useEffect(() => {
+    const handleTabChange = (event: CustomEvent) => {
+      setActiveTab(event.detail)
+    }
+
+    // Check sessionStorage on mount for initial tab
+    const storedTab = sessionStorage.getItem('selectedProductTab')
+    if (storedTab) {
+      setActiveTab(storedTab)
+      sessionStorage.removeItem('selectedProductTab')
+    }
+
+    // Check URL params
+    const urlParams = new URLSearchParams(window.location.search)
+    const tabParam = urlParams.get('tab')
+    if (tabParam) {
+      setActiveTab(tabParam)
+    }
+
+    window.addEventListener('changeProductTab', handleTabChange as EventListener)
+    return () => window.removeEventListener('changeProductTab', handleTabChange as EventListener)
+  }, [])
+
   return (
     <section ref={ref} id="products" className="py-8 lg:py-12 px-4 lg:px-6" style={{ background: "#FFFFFF" }}>
       <div className="w-full max-w-[1400px] mx-auto">

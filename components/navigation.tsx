@@ -6,9 +6,9 @@ import Link from "next/link"
 import Image from "next/image"
 
 const products = [
-  { name: "Tradeguard", description: "Document Mismatch Detection", href: "#tradeguard" },
-  { name: "Patram AI", description: "AI Document Q&A", href: "#patram" },
-  { name: "TariffIQ", description: "HSN Classification & Duty Calculator", href: "#tariffiq" },
+  { name: "Tradeguard", description: "Document Mismatch Detection", href: "/#products", tabId: "tradeguard" },
+  { name: "Patram AI", description: "AI Document Q&A", href: "/#products", tabId: "patram" },
+  { name: "TariffIQ", description: "HSN Classification & Duty Calculator", href: "/#products", tabId: "tariffiq" },
 ]
 
 const companyLinks = [
@@ -16,10 +16,8 @@ const companyLinks = [
   { name: "Why Choose Us?", href: "/company#why-choose-us" },
   { name: "Minds Behind Liquidmind AI", href: "/company#team" },
   { name: "Timeline", href: "/company/timeline" },
-  { name: "Legal", href: "/company/legal" },
-  { name: "Press & Media", href: "/company/press" },
   { name: "Map", href: "/company#map" },
-  { name: "Giving Back", href: "/company#giving-back" },
+  { name: "Giving Back", href: "/company/giving-back" },
 ]
 
 export function Navigation() {
@@ -37,10 +35,33 @@ export function Navigation() {
   }, [])
 
   const scrollToSection = (href: string) => {
-    const id = href.replace("#", "")
+    const id = href.replace("#", "").replace("/", "")
     const element = document.getElementById(id)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
+    }
+    setProductsOpen(false)
+    setMobileMenuOpen(false)
+  }
+
+  const navigateToProduct = (product: typeof products[0]) => {
+    // Store the selected tab in sessionStorage so ProductsSection can read it
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('selectedProductTab', product.tabId)
+    }
+    
+    // Check if we're on the home page
+    if (window.location.pathname === '/') {
+      // Scroll to products section
+      const element = document.getElementById('products')
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" })
+      }
+      // Dispatch a custom event to change the tab
+      window.dispatchEvent(new CustomEvent('changeProductTab', { detail: product.tabId }))
+    } else {
+      // Navigate to home page with hash
+      window.location.href = `/#products?tab=${product.tabId}`
     }
     setProductsOpen(false)
     setMobileMenuOpen(false)
@@ -103,7 +124,7 @@ export function Navigation() {
                 {products.map((product, idx) => (
                   <button
                     key={product.name}
-                    onClick={() => scrollToSection(product.href)}
+                    onClick={() => navigateToProduct(product)}
                     className="w-full text-left p-4 rounded-xl transition-all duration-300 block mb-2 last:mb-0 group relative overflow-hidden hover:scale-[1.02]"
                     style={{ 
                       background: "linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%)",

@@ -40,7 +40,7 @@ export default function CompanyPage() {
       </section>
 
       {/* Our Mission Section */}
-      <section className="py-12 lg:py-16 px-4 lg:px-6" style={{ background: "#FFFFFF" }}>
+      <section id="mission" className="py-12 lg:py-16 px-4 lg:px-6" style={{ background: "#FFFFFF" }}>
         <div className="max-w-[1100px] mx-auto text-center">
           <h2 className="text-[28px] lg:text-[40px] font-extrabold mb-4" style={{ color: "#0F172A" }}>
             Our Mission
@@ -62,7 +62,7 @@ export default function CompanyPage() {
       </section>
 
       {/* Why Enterprises Choose Section */}
-      <section className="py-12 lg:py-16 px-4 lg:px-6" style={{ background: "linear-gradient(180deg, #E8F4FC 0%, #F0F9FF 100%)" }}>
+      <section id="why-choose-us" className="py-12 lg:py-16 px-4 lg:px-6" style={{ background: "linear-gradient(180deg, #E8F4FC 0%, #F0F9FF 100%)" }}>
         <div className="max-w-[1100px] mx-auto">
           <h2 className="text-[28px] lg:text-[40px] font-extrabold text-center mb-8" style={{ color: "#0F172A" }}>
             Why Enterprises Choose<br />Liquidmind AI?
@@ -70,46 +70,86 @@ export default function CompanyPage() {
           
           <div className="grid md:grid-cols-2 gap-5">
             {/* AI-Powered Efficiency */}
-            <div className="p-6 rounded-2xl relative" style={{ background: "#FFFFFF", boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}>
-              <div className="absolute -bottom-2 left-6 w-4 h-4 rotate-45" style={{ background: "#FFFFFF" }} />
-              <h3 className="text-lg font-bold mb-2" style={{ color: "#0066CC" }}>AI-Powered Efficiency</h3>
-              <p className="text-[14px] leading-relaxed" style={{ color: "#475569" }}>
-                Automate complex trade, finance, and compliance workflows, reducing operational costs and improving accuracy.
-              </p>
+            <div className="group p-6 rounded-2xl relative cursor-pointer transition-all duration-500 overflow-hidden hover:shadow-[0_0_30px_rgba(0,102,204,0.3)] hover:scale-[1.02]" 
+              style={{ background: "linear-gradient(to bottom, #f0f7fa, #e8f4f8)" }}>
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: "linear-gradient(135deg, #0F172A, #1e3a5f)" }} />
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(0,102,204,0.5)]"
+                  style={{ background: "linear-gradient(135deg, #0066CC, #00A86B)" }}>
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold mb-2 transition-colors duration-500 text-[#0066CC] group-hover:text-white">AI-Powered Efficiency</h3>
+                <p className="text-[14px] leading-relaxed transition-colors duration-500 text-[#475569] group-hover:text-white/80">
+                  Automate complex trade, finance, and compliance workflows, reducing operational costs and improving accuracy.
+                </p>
+              </div>
             </div>
 
             {/* Actionable Intelligence */}
-            <div className="p-6 rounded-2xl relative" style={{ background: "#FFFFFF", boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}>
-              <div className="absolute -bottom-2 left-6 w-4 h-4 rotate-45" style={{ background: "#FFFFFF" }} />
-              <h3 className="text-lg font-bold mb-2" style={{ color: "#00A86B" }}>Actionable Intelligence</h3>
-              <p className="text-[14px] leading-relaxed" style={{ color: "#475569" }}>
-                Leverage AI-powered insights to optimize liquidity, manage risk, and enhance financial strategies.
-              </p>
+            <div className="group p-6 rounded-2xl relative cursor-pointer transition-all duration-500 overflow-hidden hover:shadow-[0_0_30px_rgba(0,168,107,0.3)] hover:scale-[1.02]" 
+              style={{ background: "linear-gradient(to bottom, #f0f7fa, #e8f4f8)" }}>
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: "linear-gradient(135deg, #0F172A, #1e3a5f)" }} />
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(0,168,107,0.5)]"
+                  style={{ background: "linear-gradient(135deg, #00A86B, #0066CC)" }}>
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold mb-2 transition-colors duration-500 text-[#00A86B] group-hover:text-white">Actionable Intelligence</h3>
+                <p className="text-[14px] leading-relaxed transition-colors duration-500 text-[#475569] group-hover:text-white/80">
+                  Leverage AI-powered insights to optimize liquidity, manage risk, and enhance financial strategies.
+                </p>
+              </div>
             </div>
 
             {/* Security & Compliance First */}
-            <div className="p-6 rounded-2xl relative" style={{ background: "#FFFFFF", boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}>
-              <div className="absolute -bottom-2 left-6 w-4 h-4 rotate-45" style={{ background: "#FFFFFF" }} />
-              <h3 className="text-lg font-bold mb-2" style={{ color: "#0066CC" }}>Security & Compliance First</h3>
-              <p className="text-[14px] leading-relaxed" style={{ color: "#475569" }}>
-                Designed to meet stringent financial and regulatory standards, ensuring data integrity, fraud detection, and risk mitigation.
-              </p>
+            <div className="group p-6 rounded-2xl relative cursor-pointer transition-all duration-500 overflow-hidden hover:shadow-[0_0_30px_rgba(0,102,204,0.3)] hover:scale-[1.02]" 
+              style={{ background: "linear-gradient(to bottom, #f0f7fa, #e8f4f8)" }}>
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: "linear-gradient(135deg, #0F172A, #1e3a5f)" }} />
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(0,102,204,0.5)]"
+                  style={{ background: "linear-gradient(135deg, #0066CC, #00A86B)" }}>
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold mb-2 transition-colors duration-500 text-[#0066CC] group-hover:text-white">Security & Compliance First</h3>
+                <p className="text-[14px] leading-relaxed transition-colors duration-500 text-[#475569] group-hover:text-white/80">
+                  Designed to meet stringent financial and regulatory standards, ensuring data integrity, fraud detection, and risk mitigation.
+                </p>
+              </div>
             </div>
 
             {/* Seamless Integration */}
-            <div className="p-6 rounded-2xl relative" style={{ background: "#FFFFFF", boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}>
-              <div className="absolute -bottom-2 left-6 w-4 h-4 rotate-45" style={{ background: "#FFFFFF" }} />
-              <h3 className="text-lg font-bold mb-2" style={{ color: "#00A86B" }}>Seamless Integration</h3>
-              <p className="text-[14px] leading-relaxed" style={{ color: "#475569" }}>
-                Connect effortlessly with ERP systems, banking platforms, and trade networks, ensuring smooth interoperability.
-              </p>
+            <div className="group p-6 rounded-2xl relative cursor-pointer transition-all duration-500 overflow-hidden hover:shadow-[0_0_30px_rgba(0,168,107,0.3)] hover:scale-[1.02]" 
+              style={{ background: "linear-gradient(to bottom, #f0f7fa, #e8f4f8)" }}>
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: "linear-gradient(135deg, #0F172A, #1e3a5f)" }} />
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(0,168,107,0.5)]"
+                  style={{ background: "linear-gradient(135deg, #00A86B, #0066CC)" }}>
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold mb-2 transition-colors duration-500 text-[#00A86B] group-hover:text-white">Seamless Integration</h3>
+                <p className="text-[14px] leading-relaxed transition-colors duration-500 text-[#475569] group-hover:text-white/80">
+                  Connect effortlessly with ERP systems, banking platforms, and trade networks, ensuring smooth interoperability.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Meet the Minds Section */}
-      <section className="py-12 lg:py-16 px-4 lg:px-6" style={{ background: "#FFFFFF" }}>
+      <section id="team" className="py-12 lg:py-16 px-4 lg:px-6" style={{ background: "#FFFFFF" }}>
         <div className="max-w-[1100px] mx-auto">
           <h2 className="text-[28px] lg:text-[40px] font-extrabold text-center mb-10" style={{ color: "#0F172A" }}>
             Meet the Minds Behind<br />Liquidmind AI
@@ -198,7 +238,7 @@ export default function CompanyPage() {
       </section>
 
       {/* Locate Us Section */}
-      <section className="py-12 lg:py-16 px-4 lg:px-6" style={{ background: "#FFFFFF" }}>
+      <section id="map" className="py-12 lg:py-16 px-4 lg:px-6" style={{ background: "#FFFFFF" }}>
         <div className="max-w-[1100px] mx-auto">
           <h2 className="text-[24px] lg:text-[32px] font-extrabold mb-6" style={{ color: "#00A86B" }}>
             Locate Us

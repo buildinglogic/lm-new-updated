@@ -60,7 +60,15 @@ function HeroSection() {
   ]
 
   return (
-    <section className="min-h-screen pt-[120px] pb-6 px-4 lg:px-8 flex items-center" style={{ background: "#FFFFFF" }}>
+    <section 
+      className="min-h-screen pt-[120px] pb-6 px-4 lg:px-8 flex items-center relative"
+      style={{ 
+        backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/white%20textured%20background-VTbHzt4lKA0rxfUKqNSLETf6lAlqjC.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <div className="w-full max-w-[1400px] mx-auto">
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
           {/* Left side - moved more towards center */}
@@ -86,8 +94,15 @@ function HeroSection() {
 
             <div className="flex flex-wrap gap-2 mb-5 animate-fade-in-up stagger-3">
               {statPills.map((stat, idx) => (
-                <span key={idx} className="px-4 py-1.5 rounded-full text-xs font-semibold"
-                  style={{ background: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.2)", color: "#DC2626" }}>
+                <span 
+                  key={idx} 
+                  className="px-4 py-2 rounded-full text-xs font-semibold cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(220,38,38,0.5)] hover:bg-[rgba(220,38,38,0.15)]"
+                  style={{ 
+                    background: "rgba(220,38,38,0.08)", 
+                    border: "1px solid rgba(220,38,38,0.3)", 
+                    color: "#DC2626",
+                    backdropFilter: "blur(8px)",
+                  }}>
                   {stat}
                 </span>
               ))}
@@ -192,33 +207,37 @@ function ProblemSection() {
   return (
     <section 
       ref={ref} 
-      className="min-h-screen flex flex-col justify-center py-16 px-4 lg:px-8 relative"
+      id="problem-section"
+      className="h-screen flex flex-col justify-center py-8 px-4 lg:px-8 relative overflow-hidden"
       style={{ 
-        background: `linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(248,250,252,0.9) 100%), url('/images/world-map-bg.jpg')`,
+        backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/liquidmind%202nd%20page%20background%20image-VslwfUYkc1tNjvnk4KfYw7OJVa497m.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
-      <div className="w-full max-w-[1000px] mx-auto">
-        <div className={`text-center mb-10 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/70 to-white/80" />
+      
+      <div className="w-full max-w-[1100px] mx-auto relative z-10">
+        <div className={`text-center mb-6 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {/* Gradient container badge - red variant */}
-          <div className="inline-block mb-4" style={{ padding: "3px", background: "linear-gradient(90deg, #DC2626, #EF4444)", borderRadius: "9999px" }}>
+          <div className="inline-block mb-3" style={{ padding: "3px", background: "linear-gradient(90deg, #DC2626, #EF4444)", borderRadius: "9999px" }}>
             <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase" 
               style={{ background: "#FFFFFF", color: "#DC2626" }}>
               THE COST OF DOING NOTHING
             </div>
           </div>
-          <h2 className="text-[30px] lg:text-[48px] font-bold leading-tight text-balance" style={{ color: "#0F172A" }}>
+          <h2 className="text-[26px] lg:text-[40px] font-bold leading-tight text-balance" style={{ color: "#0F172A" }}>
             Your Trade Documents Are <span className="text-[#DC2626]">Bleeding Money</span> Right Now.
           </h2>
         </div>
 
         {/* 6 Cards Grid - Compact square cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
           {problems.map((problem, idx) => (
             <div 
               key={idx}
-              className={`problem-card group relative rounded-xl p-5 transition-all duration-500 cursor-pointer overflow-hidden ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              className={`problem-card group relative rounded-xl p-4 transition-all duration-500 cursor-pointer overflow-hidden hover:shadow-[0_0_25px_rgba(0,102,204,0.3)] ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
               style={{
                 background: "linear-gradient(to bottom, #f0f7fa, #e8f4f8)",
                 transitionDelay: `${idx * 80}ms`,
@@ -259,7 +278,7 @@ function ProblemSection() {
         <div className={`text-center transition-all duration-700 delay-300 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <a href="#products" className="group relative inline-block">
             <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#0066CC] via-[#00A86B] to-[#0066CC] p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            <span className="relative z-10 inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold text-white transition-all duration-300 group-hover:scale-105"
+            <span className="relative z-10 inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white transition-all duration-300 group-hover:scale-105 hover:shadow-[0_0_30px_rgba(0,102,204,0.5)]"
               style={{ background: "#0F172A" }}>
               <span className="transition-all duration-500 group-hover:translate-x-1">See How Liquidmind Solves This</span>
               <svg className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
@@ -417,27 +436,16 @@ function AwardsSection() {
       
       {/* Backed By - Partner Logos */}
       <div className={`w-full py-8 transition-all duration-700 delay-300 ${isInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} style={{ background: "#F1F5F9" }}>
-        <div className="max-w-[900px] mx-auto text-center">
+        <div className="max-w-[900px] mx-auto text-center px-4">
           <p className="text-base font-semibold mb-6 tracking-wide" style={{ color: "#64748B" }}>Backed by leading technology partners</p>
-          <div className="flex justify-center items-center gap-10 lg:gap-16">
-            <div className="flex items-center gap-3 px-4 py-3 rounded-lg" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
-              <svg viewBox="0 0 105 25" className="h-7 lg:h-8 w-auto" fill="none">
-                <path d="M0 14.155h9.293l4.647-9.294 4.646 9.294h9.294L18.586 23.45l4.647 9.293H14.94l-4.647-9.293-4.646 9.293H-3.647l9.294-9.294L0 14.155z" fill="#76B900" transform="scale(0.8)"/>
-                <text x="32" y="16" fill="#0F172A" fontSize="10" fontWeight="700" fontFamily="sans-serif">NVIDIA</text>
-                <text x="32" y="23" fill="#64748B" fontSize="6" fontFamily="sans-serif">Inception Program</text>
-              </svg>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-3 rounded-lg" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
-              <span className="text-base lg:text-lg font-medium" style={{ color: "#475569" }}>powered by</span>
-              <svg viewBox="0 0 60 30" className="h-6 lg:h-7 w-auto">
-                <text x="0" y="18" fill="#252F3E" fontSize="14" fontWeight="700" fontFamily="sans-serif">aws</text>
-                <path d="M0 22 Q15 28 30 22" stroke="#FF9900" strokeWidth="2" fill="none"/>
-              </svg>
-            </div>
-            <div className="flex flex-col items-start px-4 py-3 rounded-lg" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
-              <span className="text-[10px] font-medium" style={{ color: "#64748B" }}>Microsoft for Startups</span>
-              <span className="text-base lg:text-lg font-bold" style={{ color: "#7B3FE4" }}>Founders Hub</span>
-            </div>
+          <div className="flex justify-center items-center">
+            <Image 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-03-14%20133550-DW8iyYo9sqjlGDVnoCBNdZDhoLi2E4.png" 
+              alt="Partner Logos - NVIDIA Inception, AWS, Microsoft for Startups" 
+              width={800} 
+              height={100} 
+              className="h-16 lg:h-20 w-auto object-contain" 
+            />
           </div>
         </div>
       </div>
