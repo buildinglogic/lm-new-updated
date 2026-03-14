@@ -156,27 +156,27 @@ export default function CompanyPage() {
           </h2>
           
           <div className="grid lg:grid-cols-2 gap-5">
-            <div className="rounded-xl overflow-hidden" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
+            <div className="rounded-xl overflow-hidden" style={{ background: "#0F172A", border: "3px solid #0066CC" }}>
               <div className="relative h-[280px] overflow-hidden">
                 <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Aegis%20graham%20bell%20award-Io0nVjDGHyxbMH3GUnh9D2M8PtIHjM.jpg" alt="Aegis Graham Bell Award" fill className="object-cover object-center" />
               </div>
               <div className="p-5">
                 <div className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase mb-2"
-                  style={{ background: "linear-gradient(90deg, #FFD700, #FFA500)", color: "#0F172A" }}>FEBRUARY 2026</div>
-                <h3 className="text-lg font-bold mb-1" style={{ color: "#0F172A" }}>Aegis Graham Bell Award</h3>
-                <p className="text-[13px]" style={{ color: "#475569" }}>16th AGBA Innovation in Gen AI - CX, Sales & GTM Intelligence Category Winner</p>
+                  style={{ background: "#0066CC", color: "#FFFFFF" }}>FEBRUARY 2026</div>
+                <h3 className="text-lg font-bold mb-1 text-white">Aegis Graham Bell Award</h3>
+                <p className="text-[13px] text-white/90">16th AGBA Innovation in Gen AI - CX, Sales & GTM Intelligence Category Winner</p>
               </div>
             </div>
 
-            <div className="rounded-xl overflow-hidden" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
+            <div className="rounded-xl overflow-hidden" style={{ background: "#0F172A", border: "3px solid #0066CC" }}>
               <div className="relative h-[280px] overflow-hidden">
                 <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/karnataka%20elevate%20award-6VQmT2ahCZSsynysJCRN0mwxbYjAZp.jpg" alt="Karnataka Elevate Award" fill className="object-cover object-center" />
               </div>
               <div className="p-5">
                 <div className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase mb-2"
-                  style={{ background: "linear-gradient(90deg, #FFD700, #FFA500)", color: "#0F172A" }}>NOVEMBER 2025</div>
-                <h3 className="text-lg font-bold mb-1" style={{ color: "#0F172A" }}>Karnataka Elevate 2025</h3>
-                <p className="text-[13px]" style={{ color: "#475569" }}>Selected from 1,474+ applicants across all sectors</p>
+                  style={{ background: "#0066CC", color: "#FFFFFF" }}>NOVEMBER 2025</div>
+                <h3 className="text-lg font-bold mb-1 text-white">Karnataka Elevate 2025</h3>
+                <p className="text-[13px] text-white/90">Selected from 1,474+ applicants across all sectors</p>
               </div>
             </div>
           </div>

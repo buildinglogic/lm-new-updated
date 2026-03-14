@@ -43,32 +43,33 @@ export function ProductsSection() {
       <div className="w-full max-w-[1400px] mx-auto">
         {/* Header */}
         <div className={`text-center mb-6 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase mb-3"
-            style={{ background: "rgba(0,102,204,0.1)", border: "1px solid rgba(0,102,204,0.25)", color: "#0066CC" }}>
-            OUR PRODUCTS
+          {/* Gradient container badge */}
+          <div className="gradient-container inline-block mb-4">
+            <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase" 
+              style={{ background: "#FFFFFF", color: "#0066CC" }}>
+              OUR PRODUCTS
+            </div>
           </div>
-          <h2 className="text-[26px] lg:text-[40px] font-bold leading-tight mb-2" style={{ color: "#0F172A" }}>
+          <h2 className="text-[28px] lg:text-[44px] font-bold leading-tight mb-2" style={{ color: "#0F172A" }}>
             Three Products. <span className="text-[#0066CC]">One Mission.</span>
           </h2>
-          <p className="text-sm max-w-lg mx-auto" style={{ color: "#475569" }}>
+          <p className="text-base max-w-lg mx-auto" style={{ color: "#475569" }}>
             Stop money leaking through your trade documents.
           </p>
         </div>
 
-        {/* Toggle Tab bar */}
+        {/* Toggle Tab bar - Mono color blue */}
         <div className={`flex justify-center mb-6 transition-all duration-700 delay-100 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="inline-flex p-1 rounded-full" style={{ background: "#F1F5F9", border: "2px solid #E2E8F0" }}>
+          <div className="inline-flex p-1.5 rounded-full" style={{ background: "#0066CC", border: "2px solid #0066CC" }}>
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  activeTab === tab.id ? "" : "hover:text-[#0066CC]"
-                }`}
+                className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300`}
                 style={{
-                  background: activeTab === tab.id ? "linear-gradient(90deg, #0066CC, #00A86B)" : "transparent",
-                  color: activeTab === tab.id ? "#FFFFFF" : "#64748B",
-                  boxShadow: activeTab === tab.id ? "0 4px 15px rgba(0,102,204,0.3)" : "none",
+                  background: activeTab === tab.id ? "#FFFFFF" : "transparent",
+                  color: activeTab === tab.id ? "#0066CC" : "rgba(255,255,255,0.8)",
+                  boxShadow: activeTab === tab.id ? "0 4px 15px rgba(0,0,0,0.1)" : "none",
                 }}
               >
                 {tab.label}
@@ -103,14 +104,17 @@ function TradeguardTab() {
   return (
     <div className="grid lg:grid-cols-2 gap-8 items-center">
       <div className="animate-slide-in-left">
-        <div className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase mb-4"
-          style={{ background: "rgba(0,102,204,0.1)", border: "1px solid rgba(0,102,204,0.25)", color: "#0066CC" }}>
-          MISMATCH DETECTION
+        {/* Gradient container badge */}
+        <div className="gradient-container inline-block mb-4">
+          <div className="px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase" 
+            style={{ background: "#FFFFFF", color: "#0066CC" }}>
+            MISMATCH DETECTION
+          </div>
         </div>
-        <h3 className="text-[24px] lg:text-[36px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
+        <h3 className="text-[26px] lg:text-[40px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
           Stop Mismatches <span className="text-[#0066CC]">Before They Cost You.</span>
         </h3>
-        <p className="text-sm leading-relaxed mb-6" style={{ color: "#475569" }}>
+        <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
           Tradeguard extracts 40+ fields from your Shipping Bill and Commercial Invoice, maps them 
           intelligently, and flags every discrepancy in under 5 minutes.
         </p>
@@ -142,8 +146,116 @@ function TradeguardTab() {
         </div>
       </div>
 
-      <div className="animate-slide-in-right animate-float">
-        <HeroMockup animated={false} />
+      {/* New animated mismatch detection visualization */}
+      <div className="animate-slide-in-right">
+        <div className="relative p-6 rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%)", border: "2px solid #E2E8F0", boxShadow: "0 25px 80px rgba(0,0,0,0.08)" }}>
+          {/* Animated scanning line */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute left-0 right-0 h-1 animate-scan-line" style={{ background: "linear-gradient(90deg, transparent, #0066CC, transparent)" }} />
+          </div>
+          
+          {/* Header */}
+          <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #0066CC, #00A86B)" }}>
+                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-bold text-sm" style={{ color: "#0F172A" }}>TradeGuard Scan</p>
+                <p className="text-[10px]" style={{ color: "#64748B" }}>Real-time mismatch detection</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#00A86B" }} />
+              <span className="text-[11px] font-medium" style={{ color: "#00A86B" }}>Live</span>
+            </div>
+          </div>
+
+          {/* Document comparison visual */}
+          <div className="grid grid-cols-2 gap-4 mb-5">
+            {/* Shipping Bill */}
+            <div className="p-3 rounded-xl relative overflow-hidden" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
+              <p className="text-[10px] font-bold uppercase mb-2" style={{ color: "#64748B" }}>Shipping Bill</p>
+              <div className="space-y-2">
+                <div className="flex justify-between text-[11px]">
+                  <span style={{ color: "#94A3B8" }}>HSN Code</span>
+                  <span className="font-mono font-medium" style={{ color: "#0F172A" }}>8471.30</span>
+                </div>
+                <div className="flex justify-between text-[11px]">
+                  <span style={{ color: "#94A3B8" }}>FOB Value</span>
+                  <span className="font-mono font-medium animate-pulse" style={{ color: "#DC2626" }}>$42,500</span>
+                </div>
+                <div className="flex justify-between text-[11px]">
+                  <span style={{ color: "#94A3B8" }}>Quantity</span>
+                  <span className="font-mono font-medium" style={{ color: "#0F172A" }}>500 PCS</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Invoice */}
+            <div className="p-3 rounded-xl relative overflow-hidden" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
+              <p className="text-[10px] font-bold uppercase mb-2" style={{ color: "#64748B" }}>Commercial Invoice</p>
+              <div className="space-y-2">
+                <div className="flex justify-between text-[11px]">
+                  <span style={{ color: "#94A3B8" }}>HSN Code</span>
+                  <span className="font-mono font-medium" style={{ color: "#0F172A" }}>8471.30</span>
+                </div>
+                <div className="flex justify-between text-[11px]">
+                  <span style={{ color: "#94A3B8" }}>FOB Value</span>
+                  <span className="font-mono font-medium animate-pulse" style={{ color: "#DC2626" }}>$41,800</span>
+                </div>
+                <div className="flex justify-between text-[11px]">
+                  <span style={{ color: "#94A3B8" }}>Quantity</span>
+                  <span className="font-mono font-medium" style={{ color: "#0F172A" }}>500 PCS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mismatch Alert Card */}
+          <div className="p-4 rounded-xl relative overflow-hidden animate-border-glow" style={{ background: "rgba(220,38,38,0.03)", border: "2px solid #DC2626" }}>
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 animate-pulse" style={{ background: "rgba(220,38,38,0.1)" }}>
+                <svg className="w-4 h-4" style={{ color: "#DC2626" }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <p className="font-bold text-sm mb-1" style={{ color: "#DC2626" }}>FOB Value Mismatch Detected</p>
+                <p className="text-[12px] mb-2" style={{ color: "#475569" }}>
+                  Difference of <span className="font-bold" style={{ color: "#DC2626" }}>$700 (1.6%)</span> found between documents
+                </p>
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-medium" style={{ background: "rgba(220,38,38,0.1)", color: "#DC2626" }}>
+                    High Risk
+                  </span>
+                  <span className="text-[10px]" style={{ color: "#94A3B8" }}>
+                    Could affect IGST refund
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats row */}
+          <div className="flex items-center justify-between mt-4 pt-4" style={{ borderTop: "1px solid #E2E8F0" }}>
+            <div className="text-center">
+              <p className="text-lg font-bold" style={{ color: "#0066CC" }}>40+</p>
+              <p className="text-[10px]" style={{ color: "#64748B" }}>Fields Checked</p>
+            </div>
+            <div className="text-center">
+              <p className="text-lg font-bold" style={{ color: "#00A86B" }}>1</p>
+              <p className="text-[10px]" style={{ color: "#64748B" }}>Mismatch Found</p>
+            </div>
+            <div className="text-center">
+              <p className="text-lg font-bold" style={{ color: "#F59E0B" }}>{"< 5s"}</p>
+              <p className="text-[10px]" style={{ color: "#64748B" }}>Scan Time</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -162,14 +274,17 @@ function PatramTab() {
   return (
     <div className="grid lg:grid-cols-2 gap-8 items-center">
       <div className="animate-slide-in-left">
-        <div className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase mb-4"
-          style={{ background: "rgba(0,168,107,0.1)", border: "1px solid rgba(0,168,107,0.25)", color: "#00A86B" }}>
-          DOCUMENT INTELLIGENCE
+        {/* Gradient container badge - green variant */}
+        <div className="inline-block mb-4" style={{ padding: "3px", background: "linear-gradient(90deg, #00A86B, #0066CC)", borderRadius: "9999px" }}>
+          <div className="px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase" 
+            style={{ background: "#FFFFFF", color: "#00A86B" }}>
+            DOCUMENT INTELLIGENCE
+          </div>
         </div>
-        <h3 className="text-[24px] lg:text-[36px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
+        <h3 className="text-[26px] lg:text-[40px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
           Ask Anything. <span className="text-[#00A86B]">Get Verified Answers.</span>
         </h3>
-        <p className="text-sm leading-relaxed mb-6" style={{ color: "#475569" }}>
+        <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
           Patram AI reads your entire shipment folder and answers questions in natural language. 
           Every answer is pixel-verified. Zero hallucinations.
         </p>
@@ -277,14 +392,17 @@ function TariffIQTab() {
   return (
     <div className="grid lg:grid-cols-2 gap-8 items-center">
       <div className="animate-slide-in-left">
-        <div className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase mb-4"
-          style={{ background: "rgba(0,102,204,0.1)", border: "1px solid rgba(0,102,204,0.25)", color: "#0066CC" }}>
-          HSN CLASSIFICATION & DUTY
+        {/* Gradient container badge */}
+        <div className="gradient-container inline-block mb-4">
+          <div className="px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase" 
+            style={{ background: "#FFFFFF", color: "#0066CC" }}>
+            HSN CLASSIFICATION & DUTY
+          </div>
         </div>
-        <h3 className="text-[24px] lg:text-[36px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
+        <h3 className="text-[26px] lg:text-[40px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
           Know Your HSN Code and Duty. <span className="text-[#0066CC]">Before Shipment.</span>
         </h3>
-        <p className="text-sm leading-relaxed mb-6" style={{ color: "#475569" }}>
+        <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
           TariffIQ classifies any product into the correct 8-digit HSN code using our AI 
           engine, then calculates your exact duty liability or export incentive.
         </p>
