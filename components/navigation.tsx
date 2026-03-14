@@ -11,9 +11,21 @@ const products = [
   { name: "TariffIQ", description: "HSN Classification & Duty Calculator", href: "#tariffiq" },
 ]
 
+const companyLinks = [
+  { name: "Mission", href: "/company#mission" },
+  { name: "Why Choose Us?", href: "/company#why-choose-us" },
+  { name: "Minds Behind Liquidmind AI", href: "/company#team" },
+  { name: "Timeline", href: "/company/timeline" },
+  { name: "Legal", href: "/company/legal" },
+  { name: "Press & Media", href: "/company/press" },
+  { name: "Map", href: "/company#map" },
+  { name: "Giving Back", href: "/company#giving-back" },
+]
+
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [productsOpen, setProductsOpen] = useState(false)
+  const [companyOpen, setCompanyOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -125,7 +137,33 @@ export function Navigation() {
               </div>
             </div>
 
-            <Link href="/company" className="text-white/80 hover:text-white text-[15px] font-semibold transition-colors">Company</Link>
+            {/* Company Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setCompanyOpen(true)}
+              onMouseLeave={() => setCompanyOpen(false)}
+            >
+              <button className="flex items-center gap-1.5 text-white/80 hover:text-white text-[15px] font-semibold transition-colors">
+                Company <ChevronDown className={`w-4 h-4 transition-transform ${companyOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              <div 
+                className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[280px] p-2 rounded-xl transition-all duration-300 ${companyOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", boxShadow: "0 25px 60px rgba(0,0,0,0.2)" }}
+              >
+                {companyLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="block px-4 py-2.5 rounded-lg text-[14px] font-medium transition-all hover:bg-[#F1F5F9]"
+                    style={{ color: "#0F172A" }}
+                    onClick={() => setCompanyOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
             <Link href="/newsletter" className="text-white/80 hover:text-white text-[15px] font-semibold transition-colors">Newsletter</Link>
             <Link href="/careers" className="text-white/80 hover:text-white text-[15px] font-semibold transition-colors">Careers</Link>
           </div>
@@ -164,7 +202,21 @@ export function Navigation() {
           style={{ background: "rgba(255,255,255,0.98)" }}>
           <div className="p-6 space-y-4">
             <button onClick={() => scrollToSection("#products")} className="block w-full text-left text-[#0F172A] text-lg font-semibold py-3 border-b border-[#E2E8F0]">Products</button>
-            <Link href="/company" className="block text-[#0F172A] text-lg font-semibold py-3 border-b border-[#E2E8F0]">Company</Link>
+            <div className="border-b border-[#E2E8F0] py-3">
+              <div className="text-[#0F172A] text-lg font-semibold mb-2">Company</div>
+              <div className="pl-4 space-y-2">
+                {companyLinks.map((link) => (
+                  <Link 
+                    key={link.name} 
+                    href={link.href} 
+                    className="block text-[#64748B] text-[15px] py-1.5 hover:text-[#0066CC]"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
             <Link href="/newsletter" className="block text-[#0F172A] text-lg font-semibold py-3 border-b border-[#E2E8F0]">Newsletter</Link>
             <Link href="/careers" className="block text-[#0F172A] text-lg font-semibold py-3 border-b border-[#E2E8F0]">Careers</Link>
             <div className="flex items-center gap-4 pt-4">
