@@ -92,19 +92,21 @@ function HeroSection() {
               Liquidmind AI catches every error before customs does.
             </p>
 
-            <div className="flex flex-wrap gap-2 mb-5 animate-fade-in-up stagger-3">
+            <div className="flex flex-wrap gap-3 mb-5 animate-fade-in-up stagger-3">
               {statPills.map((stat, idx) => (
-                <span 
+                <div 
                   key={idx} 
-                  className="px-4 py-2 rounded-full text-xs font-semibold cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(220,38,38,0.5)] hover:bg-[rgba(220,38,38,0.15)]"
+                  className="group relative p-[3px] rounded-[0.9em] transition-all duration-400 cursor-pointer"
                   style={{ 
-                    background: "rgba(220,38,38,0.08)", 
-                    border: "1px solid rgba(220,38,38,0.3)", 
-                    color: "#DC2626",
-                    backdropFilter: "blur(8px)",
+                    background: "linear-gradient(90deg, #DC2626, #EF4444)",
                   }}>
-                  {stat}
-                </span>
+                  {/* Blur glow effect on hover */}
+                  <div className="absolute inset-0 rounded-[0.9em] opacity-0 group-hover:opacity-100 transition-opacity duration-400 blur-[1.2em] -z-10"
+                    style={{ background: "linear-gradient(90deg, #DC2626, #EF4444)" }} />
+                  <span className="relative block px-4 py-2 rounded-[0.7em] text-xs font-bold bg-white text-[#DC2626] transition-all duration-300 group-hover:bg-[#0F172A] group-hover:text-white">
+                    {stat}
+                  </span>
+                </div>
               ))}
             </div>
 
@@ -113,10 +115,11 @@ function HeroSection() {
                 style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF", boxShadow: "0 4px 25px rgba(0,102,204,0.35)" }}>
                 Book Free Demo
               </Link>
-              <button className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all hover:border-[#0066CC] hover:text-[#0066CC]"
+              <a href="https://www.youtube.com/@ABORRIGINALLIQUIDMIND" target="_blank" rel="noopener noreferrer" 
+                className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all hover:border-[#0066CC] hover:text-[#0066CC]"
                 style={{ background: "transparent", border: "1.5px solid #CBD5E1", color: "#0F172A" }}>
                 Watch Demo
-              </button>
+              </a>
             </div>
           </div>
 
@@ -215,19 +218,21 @@ function ProblemSection() {
         backgroundPosition: 'center',
       }}
     >
-      {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/70 to-white/80" />
+      {/* Subtle overlay for text readability - preserving image quality */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/30" />
       
       <div className="w-full max-w-[1100px] mx-auto relative z-10">
         <div className={`text-center mb-6 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Gradient container badge - red variant */}
-          <div className="inline-block mb-3" style={{ padding: "3px", background: "linear-gradient(90deg, #DC2626, #EF4444)", borderRadius: "9999px" }}>
-            <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase" 
-              style={{ background: "#FFFFFF", color: "#DC2626" }}>
+          {/* Gradient container badge - red variant with glow */}
+          <div className="group inline-block mb-3 relative p-[3px] rounded-[9999px] transition-all duration-400 cursor-pointer"
+            style={{ background: "linear-gradient(90deg, #DC2626, #EF4444)" }}>
+            <div className="absolute inset-0 rounded-[9999px] opacity-0 group-hover:opacity-100 transition-opacity duration-400 blur-[1.2em] -z-10"
+              style={{ background: "linear-gradient(90deg, #DC2626, #EF4444)" }} />
+            <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase bg-white text-[#DC2626] transition-all duration-300 group-hover:bg-[#0F172A] group-hover:text-white">
               THE COST OF DOING NOTHING
             </div>
           </div>
-          <h2 className="text-[26px] lg:text-[40px] font-bold leading-tight text-balance" style={{ color: "#0F172A" }}>
+          <h2 className="text-[26px] lg:text-[40px] font-bold leading-tight text-balance drop-shadow-sm" style={{ color: "#0F172A" }}>
             Your Trade Documents Are <span className="text-[#DC2626]">Bleeding Money</span> Right Now.
           </h2>
         </div>

@@ -195,11 +195,11 @@ export function Navigation() {
           {/* Right side - Social icons + Book Demo */}
           <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
             <div className="flex items-center gap-2">
-              <a href="https://youtube.com/@liquidmindai" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.youtube.com/@ABORRIGINALLIQUIDMIND" target="_blank" rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
                 <Youtube className="w-5 h-5 text-white/70 hover:text-white" />
               </a>
-              <a href="https://linkedin.com/company/liquidmind" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.linkedin.com/company/liquidmind-ai/" target="_blank" rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
                 <Linkedin className="w-5 h-5 text-white/70 hover:text-white" />
               </a>
@@ -244,10 +244,10 @@ export function Navigation() {
             <Link href="/newsletter" className="block text-[#0F172A] text-lg font-semibold py-3 border-b border-[#E2E8F0]">Newsletter</Link>
             <Link href="/careers" className="block text-[#0F172A] text-lg font-semibold py-3 border-b border-[#E2E8F0]">Careers</Link>
             <div className="flex items-center gap-4 pt-4">
-              <a href="https://youtube.com/@liquidmindai" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-[#0066CC]">
+              <a href="https://www.youtube.com/@ABORRIGINALLIQUIDMIND" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-[#0066CC]">
                 <Youtube className="w-5 h-5 text-white" />
               </a>
-              <a href="https://linkedin.com/company/liquidmind" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-[#0066CC]">
+              <a href="https://www.linkedin.com/company/liquidmind-ai/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-[#0066CC]">
                 <Linkedin className="w-5 h-5 text-white" />
               </a>
               <a href="mailto:support@liquidmind.ai" className="w-10 h-10 rounded-full flex items-center justify-center bg-[#0066CC]">

@@ -45,16 +45,16 @@ export function FooterLinks() {
               support@liquidmind.ai
             </a>
             <div className="flex items-center gap-2">
-              <a href="https://youtube.com/@liquidmindai" target="_blank" rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors" style={{ background: "#E2E8F0" }}>
+              <a href="https://www.youtube.com/@ABORRIGINALLIQUIDMIND" target="_blank" rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-[#FF0000]/10" style={{ background: "#E2E8F0" }}>
                 <Youtube className="w-4 h-4" style={{ color: "#475569" }} />
               </a>
-              <a href="https://linkedin.com/company/liquidmind" target="_blank" rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors" style={{ background: "#E2E8F0" }}>
+              <a href="https://www.linkedin.com/company/liquidmind-ai/" target="_blank" rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-[#0077B5]/10" style={{ background: "#E2E8F0" }}>
                 <Linkedin className="w-4 h-4" style={{ color: "#475569" }} />
               </a>
               <a href="mailto:support@liquidmind.ai"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors" style={{ background: "#E2E8F0" }}>
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-[#0066CC]/10" style={{ background: "#E2E8F0" }}>
                 <Mail className="w-4 h-4" style={{ color: "#475569" }} />
               </a>
             </div>

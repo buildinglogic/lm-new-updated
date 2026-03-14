@@ -163,10 +163,11 @@ function TradeguardTab() {
             style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF", boxShadow: "0 4px 25px rgba(0,102,204,0.35)" }}>
             Get Started
           </a>
-          <button className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 hover:border-[#0066CC] hover:text-[#0066CC]"
+          <a href="https://www.youtube.com/@ABORRIGINALLIQUIDMIND" target="_blank" rel="noopener noreferrer"
+            className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 hover:border-[#0066CC] hover:text-[#0066CC]"
             style={{ background: "transparent", border: "1.5px solid #CBD5E1", color: "#0F172A" }}>
             Watch Demo
-          </button>
+          </a>
         </div>
       </div>
 

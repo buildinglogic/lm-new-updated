@@ -138,16 +138,28 @@ export default function NewsletterPage() {
           <div className="text-center mb-8">
             <h2 className="text-2xl lg:text-3xl font-bold mb-3" style={{ color: "#0F172A" }}>{"What You'll"} <span className="text-[#0066CC]">Learn</span></h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-3 gap-5">
             {[
               { title: "Compliance Updates", description: "Stay ahead of DGFT policy changes, new HSN codes, and tariff updates that affect your business.", color: "#0066CC" },
               { title: "Refund Optimization", description: "Learn strategies to maximize your Drawback, RoDTEP, and IGST refunds. Real numbers, real results.", color: "#00A86B" },
               { title: "Error Prevention", description: "Common documentation mistakes that cost exporters lakhs, and how to avoid them.", color: "#F59E0B" },
             ].map((item, idx) => (
-              <div key={idx} className="p-6 rounded-xl card-hover"
-                style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", borderTop: `4px solid ${item.color}` }}>
-                <h3 className="text-lg font-bold mb-3" style={{ color: "#0F172A" }}>{item.title}</h3>
-                <p className="text-[14px] leading-relaxed" style={{ color: "#475569" }}>{item.description}</p>
+              <div key={idx} className="group relative block max-w-[340px] rounded-[10px] p-6 mx-auto cursor-pointer overflow-hidden transition-all duration-300"
+                style={{ background: "linear-gradient(to bottom, #c3e6ec, #a7d1d9)" }}>
+                {/* Expanding circle effect on hover */}
+                <div className="absolute -top-4 -right-4 w-8 h-8 rounded-full transition-transform duration-[350ms] ease-out group-hover:scale-[28] -z-0"
+                  style={{ background: "linear-gradient(135deg, #364a60, #384c6c)" }} />
+                
+                {/* Corner arrow */}
+                <div className="absolute top-0 right-0 w-8 h-8 flex items-center justify-center overflow-hidden rounded-bl-[32px]"
+                  style={{ background: "linear-gradient(135deg, #6293c8, #384c6c)" }}>
+                  <span className="text-white text-sm font-bold -mt-1 -mr-1">→</span>
+                </div>
+                
+                <div className="relative z-10">
+                  <h3 className="text-xl font-bold mb-3 transition-colors duration-500 text-[#262626] group-hover:text-white">{item.title}</h3>
+                  <p className="text-[15px] leading-relaxed transition-colors duration-500 text-[#452c2c] group-hover:text-white/80">{item.description}</p>
+                </div>
               </div>
             ))}
           </div>

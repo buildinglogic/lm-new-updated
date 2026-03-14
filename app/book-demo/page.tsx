@@ -103,6 +103,12 @@ export default function BookDemoPage() {
                   <p className="text-base mb-4" style={{ color: "#475569" }}>
                     Thank you for your interest. Our team will contact you within 24 hours to schedule your personalized demo.
                   </p>
+                  <p className="text-sm mb-4" style={{ color: "#64748B" }}>
+                    You can also reach us directly at{" "}
+                    <a href="mailto:support@liquidmind.ai" className="text-[#0066CC] font-semibold hover:underline">
+                      support@liquidmind.ai
+                    </a>
+                  </p>
                   <a href="/" className="inline-block px-6 py-3 rounded-lg text-sm font-bold"
                     style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}>
                     Back to Home
@@ -111,7 +117,11 @@ export default function BookDemoPage() {
               ) : (
                 <>
                   <h2 className="text-xl font-bold mb-1" style={{ color: "#0F172A" }}>Request Your Demo</h2>
-                  <p className="text-sm mb-5" style={{ color: "#64748B" }}>Fill in your details and we'll get back to you shortly.</p>
+                  <p className="text-sm mb-2" style={{ color: "#64748B" }}>Fill in your details and we'll get back to you shortly.</p>
+                  <p className="text-xs mb-5" style={{ color: "#94A3B8" }}>
+                    Or email us directly at{" "}
+                    <a href="mailto:support@liquidmind.ai" className="text-[#0066CC] hover:underline">support@liquidmind.ai</a>
+                  </p>
                   
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid sm:grid-cols-2 gap-4">
