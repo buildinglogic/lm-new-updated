@@ -40,12 +40,14 @@ const timelineData: { year: string; events: TimelineEvent[] }[] = [
         date: "November 2025",
         title: "Karnataka Elevate 2025 Grant Winner",
         description: "ELEVATE 2025 GRANT WINNER awarded by Hon. IT/BT Minister Shri Priyank Kharge at Bengaluru Tech Summit (BTS 2025) on 20 Nov 2025. Winner in the Karnataka Elevate 2025 Program among 180 startups, chosen from 1,474+ applicants across sectors provided a non dilutive grant of upto Rs 50 lakhs.",
+        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nov%202025%20elevate-r4QoR6tshopsBHgiYBFyzqMdOQoqG4.avif",
         side: "right"
       },
       {
         date: "May 2025",
         title: "TEDxIT Kakinada Keynote",
         description: "Our Founder delivered a keynote session at TEDxIT Kakinada on the theme 'Tech, AI & Entrepreneurship: Giving Perspective to Young Future Business Leaders' on May 4, 2025. He highlighted how rising AI tools are reshaping business models and unlocking new opportunities for young entrepreneurs.",
+        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/may%202025%20tedx-k41OwTXtfh2Vc9JjwOdR5Z26LXgHDn.avif",
         side: "left"
       },
       {
@@ -66,6 +68,7 @@ const timelineData: { year: string; events: TimelineEvent[] }[] = [
         date: "January 2025",
         title: "National Conference on Strategic Trade Controls",
         description: "Our founder participated on a two day workshop at the National conference on strategic trade controls (NCSTC) - 16/17 January 2025.",
+        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/NCSTC-25BabmS9B176JSSEVRiMsvgsVw7nxi.avif",
         side: "right"
       },
       {
@@ -84,12 +87,14 @@ const timelineData: { year: string; events: TimelineEvent[] }[] = [
         date: "December 2024",
         title: "IIM Vizag's Vriddhi 6.0",
         description: "Our founder, Naveen Athresh, delivered a session on 'Future of Digital Trust: The New Business Imperative' at IIM Vizag's Vriddhi 6.0 event on 8th December 2024.",
+        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IIMV-YrAcsjtLD2QcmMRKzSOY0hNMbjdVJQ.avif",
         side: "right"
       },
       {
         date: "December 2024",
         title: "In-house AI Hackathon",
         description: "An in-house hackathon from 7th to 12th December, boosting team morale and tackling MSME challenges with innovative solutions. A celebration of creativity and high energy!",
+        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nmit-vhDQ7JEWcdaO9MZ3sTOSqr3GM2Sa2N.avif",
         side: "left"
       },
       {
@@ -115,6 +120,7 @@ const timelineData: { year: string; events: TimelineEvent[] }[] = [
         date: "March 2024",
         title: "USA Wire Feature",
         description: "In March 2024, our founder's insightful article was featured on USAWire, a prominent news platform. The article, titled 'Thought Leaders Making An Impact in The World,' provided valuable insights and strategies for success in today's rapidly evolving business landscape.",
+        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/usa%20wire-CRtYumAqS8UVWABn03KljPlmfOkgHV.avif",
         side: "left"
       },
       {
@@ -152,6 +158,7 @@ const timelineData: { year: string; events: TimelineEvent[] }[] = [
         date: "2023",
         title: "IIT Madras Guest Lecture",
         description: "Our founder, Naveen Athresh was at IIT Madras to give a talk to their BTech students on user research and design thinking product thinking. Got a detailed tour of the great deep tech work they are doing around hyper loop and electric autonomous vehicles and solar powered vehicles.",
+        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IITM-4A2CoTxVhn46nekDfGCvq6c4c2HJeY.avif",
         side: "right"
       },
     ]
@@ -176,6 +183,7 @@ const timelineData: { year: string; events: TimelineEvent[] }[] = [
         date: "2017, 2018 - till date",
         title: "IP Forum Participation",
         description: "LIQUIDMIND® Product has maintained an unwavering commitment towards preserving Intellectual property rights (IPR) - across filing patents, trademarks, copyrights and geographical indication. We are regulars at conferences like the World IP Forum globally over the last few decades and FICCI.",
+        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ip_conference_2_720-Q0Ul0J3esybmnVMG8sCK2NLoQarHfC.avif",
         side: "left"
       },
     ]
@@ -184,34 +192,45 @@ const timelineData: { year: string; events: TimelineEvent[] }[] = [
     year: "2017",
     events: [
       {
+        date: "2017",
+        title: "VR/Mixed Reality Demo at IIFT Delhi",
+        description: "Demoing our Virtual/Mixed reality product for the EdTech vertical @ Indian Institute of Foreign Trade, Delhi",
+        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/iift_vrlively_720-n9ZVkthW2YWWG8WZ6abMTBXbRAYOd8.avif",
+        side: "right"
+      },
+      {
         date: "May 2017",
         title: "TechCrunch Disrupt, New York",
         description: "TechCrunch Disrupt, New York - Demoed our conversational commerce product for fast fashion during this 3 day event.",
-        side: "right"
+        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/techcrunch-NPoFKYudE7uructh2fkVZzUBdnWOxV.avif",
+        side: "left"
       },
       {
         date: "6th May 2017",
         title: "IDEO Labs Design Thinking",
         description: "Sowed the seeds for LIQUIDMIND design thinking with the guidance of the top leaders at IDEO LABS, Cambridge Massachusetts, USA.",
-        side: "left"
+        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Naveen_Sir_ideo_cambridge_ma-8zTLG7fm5jjNxZJrAAv0W84LymaLWt.avif",
+        side: "right"
       },
       {
         date: "2017",
         title: "Harvard Business School - HBX Connect",
         description: "HBX Connect - LIQUIDMIND Founders participate on Entrepreneurship/Design thinking sessions and workshops at Harvard Business school, Boston, Massachusetts, USA to sow the seeds for LIQUIDMIND AI",
-        side: "right"
+        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/proff_HSB-PzWb6ZOnQRxIKrsXZ10ODEkQ5T5qng.avif",
+        side: "left"
       },
       {
         date: "3 March 2017 - till date",
         title: "Trademark Registration",
         description: "LIQUIDMIND® and LIQUID MIND® are formally registered Trademarks of LIQUIDMIND Product Consulting Private Limited",
-        side: "left"
+        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/trademark-CFGIhJTRigX5lTDyEu2gI1TfC24rjE.avif",
+        side: "right"
       },
       {
         date: "23 February 2017",
         title: "Company Incorporation",
         description: "LIQUIDMIND is formally incorporated as a Private Limited company.",
-        side: "right"
+        side: "left"
       },
     ]
   },
@@ -231,22 +250,22 @@ function TimelineItem({ event, index }: { event: TimelineEvent; index: number })
         {event.side === 'left' && (
           <div className="hidden lg:block">
             {event.image && (
-              <div className="relative w-full h-48 mb-4 rounded-xl overflow-hidden" style={{ boxShadow: "0 10px 40px rgba(0,0,0,0.3)" }}>
+              <div className="relative w-full h-48 mb-4 rounded-xl overflow-hidden card-hover" style={{ boxShadow: "0 10px 40px rgba(0,0,0,0.1)" }}>
                 <Image src={event.image} alt={event.title} fill className="object-cover" />
               </div>
             )}
             <div className="inline-block px-4 py-1.5 rounded-full text-xs font-bold mb-3" style={{ background: "#0066CC", color: "#FFFFFF" }}>
               {event.date}
             </div>
-            <h3 className="text-lg lg:text-xl font-bold text-white mb-2">{event.title}</h3>
-            <p className="text-sm lg:text-[15px] leading-relaxed text-white/70">{event.description}</p>
+            <h3 className="text-lg lg:text-xl font-bold mb-2" style={{ color: "#0F172A" }}>{event.title}</h3>
+            <p className="text-sm lg:text-[15px] leading-relaxed" style={{ color: "#475569" }}>{event.description}</p>
           </div>
         )}
       </div>
 
       {/* Center Line & Dot */}
       <div className="flex flex-col items-center flex-shrink-0">
-        <div className="w-4 h-4 rounded-full border-4 animate-pulse" style={{ borderColor: "#0066CC", background: "#0F172A" }} />
+        <div className="w-4 h-4 rounded-full border-4 animate-pulse" style={{ borderColor: "#0066CC", background: "#FFFFFF" }} />
         <div className="w-0.5 h-full min-h-[100px]" style={{ background: "linear-gradient(180deg, #0066CC, #00A86B)" }} />
       </div>
 
@@ -255,30 +274,30 @@ function TimelineItem({ event, index }: { event: TimelineEvent; index: number })
         {event.side === 'right' && (
           <div className="hidden lg:block">
             {event.image && (
-              <div className="relative w-full h-48 mb-4 rounded-xl overflow-hidden" style={{ boxShadow: "0 10px 40px rgba(0,0,0,0.3)" }}>
+              <div className="relative w-full h-48 mb-4 rounded-xl overflow-hidden card-hover" style={{ boxShadow: "0 10px 40px rgba(0,0,0,0.1)" }}>
                 <Image src={event.image} alt={event.title} fill className="object-cover" />
               </div>
             )}
             <div className="inline-block px-4 py-1.5 rounded-full text-xs font-bold mb-3" style={{ background: "#0066CC", color: "#FFFFFF" }}>
               {event.date}
             </div>
-            <h3 className="text-lg lg:text-xl font-bold text-white mb-2">{event.title}</h3>
-            <p className="text-sm lg:text-[15px] leading-relaxed text-white/70">{event.description}</p>
+            <h3 className="text-lg lg:text-xl font-bold mb-2" style={{ color: "#0F172A" }}>{event.title}</h3>
+            <p className="text-sm lg:text-[15px] leading-relaxed" style={{ color: "#475569" }}>{event.description}</p>
           </div>
         )}
 
         {/* Mobile View - Show all content on right */}
         <div className="lg:hidden">
           {event.image && (
-            <div className="relative w-full h-40 mb-3 rounded-xl overflow-hidden" style={{ boxShadow: "0 10px 40px rgba(0,0,0,0.3)" }}>
+            <div className="relative w-full h-40 mb-3 rounded-xl overflow-hidden" style={{ boxShadow: "0 10px 40px rgba(0,0,0,0.1)" }}>
               <Image src={event.image} alt={event.title} fill className="object-cover" />
             </div>
           )}
           <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold mb-2" style={{ background: "#0066CC", color: "#FFFFFF" }}>
             {event.date}
           </div>
-          <h3 className="text-base font-bold text-white mb-1.5">{event.title}</h3>
-          <p className="text-xs leading-relaxed text-white/70">{event.description}</p>
+          <h3 className="text-base font-bold mb-1.5" style={{ color: "#0F172A" }}>{event.title}</h3>
+          <p className="text-xs leading-relaxed" style={{ color: "#475569" }}>{event.description}</p>
         </div>
       </div>
     </div>
@@ -289,20 +308,27 @@ export default function TimelinePage() {
   return (
     <>
       <Navigation />
-      <main className="pt-[112px] lg:pt-[112px]" style={{ background: "#0F172A" }}>
-        {/* Hero Section */}
-        <section className="py-16 lg:py-24 px-4 lg:px-8 text-center" style={{ background: "linear-gradient(180deg, #0F172A 0%, #1E293B 100%)" }}>
-          <div className="max-w-4xl mx-auto">
+      <main className="pt-[112px] lg:pt-[112px]" style={{ background: "#FFFFFF" }}>
+        {/* Hero Section with World Map Background */}
+        <section 
+          className="py-16 lg:py-24 px-4 lg:px-8 text-center relative"
+          style={{ 
+            background: `linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.95) 100%), url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/white%20textured%20background-XqYvG2BPZFQYuje30CxDJmXeToXYqa.jpg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="max-w-4xl mx-auto relative">
             <div className="gradient-container inline-block mb-6">
               <div className="px-5 py-2 rounded-full text-sm font-bold tracking-[0.12em] uppercase" 
-                style={{ background: "#0F172A", color: "#FFFFFF" }}>
+                style={{ background: "#FFFFFF", color: "#0066CC" }}>
                 OUR JOURNEY
               </div>
             </div>
-            <h1 className="text-[36px] lg:text-[56px] font-extrabold leading-tight mb-6 text-white">
+            <h1 className="text-[36px] lg:text-[56px] font-extrabold leading-tight mb-6" style={{ color: "#0F172A" }}>
               Key Activities / <span className="text-[#0066CC]">Company Timeline</span>
             </h1>
-            <p className="text-base lg:text-lg text-white/70 max-w-2xl mx-auto">
+            <p className="text-base lg:text-lg max-w-2xl mx-auto" style={{ color: "#475569" }}>
               From our humble beginnings in 2017 to becoming India's leading AI trade compliance platform, 
               explore the milestones that shaped Liquidmind AI.
             </p>
@@ -310,13 +336,7 @@ export default function TimelinePage() {
         </section>
 
         {/* Timeline Section */}
-        <section className="py-16 lg:py-24 px-4 lg:px-8 relative" style={{ background: "#0F172A" }}>
-          {/* Background decoration */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-1/4 left-0 w-96 h-96 rounded-full opacity-5" style={{ background: "radial-gradient(circle, #0066CC, transparent)" }} />
-            <div className="absolute bottom-1/4 right-0 w-96 h-96 rounded-full opacity-5" style={{ background: "radial-gradient(circle, #00A86B, transparent)" }} />
-          </div>
-
+        <section className="py-16 lg:py-24 px-4 lg:px-8 relative" style={{ background: "#FFFFFF" }}>
           <div className="max-w-5xl mx-auto relative">
             {timelineData.map((yearGroup, yearIndex) => (
               <div key={yearGroup.year} className="mb-16">
@@ -349,10 +369,10 @@ export default function TimelinePage() {
             <div className="text-center py-12">
               <div 
                 className="inline-block px-10 py-6 rounded-2xl"
-                style={{ background: "rgba(255,255,255,0.05)", border: "2px solid rgba(255,255,255,0.1)" }}
+                style={{ background: "#F8FAFC", border: "2px solid #E2E8F0" }}
               >
-                <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">Stay tuned for updates</h3>
-                <p className="text-white/60">More milestones coming soon...</p>
+                <h3 className="text-2xl lg:text-3xl font-bold mb-2" style={{ color: "#0F172A" }}>Stay tuned for updates</h3>
+                <p style={{ color: "#64748B" }}>More milestones coming soon...</p>
               </div>
             </div>
           </div>

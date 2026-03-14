@@ -348,3 +348,24 @@ input[type="range"]::-webkit-slider-thumb {
 .animate-border-glow {
   animation: border-glow 3s ease-in-out infinite;
 }
+
+/* Scan Line Animation */
+@keyframes scan-line {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+.animate-scan-line {
+  animation: scan-line 3s ease-in-out infinite;
+}

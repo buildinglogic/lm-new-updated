@@ -146,15 +146,114 @@ function TradeguardTab() {
         </div>
       </div>
 
-      {/* New 3D perspective animation with glowing border */}
+      {/* New animated mismatch detection visualization */}
       <div className="animate-slide-in-right">
-        <div className="relative">
-          {/* Outer glow ring */}
-          <div className="absolute -inset-4 rounded-2xl animate-pulse-ring" />
-          {/* Main mockup container with 3D animation */}
-          <div className="animate-perspective rounded-xl border-2 animate-border-glow" 
-            style={{ borderColor: "#0066CC", boxShadow: "0 25px 80px rgba(0,102,204,0.2)" }}>
-            <HeroMockup animated={false} />
+        <div className="relative p-6 rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%)", border: "2px solid #E2E8F0", boxShadow: "0 25px 80px rgba(0,0,0,0.08)" }}>
+          {/* Animated scanning line */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute left-0 right-0 h-1 animate-scan-line" style={{ background: "linear-gradient(90deg, transparent, #0066CC, transparent)" }} />
+          </div>
+          
+          {/* Header */}
+          <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #0066CC, #00A86B)" }}>
+                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-bold text-sm" style={{ color: "#0F172A" }}>TradeGuard Scan</p>
+                <p className="text-[10px]" style={{ color: "#64748B" }}>Real-time mismatch detection</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#00A86B" }} />
+              <span className="text-[11px] font-medium" style={{ color: "#00A86B" }}>Live</span>
+            </div>
+          </div>
+
+          {/* Document comparison visual */}
+          <div className="grid grid-cols-2 gap-4 mb-5">
+            {/* Shipping Bill */}
+            <div className="p-3 rounded-xl relative overflow-hidden" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
+              <p className="text-[10px] font-bold uppercase mb-2" style={{ color: "#64748B" }}>Shipping Bill</p>
+              <div className="space-y-2">
+                <div className="flex justify-between text-[11px]">
+                  <span style={{ color: "#94A3B8" }}>HSN Code</span>
+                  <span className="font-mono font-medium" style={{ color: "#0F172A" }}>8471.30</span>
+                </div>
+                <div className="flex justify-between text-[11px]">
+                  <span style={{ color: "#94A3B8" }}>FOB Value</span>
+                  <span className="font-mono font-medium animate-pulse" style={{ color: "#DC2626" }}>$42,500</span>
+                </div>
+                <div className="flex justify-between text-[11px]">
+                  <span style={{ color: "#94A3B8" }}>Quantity</span>
+                  <span className="font-mono font-medium" style={{ color: "#0F172A" }}>500 PCS</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Invoice */}
+            <div className="p-3 rounded-xl relative overflow-hidden" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
+              <p className="text-[10px] font-bold uppercase mb-2" style={{ color: "#64748B" }}>Commercial Invoice</p>
+              <div className="space-y-2">
+                <div className="flex justify-between text-[11px]">
+                  <span style={{ color: "#94A3B8" }}>HSN Code</span>
+                  <span className="font-mono font-medium" style={{ color: "#0F172A" }}>8471.30</span>
+                </div>
+                <div className="flex justify-between text-[11px]">
+                  <span style={{ color: "#94A3B8" }}>FOB Value</span>
+                  <span className="font-mono font-medium animate-pulse" style={{ color: "#DC2626" }}>$41,800</span>
+                </div>
+                <div className="flex justify-between text-[11px]">
+                  <span style={{ color: "#94A3B8" }}>Quantity</span>
+                  <span className="font-mono font-medium" style={{ color: "#0F172A" }}>500 PCS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mismatch Alert Card */}
+          <div className="p-4 rounded-xl relative overflow-hidden animate-border-glow" style={{ background: "rgba(220,38,38,0.03)", border: "2px solid #DC2626" }}>
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 animate-pulse" style={{ background: "rgba(220,38,38,0.1)" }}>
+                <svg className="w-4 h-4" style={{ color: "#DC2626" }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <p className="font-bold text-sm mb-1" style={{ color: "#DC2626" }}>FOB Value Mismatch Detected</p>
+                <p className="text-[12px] mb-2" style={{ color: "#475569" }}>
+                  Difference of <span className="font-bold" style={{ color: "#DC2626" }}>$700 (1.6%)</span> found between documents
+                </p>
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-medium" style={{ background: "rgba(220,38,38,0.1)", color: "#DC2626" }}>
+                    High Risk
+                  </span>
+                  <span className="text-[10px]" style={{ color: "#94A3B8" }}>
+                    Could affect IGST refund
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats row */}
+          <div className="flex items-center justify-between mt-4 pt-4" style={{ borderTop: "1px solid #E2E8F0" }}>
+            <div className="text-center">
+              <p className="text-lg font-bold" style={{ color: "#0066CC" }}>40+</p>
+              <p className="text-[10px]" style={{ color: "#64748B" }}>Fields Checked</p>
+            </div>
+            <div className="text-center">
+              <p className="text-lg font-bold" style={{ color: "#00A86B" }}>1</p>
+              <p className="text-[10px]" style={{ color: "#64748B" }}>Mismatch Found</p>
+            </div>
+            <div className="text-center">
+              <p className="text-lg font-bold" style={{ color: "#F59E0B" }}>{"< 5s"}</p>
+              <p className="text-[10px]" style={{ color: "#64748B" }}>Scan Time</p>
+            </div>
           </div>
         </div>
       </div>
