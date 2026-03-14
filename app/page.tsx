@@ -65,25 +65,28 @@ function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
           {/* Left side - moved more towards center */}
           <div className="lg:pl-8 xl:pl-16">
-            <div className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase mb-3 animate-fade-in-up"
-              style={{ background: "rgba(0,102,204,0.1)", border: "1px solid rgba(0,102,204,0.25)", color: "#0066CC" }}>
-              {"INDIA'S #1 AI TRADE COMPLIANCE PLATFORM"}
+            {/* Gradient container badge from styles.css */}
+            <div className="gradient-container inline-block mb-4 animate-fade-in-up">
+              <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase" 
+                style={{ background: "#FFFFFF", color: "#0066CC" }}>
+                {"INDIA'S #1 AI TRADE COMPLIANCE PLATFORM"}
+              </div>
             </div>
 
-            <h1 className="text-[30px] lg:text-[52px] font-extrabold leading-[1.1] tracking-[-0.03em] mb-3 animate-fade-in-up stagger-1" style={{ color: "#0F172A" }}>
+            <h1 className="text-[32px] lg:text-[56px] font-extrabold leading-[1.1] tracking-[-0.03em] mb-4 animate-fade-in-up stagger-1" style={{ color: "#0F172A" }}>
               Stop Losing<br />
               <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Crores</span> to Trade<br />
               Document Errors.
             </h1>
 
-            <p className="text-[14px] lg:text-[16px] leading-[1.6] max-w-[460px] mb-3 animate-fade-in-up stagger-2" style={{ color: "#475569" }}>
+            <p className="text-[15px] lg:text-[17px] leading-[1.6] max-w-[460px] mb-4 animate-fade-in-up stagger-2" style={{ color: "#475569" }}>
               Indian exporters lose 3-7% of FOB value every month to document mismatches. 
               Liquidmind AI catches every error before customs does.
             </p>
 
-            <div className="flex flex-wrap gap-2 mb-4 animate-fade-in-up stagger-3">
+            <div className="flex flex-wrap gap-2 mb-5 animate-fade-in-up stagger-3">
               {statPills.map((stat, idx) => (
-                <span key={idx} className="px-3 py-1 rounded-full text-[11px] font-medium"
+                <span key={idx} className="px-4 py-1.5 rounded-full text-xs font-semibold"
                   style={{ background: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.2)", color: "#DC2626" }}>
                   {stat}
                 </span>
@@ -191,18 +194,21 @@ function ProblemSection() {
       ref={ref} 
       className="min-h-screen flex flex-col justify-center py-16 px-4 lg:px-8 relative"
       style={{ 
-        background: `linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,250,252,0.95) 100%), url('/images/trade-compliance-bg.jpg')`,
+        background: `linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(248,250,252,0.9) 100%), url('/images/world-map-bg.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
       <div className="w-full max-w-[1000px] mx-auto">
         <div className={`text-center mb-10 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase mb-3"
-            style={{ background: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.2)", color: "#DC2626" }}>
-            THE COST OF DOING NOTHING
+          {/* Gradient container badge - red variant */}
+          <div className="inline-block mb-4" style={{ padding: "3px", background: "linear-gradient(90deg, #DC2626, #EF4444)", borderRadius: "9999px" }}>
+            <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase" 
+              style={{ background: "#FFFFFF", color: "#DC2626" }}>
+              THE COST OF DOING NOTHING
+            </div>
           </div>
-          <h2 className="text-[28px] lg:text-[44px] font-bold leading-tight text-balance" style={{ color: "#0F172A" }}>
+          <h2 className="text-[30px] lg:text-[48px] font-bold leading-tight text-balance" style={{ color: "#0F172A" }}>
             Your Trade Documents Are <span className="text-[#DC2626]">Bleeding Money</span> Right Now.
           </h2>
         </div>
@@ -284,11 +290,14 @@ function HowItWorks() {
     <section ref={ref} className="min-h-screen flex flex-col justify-center py-16 px-4 lg:px-8" style={{ background: "#F8FAFC" }}>
       <div className="w-full max-w-[1100px] mx-auto">
         <div className={`text-center mb-12 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase mb-3"
-            style={{ background: "rgba(0,102,204,0.1)", border: "1px solid rgba(0,102,204,0.25)", color: "#0066CC" }}>
-            THE PROCESS
+          {/* Gradient container badge */}
+          <div className="gradient-container inline-block mb-4">
+            <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase" 
+              style={{ background: "#FFFFFF", color: "#0066CC" }}>
+              THE PROCESS
+            </div>
           </div>
-          <h2 className="text-[28px] lg:text-[44px] font-bold leading-tight text-balance" style={{ color: "#0F172A" }}>
+          <h2 className="text-[30px] lg:text-[48px] font-bold leading-tight text-balance" style={{ color: "#0F172A" }}>
             From Document to Compliance Report in <span className="text-[#0066CC]">5 Minutes</span>
           </h2>
         </div>
@@ -406,18 +415,29 @@ function AwardsSection() {
         </div>
       </div>
       
-      {/* Backed By - Static Partner Logos with high contrast bar */}
-      <div className={`w-full py-10 transition-all duration-700 delay-300 ${isInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} style={{ background: "#0066CC" }}>
+      {/* Backed By - Partner Logos */}
+      <div className={`w-full py-8 transition-all duration-700 delay-300 ${isInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} style={{ background: "#F1F5F9" }}>
         <div className="max-w-[900px] mx-auto text-center">
-          <p className="text-base font-medium mb-6 tracking-wide text-white/90">Backed by leading technology partners</p>
-          <div className="flex justify-center items-center">
-            <Image 
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Gqt7incm1St02ycvVbXNCKm4NzQz1I.png" 
-              alt="Partner Logos - NVIDIA Inception, AWS, Microsoft for Startups" 
-              width={800} 
-              height={100} 
-              className="h-20 lg:h-24 w-auto object-contain brightness-0 invert" 
-            />
+          <p className="text-base font-semibold mb-6 tracking-wide" style={{ color: "#64748B" }}>Backed by leading technology partners</p>
+          <div className="flex justify-center items-center gap-10 lg:gap-16">
+            <div className="flex items-center gap-3 px-4 py-3 rounded-lg" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
+              <svg viewBox="0 0 105 25" className="h-7 lg:h-8 w-auto" fill="none">
+                <path d="M0 14.155h9.293l4.647-9.294 4.646 9.294h9.294L18.586 23.45l4.647 9.293H14.94l-4.647-9.293-4.646 9.293H-3.647l9.294-9.294L0 14.155z" fill="#76B900" transform="scale(0.8)"/>
+                <text x="32" y="16" fill="#0F172A" fontSize="10" fontWeight="700" fontFamily="sans-serif">NVIDIA</text>
+                <text x="32" y="23" fill="#64748B" fontSize="6" fontFamily="sans-serif">Inception Program</text>
+              </svg>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-3 rounded-lg" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
+              <span className="text-base lg:text-lg font-medium" style={{ color: "#475569" }}>powered by</span>
+              <svg viewBox="0 0 60 30" className="h-6 lg:h-7 w-auto">
+                <text x="0" y="18" fill="#252F3E" fontSize="14" fontWeight="700" fontFamily="sans-serif">aws</text>
+                <path d="M0 22 Q15 28 30 22" stroke="#FF9900" strokeWidth="2" fill="none"/>
+              </svg>
+            </div>
+            <div className="flex flex-col items-start px-4 py-3 rounded-lg" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
+              <span className="text-[10px] font-medium" style={{ color: "#64748B" }}>Microsoft for Startups</span>
+              <span className="text-base lg:text-lg font-bold" style={{ color: "#7B3FE4" }}>Founders Hub</span>
+            </div>
           </div>
         </div>
       </div>
@@ -442,11 +462,14 @@ function MicroConversionSection() {
     <section ref={ref} className="min-h-screen flex flex-col justify-center py-16 px-4 lg:px-8" style={{ background: "#F8FAFC" }}>
       <div className="w-full max-w-[900px] mx-auto">
         <div className={`text-center mb-10 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase mb-3"
-            style={{ background: "rgba(0,102,204,0.1)", border: "1px solid rgba(0,102,204,0.25)", color: "#0066CC" }}>
-            START WHERE YOU ARE
+          {/* Gradient container badge */}
+          <div className="gradient-container inline-block mb-4">
+            <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase" 
+              style={{ background: "#FFFFFF", color: "#0066CC" }}>
+              START WHERE YOU ARE
+            </div>
           </div>
-          <h2 className="text-[28px] lg:text-[44px] font-bold leading-tight text-balance" style={{ color: "#0F172A" }}>
+          <h2 className="text-[30px] lg:text-[48px] font-bold leading-tight text-balance" style={{ color: "#0F172A" }}>
             Not Ready for a Demo? <span className="text-[#0066CC]">Start Here.</span>
           </h2>
         </div>

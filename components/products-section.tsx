@@ -43,14 +43,17 @@ export function ProductsSection() {
       <div className="w-full max-w-[1400px] mx-auto">
         {/* Header */}
         <div className={`text-center mb-6 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase mb-3"
-            style={{ background: "rgba(0,102,204,0.1)", border: "1px solid rgba(0,102,204,0.25)", color: "#0066CC" }}>
-            OUR PRODUCTS
+          {/* Gradient container badge */}
+          <div className="gradient-container inline-block mb-4">
+            <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase" 
+              style={{ background: "#FFFFFF", color: "#0066CC" }}>
+              OUR PRODUCTS
+            </div>
           </div>
-          <h2 className="text-[26px] lg:text-[40px] font-bold leading-tight mb-2" style={{ color: "#0F172A" }}>
+          <h2 className="text-[28px] lg:text-[44px] font-bold leading-tight mb-2" style={{ color: "#0F172A" }}>
             Three Products. <span className="text-[#0066CC]">One Mission.</span>
           </h2>
-          <p className="text-sm max-w-lg mx-auto" style={{ color: "#475569" }}>
+          <p className="text-base max-w-lg mx-auto" style={{ color: "#475569" }}>
             Stop money leaking through your trade documents.
           </p>
         </div>
@@ -101,14 +104,17 @@ function TradeguardTab() {
   return (
     <div className="grid lg:grid-cols-2 gap-8 items-center">
       <div className="animate-slide-in-left">
-        <div className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase mb-4"
-          style={{ background: "rgba(0,102,204,0.1)", border: "1px solid rgba(0,102,204,0.25)", color: "#0066CC" }}>
-          MISMATCH DETECTION
+        {/* Gradient container badge */}
+        <div className="gradient-container inline-block mb-4">
+          <div className="px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase" 
+            style={{ background: "#FFFFFF", color: "#0066CC" }}>
+            MISMATCH DETECTION
+          </div>
         </div>
-        <h3 className="text-[24px] lg:text-[36px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
+        <h3 className="text-[26px] lg:text-[40px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
           Stop Mismatches <span className="text-[#0066CC]">Before They Cost You.</span>
         </h3>
-        <p className="text-sm leading-relaxed mb-6" style={{ color: "#475569" }}>
+        <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
           Tradeguard extracts 40+ fields from your Shipping Bill and Commercial Invoice, maps them 
           intelligently, and flags every discrepancy in under 5 minutes.
         </p>
@@ -140,8 +146,17 @@ function TradeguardTab() {
         </div>
       </div>
 
-      <div className="animate-slide-in-right animate-float">
-        <HeroMockup animated={false} />
+      {/* New 3D perspective animation with glowing border */}
+      <div className="animate-slide-in-right">
+        <div className="relative">
+          {/* Outer glow ring */}
+          <div className="absolute -inset-4 rounded-2xl animate-pulse-ring" />
+          {/* Main mockup container with 3D animation */}
+          <div className="animate-perspective rounded-xl border-2 animate-border-glow" 
+            style={{ borderColor: "#0066CC", boxShadow: "0 25px 80px rgba(0,102,204,0.2)" }}>
+            <HeroMockup animated={false} />
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -160,14 +175,17 @@ function PatramTab() {
   return (
     <div className="grid lg:grid-cols-2 gap-8 items-center">
       <div className="animate-slide-in-left">
-        <div className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase mb-4"
-          style={{ background: "rgba(0,168,107,0.1)", border: "1px solid rgba(0,168,107,0.25)", color: "#00A86B" }}>
-          DOCUMENT INTELLIGENCE
+        {/* Gradient container badge - green variant */}
+        <div className="inline-block mb-4" style={{ padding: "3px", background: "linear-gradient(90deg, #00A86B, #0066CC)", borderRadius: "9999px" }}>
+          <div className="px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase" 
+            style={{ background: "#FFFFFF", color: "#00A86B" }}>
+            DOCUMENT INTELLIGENCE
+          </div>
         </div>
-        <h3 className="text-[24px] lg:text-[36px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
+        <h3 className="text-[26px] lg:text-[40px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
           Ask Anything. <span className="text-[#00A86B]">Get Verified Answers.</span>
         </h3>
-        <p className="text-sm leading-relaxed mb-6" style={{ color: "#475569" }}>
+        <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
           Patram AI reads your entire shipment folder and answers questions in natural language. 
           Every answer is pixel-verified. Zero hallucinations.
         </p>
@@ -275,14 +293,17 @@ function TariffIQTab() {
   return (
     <div className="grid lg:grid-cols-2 gap-8 items-center">
       <div className="animate-slide-in-left">
-        <div className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase mb-4"
-          style={{ background: "rgba(0,102,204,0.1)", border: "1px solid rgba(0,102,204,0.25)", color: "#0066CC" }}>
-          HSN CLASSIFICATION & DUTY
+        {/* Gradient container badge */}
+        <div className="gradient-container inline-block mb-4">
+          <div className="px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase" 
+            style={{ background: "#FFFFFF", color: "#0066CC" }}>
+            HSN CLASSIFICATION & DUTY
+          </div>
         </div>
-        <h3 className="text-[24px] lg:text-[36px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
+        <h3 className="text-[26px] lg:text-[40px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
           Know Your HSN Code and Duty. <span className="text-[#0066CC]">Before Shipment.</span>
         </h3>
-        <p className="text-sm leading-relaxed mb-6" style={{ color: "#475569" }}>
+        <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
           TariffIQ classifies any product into the correct 8-digit HSN code using our AI 
           engine, then calculates your exact duty liability or export incentive.
         </p>
