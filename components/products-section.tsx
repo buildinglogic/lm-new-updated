@@ -55,20 +55,18 @@ export function ProductsSection() {
           </p>
         </div>
 
-        {/* Toggle Tab bar */}
+        {/* Toggle Tab bar - Mono color blue */}
         <div className={`flex justify-center mb-6 transition-all duration-700 delay-100 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="inline-flex p-1 rounded-full" style={{ background: "#F1F5F9", border: "2px solid #E2E8F0" }}>
+          <div className="inline-flex p-1.5 rounded-full" style={{ background: "#0066CC", border: "2px solid #0066CC" }}>
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  activeTab === tab.id ? "" : "hover:text-[#0066CC]"
-                }`}
+                className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300`}
                 style={{
-                  background: activeTab === tab.id ? "linear-gradient(90deg, #0066CC, #00A86B)" : "transparent",
-                  color: activeTab === tab.id ? "#FFFFFF" : "#64748B",
-                  boxShadow: activeTab === tab.id ? "0 4px 15px rgba(0,102,204,0.3)" : "none",
+                  background: activeTab === tab.id ? "#FFFFFF" : "transparent",
+                  color: activeTab === tab.id ? "#0066CC" : "rgba(255,255,255,0.8)",
+                  boxShadow: activeTab === tab.id ? "0 4px 15px rgba(0,0,0,0.1)" : "none",
                 }}
               >
                 {tab.label}

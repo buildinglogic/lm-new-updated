@@ -258,3 +258,25 @@ input[type="range"]::-webkit-slider-thumb {
 .animate-float-subtle {
   animation: float-subtle 4s ease-in-out infinite;
 }
+
+/* Problem Card Styles - from styles.css reference */
+.problem-card {
+  position: relative;
+  border-radius: 10px;
+  transition: all 0.35s ease-out;
+}
+.problem-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Micro Card Styles */
+.micro-card {
+  position: relative;
+  border-radius: 12px;
+  transition: all 0.35s ease-out;
+}
+.micro-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}

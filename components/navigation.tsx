@@ -36,15 +36,15 @@ export function Navigation() {
 
   return (
     <>
-      {/* Award Announcement Bar - Marquee */}
+      {/* Award Announcement Bar - Marquee - High contrast blue */}
       {!scrolled && (
         <div 
           className="fixed top-0 left-0 right-0 z-50 h-10 overflow-hidden"
-          style={{ background: "linear-gradient(90deg, #FFD700, #FFA500, #FFD700)" }}
+          style={{ background: "#0066CC" }}
         >
           <div className="h-full flex items-center animate-marquee whitespace-nowrap">
             {[...Array(6)].map((_, i) => (
-              <span key={i} className="mx-8 text-[13px] font-bold text-[#0F172A] flex items-center gap-4">
+              <span key={i} className="mx-8 text-[13px] font-bold text-white flex items-center gap-4">
                 <span>Aegis Graham Bell Award 2026 Winner</span>
                 <span className="opacity-40">|</span>
                 <span>Karnataka Elevate 2025 Winner</span>
@@ -61,14 +61,14 @@ export function Navigation() {
         style={{ height: "72px", background: "#000000", top: scrolled ? "0" : "40px" }}
       >
         <div className="w-full h-full px-4 lg:px-8 flex items-center justify-between">
-          {/* Logo - Far Left, Full Height */}
-          <Link href="/" className="flex items-center h-full py-2 flex-shrink-0">
+          {/* Logo - Far Left, Smaller size */}
+          <Link href="/" className="flex items-center h-full py-3 flex-shrink-0">
             <Image 
               src="/images/liquidmind-logo.png"
               alt="Liquidmind"
-              width={200}
-              height={56}
-              className="h-full w-auto object-contain"
+              width={150}
+              height={40}
+              className="h-10 w-auto object-contain"
               priority
             />
           </Link>
