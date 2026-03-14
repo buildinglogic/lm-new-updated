@@ -11,20 +11,20 @@ import { FooterLinks } from "@/components/footer-links"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 
 export default function LiquidmindLanding() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="bg-white">
       <Navigation />
       <HeroSection />
       <ProblemSection />
       <ProductsSection />
       <HowItWorks />
-      <ROICalculator />
+      <div className="page-snap"><ROICalculator /></div>
       <AwardsSection />
       <MicroConversionSection />
-      <FAQSection />
+      <div className="page-snap"><FAQSection /></div>
       <CTASection />
       <FooterLinks />
       <Footer />
@@ -50,19 +50,52 @@ function useInView(threshold = 0.1) {
 }
 
 /* ========================
+   ANIMATED COUNTER
+======================== */
+function AnimatedCount({ to }: { to: number }) {
+  const [count, setCount] = useState(0)
+  const [started, setStarted] = useState(false)
+  const ref = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setStarted(true) },
+      { threshold: 0.1 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!started) return
+    let frame: number
+    const t0 = performance.now()
+    const dur = 1600
+    const tick = (now: number) => {
+      const p = Math.min((now - t0) / dur, 1)
+      const eased = 1 - Math.pow(1 - p, 3)
+      setCount(Math.floor(eased * to))
+      if (p < 1) frame = requestAnimationFrame(tick)
+      else setCount(to)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [started, to])
+
+  return <span ref={ref}>{count}</span>
+}
+
+/* ========================
    HERO SECTION
 ======================== */
 function HeroSection() {
-  const statPills = [
-    "50% mismatch rate globally",
-    "30% docs have critical errors",
-    "3-7% FOB at risk per shipment",
-  ]
+  const stats = [
+    { to: 50, suffix: "%", line1: "trade data", line2: "mismatches" },
+    { to: 30, suffix: "%", line1: "docs with", line2: "critical errors" },
+    { to: 7,  suffix: "%", prefix: "3–", line1: "FOB value", line2: "at risk" },
+  ] as { to: number; suffix: string; line1: string; line2: string; prefix?: string }[]
 
   return (
-    <section 
-      className="min-h-screen pt-[120px] pb-6 px-4 lg:px-8 flex items-center relative"
-      style={{ 
         backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/white%20textured%20background-VTbHzt4lKA0rxfUKqNSLETf6lAlqjC.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -71,14 +104,15 @@ function HeroSection() {
     >
       <div className="w-full max-w-[1400px] mx-auto">
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
-          {/* Left side - moved more towards center */}
+
           <div className="lg:pl-8 xl:pl-16">
-            {/* Gradient container badge from styles.css */}
-            <div className="gradient-container inline-block mb-4 animate-fade-in-up">
-              <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase" 
-                style={{ background: "#FFFFFF", color: "#0066CC" }}>
-                {"INDIA'S #1 AI TRADE COMPLIANCE PLATFORM"}
-              </div>
+
+            {/* Plain label — gradient rule + small caps */}
+            <div className="flex items-center gap-3 mb-5 animate-fade-in">
+              <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
+                India's #1 AI Trade Compliance Platform
+              </span>
             </div>
 
             <h1 className="text-[32px] lg:text-[56px] font-extrabold leading-[1.1] tracking-[-0.03em] mb-4 animate-fade-in-up stagger-1" style={{ color: "#0F172A" }}>
@@ -87,39 +121,24 @@ function HeroSection() {
               Document Errors.
             </h1>
 
-            <p className="text-[15px] lg:text-[17px] leading-[1.6] max-w-[460px] mb-4 animate-fade-in-up stagger-2" style={{ color: "#475569" }}>
-              Indian exporters lose 3-7% of FOB value every month to document mismatches. 
+            <p className="text-[15px] lg:text-[17px] leading-[1.6] max-w-[460px] mb-8 animate-fade-in-up stagger-2" style={{ color: "#475569" }}>
+              Indian exporters lose 3–7% of FOB value every month to document mismatches.
               Liquidmind AI catches every error before customs does.
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-5 animate-fade-in-up stagger-3">
-              {statPills.map((stat, idx) => (
-                <div 
-                  key={idx} 
-                  className="group relative p-[3px] rounded-[0.9em] transition-all duration-400 cursor-pointer"
-                  style={{ 
-                    background: "linear-gradient(90deg, #DC2626, #EF4444)",
-                  }}>
-                  {/* Blur glow effect on hover */}
-                  <div className="absolute inset-0 rounded-[0.9em] opacity-0 group-hover:opacity-100 transition-opacity duration-400 blur-[1.2em] -z-10"
-                    style={{ background: "linear-gradient(90deg, #DC2626, #EF4444)" }} />
-                  <span className="relative block px-4 py-2 rounded-[0.7em] text-xs font-bold bg-white text-[#DC2626] transition-all duration-300 group-hover:bg-[#0F172A] group-hover:text-white">
-                    {stat}
-                  </span>
-                </div>
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-3 animate-fade-in-up stagger-4">
-              <Link href="/book-demo" className="px-5 py-2.5 rounded-lg text-sm font-bold btn-shine transition-all hover:scale-105"
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-3 animate-fade-in-up stagger-4">
+              <Link href="/book-demo"
+                className="px-6 py-3 rounded-xl text-sm font-bold btn-shine haptic-btn inline-flex items-center gap-2"
                 style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF", boxShadow: "0 4px 25px rgba(0,102,204,0.35)" }}>
                 Book Free Demo
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
               </Link>
-              <a href="https://www.youtube.com/@ABORRIGINALLIQUIDMIND" target="_blank" rel="noopener noreferrer" 
-                className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all hover:border-[#0066CC] hover:text-[#0066CC]"
-                style={{ background: "transparent", border: "1.5px solid #CBD5E1", color: "#0F172A" }}>
-                Watch Demo
-              </a>
             </div>
           </div>
 
@@ -208,92 +227,98 @@ function ProblemSection() {
   ]
 
   return (
-    <section 
-      ref={ref} 
-      id="problem-section"
-      className="h-screen flex flex-col justify-center py-8 px-4 lg:px-8 relative overflow-hidden"
-      style={{ 
-        backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/liquidmind%202nd%20page%20background%20image-VslwfUYkc1tNjvnk4KfYw7OJVa497m.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
-      {/* Subtle overlay for text readability - preserving image quality */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/30" />
-      
-      <div className="w-full max-w-[1100px] mx-auto relative z-10">
-        <div className={`text-center mb-6 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Gradient container badge - red variant with glow */}
-          <div className="group inline-block mb-3 relative p-[3px] rounded-[9999px] transition-all duration-400 cursor-pointer"
-            style={{ background: "linear-gradient(90deg, #DC2626, #EF4444)" }}>
-            <div className="absolute inset-0 rounded-[9999px] opacity-0 group-hover:opacity-100 transition-opacity duration-400 blur-[1.2em] -z-10"
-              style={{ background: "linear-gradient(90deg, #DC2626, #EF4444)" }} />
-            <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase bg-white text-[#DC2626] transition-all duration-300 group-hover:bg-[#0F172A] group-hover:text-white">
-              THE COST OF DOING NOTHING
-            </div>
-          </div>
-          <h2 className="text-[26px] lg:text-[40px] font-bold leading-tight text-balance drop-shadow-sm" style={{ color: "#0F172A" }}>
-            Your Trade Documents Are <span className="text-[#DC2626]">Bleeding Money</span> Right Now.
-          </h2>
-        </div>
-
-        {/* 6 Cards Grid - Compact square cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
-          {problems.map((problem, idx) => (
-            <div 
-              key={idx}
-              className={`problem-card group relative rounded-xl p-4 transition-all duration-500 cursor-pointer overflow-hidden hover:shadow-[0_0_25px_rgba(0,102,204,0.3)] ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-              style={{
-                background: "linear-gradient(to bottom, #f0f7fa, #e8f4f8)",
-                transitionDelay: `${idx * 80}ms`,
-              }}
-            >
-              {/* Hover overlay effect */}
-              <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: "linear-gradient(135deg, #0F172A, #1e3a5f)" }} />
-              
-              {/* Corner arrow */}
-              <div className="absolute top-0 right-0 w-8 h-8 overflow-hidden rounded-bl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ background: "linear-gradient(135deg, #0066CC, #0F172A)" }}>
-                <span className="absolute top-1 right-1.5 text-white text-xs font-bold">→</span>
-              </div>
-
-              <div className="relative z-10">
-                <div className="mb-3 text-[#0F172A] group-hover:text-white transition-colors duration-500">
-                  {problem.icon}
-                </div>
-                <h3 className="text-[#0066CC] group-hover:text-white text-2xl lg:text-3xl font-bold mb-1 transition-colors duration-500">
-                  {problem.number}
-                </h3>
-                <h4 className="text-[#0F172A] group-hover:text-white font-semibold text-sm mb-2 transition-colors duration-500">
-                  {problem.title}
-                </h4>
-                <p className="text-[#475569] group-hover:text-white/80 text-xs leading-relaxed mb-2 transition-colors duration-500">
-                  {problem.body}
-                </p>
-                <a href="#" className="text-[#0066CC] group-hover:text-white/70 text-[10px] underline transition-colors duration-500">
-                  {problem.citation}
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Animated button */}
-        <div className={`text-center transition-all duration-700 delay-300 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <a href="#products" className="group relative inline-block">
-            <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#0066CC] via-[#00A86B] to-[#0066CC] p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            <span className="relative z-10 inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white transition-all duration-300 group-hover:scale-105 hover:shadow-[0_0_30px_rgba(0,102,204,0.5)]"
-              style={{ background: "#0F172A" }}>
-              <span className="transition-all duration-500 group-hover:translate-x-1">See How Liquidmind Solves This</span>
-              <svg className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
               </svg>
             </span>
           </a>
+
+          <span className="text-[10px]" style={{ color: "#94A3B8" }}>
+            Works on your actual documents · Results in under 5 minutes
+          </span>
         </div>
       </div>
     </section>
+  )
+}
+
+/* ========================
+   PROBLEM CARD — dark, high-contrast
+======================== */
+function ProblemCardItem({ problem, idx, isInView }: {
+  problem: { icon: React.ReactNode; number: string; title: string; body: string; citation: string }
+  idx: number
+  isInView: boolean
+}) {
+  const divRef = useRef<HTMLDivElement>(null)
+  const [spotPos, setSpotPos] = useState({ x: 0, y: 0 })
+  const [spotOn, setSpotOn] = useState(false)
+
+  return (
+    <div
+      ref={divRef}
+      onMouseMove={(e) => {
+        if (!divRef.current) return
+        const rect = divRef.current.getBoundingClientRect()
+        setSpotPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+      }}
+      onMouseEnter={() => setSpotOn(true)}
+      onMouseLeave={() => setSpotOn(false)}
+      className={`relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      style={{
+        background: "rgba(255,255,255,0.72)",
+        backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
+        border: spotOn ? "1px solid rgba(0,102,204,0.35)" : "1px solid rgba(255,255,255,0.9)",
+        transitionDelay: `${idx * 60}ms`,
+        boxShadow: spotOn
+          ? "0 8px 32px rgba(0,102,204,0.18), 0 1px 0 rgba(255,255,255,0.8) inset"
+          : "0 2px 16px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.8) inset",
+      }}
+    >
+      {/* Gradient top accent bar */}
+      <div className="absolute top-0 left-4 right-4 h-[2px] rounded-b-full"
+        style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
+
+      {/* Brand blue mouse-tracking spotlight */}
+      <div className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+        style={{
+          opacity: spotOn ? 1 : 0,
+          background: `radial-gradient(circle at ${spotPos.x}px ${spotPos.y}px, rgba(0,102,204,0.09), transparent 65%)`
+        }}
+      />
+
+      <div className="p-4 pt-5">
+        {/* Icon */}
+        <div className="mb-2.5" style={{ color: "rgba(0,102,204,0.45)" }}>
+          {React.cloneElement(problem.icon as React.ReactElement, { className: "w-4 h-4" })}
+        </div>
+
+        {/* Big number */}
+        <div className="text-[28px] lg:text-[30px] font-black tracking-tight leading-none mb-1.5"
+          style={{ color: "#0066CC" }}>
+          {problem.number}
+        </div>
+
+        {/* Title */}
+        <div className="font-semibold text-[11px] lg:text-[12px] leading-snug mb-2" style={{ color: "#0F172A" }}>
+          {problem.title}
+        </div>
+
+        {/* Body */}
+        <div className="text-[10px] leading-relaxed line-clamp-2 mb-2" style={{ color: "#64748B" }}>
+          {problem.body}
+        </div>
+
+        {/* Citation */}
+        <div className="text-[9px] font-mono uppercase tracking-wider" style={{ color: "#94A3B8" }}>
+          {problem.citation}
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -311,7 +336,7 @@ function HowItWorks() {
   ]
 
   return (
-    <section ref={ref} className="min-h-screen flex flex-col justify-center py-16 px-4 lg:px-8" style={{ background: "#F8FAFC" }}>
+    <section ref={ref} className="page-snap min-h-screen flex flex-col justify-center py-16 px-4 lg:px-8" style={{ background: "#F8FAFC" }}>
       <div className="w-full max-w-[1100px] mx-auto">
         <div className={`text-center mb-12 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {/* Gradient container badge */}
@@ -404,7 +429,7 @@ function AwardsSection() {
   ]
 
   return (
-    <section ref={ref} className="py-16 px-4 lg:px-8" style={{ background: "#FFFFFF" }}>
+    <section ref={ref} className="page-snap min-h-screen flex flex-col justify-center py-16 px-4 lg:px-8" style={{ background: "#FFFFFF" }}>
       <div className="w-full max-w-[1100px] mx-auto">
         <h2 className={`text-[28px] lg:text-[44px] font-bold text-center mb-10 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ color: "#0F172A" }}>
           Recognised. <span className="text-[#0066CC]">Validated.</span> Trusted.
@@ -444,17 +469,83 @@ function AwardsSection() {
         <div className="max-w-[900px] mx-auto text-center px-4">
           <p className="text-base font-semibold mb-6 tracking-wide" style={{ color: "#64748B" }}>Backed by leading technology partners</p>
           <div className="flex justify-center items-center">
-            <Image 
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-03-14%20133550-DW8iyYo9sqjlGDVnoCBNdZDhoLi2E4.png" 
-              alt="Partner Logos - NVIDIA Inception, AWS, Microsoft for Startups" 
-              width={800} 
-              height={100} 
-              className="h-16 lg:h-20 w-auto object-contain" 
             />
           </div>
         </div>
       </div>
     </section>
+  )
+}
+
+/* ========================
+   MICRO CARD WITH SPOTLIGHT
+======================== */
+function MicroCardItem({ card, idx, isInView }: {
+  card: { badge: string; title: string; body: string; cta: string; featured?: boolean }
+  idx: number
+  isInView: boolean
+}) {
+  const divRef = useRef<HTMLDivElement>(null)
+  const [spotPos, setSpotPos] = useState({ x: 0, y: 0 })
+  const [spotOn, setSpotOn] = useState(false)
+
+  return (
+    <div
+      ref={divRef}
+      onMouseMove={(e) => {
+        if (!divRef.current) return
+        const rect = divRef.current.getBoundingClientRect()
+        setSpotPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+      }}
+      onMouseEnter={() => setSpotOn(true)}
+      onMouseLeave={() => setSpotOn(false)}
+      className={`micro-card group relative rounded-xl p-5 transition-all duration-500 cursor-pointer overflow-hidden ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      style={{
+        background: card.featured ? "#0066CC" : "linear-gradient(to bottom, #e8f4f8, #d4eef5)",
+        transitionDelay: `${idx * 100}ms`,
+      }}
+    >
+      {!card.featured && (
+        <>
+          {/* Mouse-tracking spotlight */}
+          <div className="pointer-events-none absolute inset-0 rounded-xl transition-opacity duration-300 group-hover:opacity-0"
+            style={{
+              opacity: spotOn ? 1 : 0,
+              background: `radial-gradient(circle at ${spotPos.x}px ${spotPos.y}px, rgba(0,102,204,0.13), transparent 65%)`
+            }}
+          />
+          <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style={{ background: "linear-gradient(135deg, #0F172A, #1e3a5f)" }} />
+          <div className="absolute top-0 right-0 w-8 h-8 overflow-hidden rounded-bl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{ background: "linear-gradient(135deg, #0066CC, #0F172A)" }}>
+            <span className="absolute top-1 right-1.5 text-white text-xs font-bold">→</span>
+          </div>
+        </>
+      )}
+
+      <div className="relative z-10">
+        <div className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-[0.1em] uppercase mb-3 ${
+          card.featured ? 'bg-white/20 text-white' : 'bg-[#0066CC]/10 text-[#0066CC] group-hover:bg-white/20 group-hover:text-white'
+        } transition-colors duration-500`}>
+          {card.badge}
+        </div>
+        <h3 className={`text-base font-bold mb-2 ${
+          card.featured ? 'text-white' : 'text-[#0F172A] group-hover:text-white'
+        } transition-colors duration-500`}>{card.title}</h3>
+        <p className={`text-sm leading-relaxed mb-4 ${
+          card.featured ? 'text-white/80' : 'text-[#475569] group-hover:text-white/80'
+        } transition-colors duration-500`}>{card.body}</p>
+        {card.featured ? (
+          <Link href="/book-demo" className="inline-block px-4 py-2 rounded-lg text-sm font-bold bg-white text-[#0066CC] hover:scale-105 transition-transform">
+            {card.cta}
+          </Link>
+        ) : (
+          <span className="text-sm font-semibold text-[#0066CC] group-hover:text-white transition-colors duration-500">
+            {card.cta} →
+          </span>
+        )}
+      </div>
+    </div>
   )
 }
 
@@ -472,7 +563,7 @@ function MicroConversionSection() {
   ]
 
   return (
-    <section ref={ref} className="min-h-screen flex flex-col justify-center py-16 px-4 lg:px-8" style={{ background: "#F8FAFC" }}>
+    <section ref={ref} className="page-snap min-h-screen flex flex-col justify-center py-16 px-4 lg:px-8" style={{ background: "#F8FAFC" }}>
       <div className="w-full max-w-[900px] mx-auto">
         <div className={`text-center mb-10 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {/* Gradient container badge */}
@@ -487,51 +578,10 @@ function MicroConversionSection() {
           </h2>
         </div>
 
-        {/* Cards with hover effect from styles.css */}
+        {/* Cards with spotlight + hover effects */}
         <div className="grid md:grid-cols-2 gap-4">
           {cards.map((card, idx) => (
-            <div 
-              key={idx}
-              className={`micro-card group relative rounded-xl p-5 transition-all duration-500 cursor-pointer overflow-hidden ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-              style={{
-                background: card.featured ? "#0066CC" : "linear-gradient(to bottom, #e8f4f8, #d4eef5)",
-                transitionDelay: `${idx * 100}ms`,
-              }}
-            >
-              {!card.featured && (
-                <>
-                  <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: "linear-gradient(135deg, #0F172A, #1e3a5f)" }} />
-                  <div className="absolute top-0 right-0 w-8 h-8 overflow-hidden rounded-bl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ background: "linear-gradient(135deg, #0066CC, #0F172A)" }}>
-                    <span className="absolute top-1 right-1.5 text-white text-xs font-bold">→</span>
-                  </div>
-                </>
-              )}
-              
-              <div className="relative z-10">
-                <div className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-[0.1em] uppercase mb-3 ${
-                  card.featured ? 'bg-white/20 text-white' : 'bg-[#0066CC]/10 text-[#0066CC] group-hover:bg-white/20 group-hover:text-white'
-                } transition-colors duration-500`}>
-                  {card.badge}
-                </div>
-                <h3 className={`text-base font-bold mb-2 ${
-                  card.featured ? 'text-white' : 'text-[#0F172A] group-hover:text-white'
-                } transition-colors duration-500`}>{card.title}</h3>
-                <p className={`text-sm leading-relaxed mb-4 ${
-                  card.featured ? 'text-white/80' : 'text-[#475569] group-hover:text-white/80'
-                } transition-colors duration-500`}>{card.body}</p>
-                {card.featured ? (
-                  <Link href="/book-demo" className="inline-block px-4 py-2 rounded-lg text-sm font-bold bg-white text-[#0066CC] hover:scale-105 transition-transform">
-                    {card.cta}
-                  </Link>
-                ) : (
-                  <span className="text-sm font-semibold text-[#0066CC] group-hover:text-white transition-colors duration-500">
-                    {card.cta} →
-                  </span>
-                )}
-              </div>
-            </div>
+            <MicroCardItem key={idx} card={card} idx={idx} isInView={isInView} />
           ))}
         </div>
       </div>

@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { HeroMockup } from "./hero-mockup"
 import { Check } from "lucide-react"
 
 const tabs = [
@@ -16,18 +15,10 @@ function useInView(threshold = 0.1) {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true)
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) setIsInView(true) },
       { threshold }
     )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
+    if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [threshold])
 
@@ -37,6 +28,25 @@ function useInView(threshold = 0.1) {
 export function ProductsSection() {
   const [activeTab, setActiveTab] = useState("tradeguard")
   const { ref, isInView } = useInView()
+  const activeIdx = tabs.findIndex(t => t.id === activeTab)
+
+  // Listen for tab changes dispatched from navigation dropdown
+  useEffect(() => {
+    const handleTabChange = (event: CustomEvent) => {
+      setActiveTab(event.detail)
+    }
+    const storedTab = sessionStorage.getItem('selectedProductTab')
+    if (storedTab) {
+      setActiveTab(storedTab)
+      sessionStorage.removeItem('selectedProductTab')
+    }
+    const urlParams = new URLSearchParams(window.location.search)
+    const tabParam = urlParams.get('tab')
+    if (tabParam) setActiveTab(tabParam)
+
+    window.addEventListener('changeProductTab', handleTabChange as EventListener)
+    return () => window.removeEventListener('changeProductTab', handleTabChange as EventListener)
+  }, [])
 
   // Listen for tab change events from navigation
   useEffect(() => {
@@ -63,55 +73,274 @@ export function ProductsSection() {
   }, [])
 
   return (
-    <section ref={ref} id="products" className="py-8 lg:py-12 px-4 lg:px-6" style={{ background: "#FFFFFF" }}>
+    <section ref={ref} id="products" className="page-snap min-h-screen flex flex-col pt-4 pb-6 px-4 lg:px-6" style={{ background: "#FFFFFF", scrollMarginTop: "72px" }}>
       <div className="w-full max-w-[1400px] mx-auto">
-        {/* Header */}
-        <div className={`text-center mb-6 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Gradient container badge */}
-          <div className="gradient-container inline-block mb-4">
-            <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase" 
-              style={{ background: "#FFFFFF", color: "#0066CC" }}>
-              OUR PRODUCTS
+          {/* Header — compact */}
+          <div className={`text-center mb-3 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="flex items-center justify-center gap-3 mb-1.5">
+              <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
+              <span className="text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Our Products</span>
+              <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #00A86B, #0066CC)" }} />
+            </div>
+            <h2 className="text-[22px] lg:text-[32px] font-bold leading-tight mb-1" style={{ color: "#0F172A" }}>
+              Three Products. <span style={{ color: "#0066CC" }}>One Mission.</span>
+            </h2>
+            <p className="text-xs max-w-sm mx-auto" style={{ color: "#475569" }}>
+              Stop money leaking through your trade documents.
+            </p>
+          </div>
+
+          {/* Toggle — smaller */}
+          <div className={`flex justify-center mb-4 transition-all duration-700 delay-100 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="relative inline-flex p-1 rounded-full"
+              style={{
+                background: activeTab === "patram" ? "#00A86B" : activeTab === "tariffiq" ? "#1B4F8A" : "#0066CC",
+                transition: "background 320ms ease",
+              }}>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "4px", bottom: "4px", left: "4px",
+                  width: "100px",
+                  borderRadius: "9999px",
+                  background: activeTab === "patram" ? "#FFFFFF" : "#FFFFFF",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+                  transform: `translateX(${activeIdx * 100}px)`,
+                  transition: "transform 320ms cubic-bezier(0.4, 0, 0.2, 1)",
+                  pointerEvents: "none",
+                  zIndex: 0,
+                }}
+              />
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  style={{
+                    position: "relative", zIndex: 1,
+                    width: "100px", padding: "7px 0",
+                    borderRadius: "9999px",
+                    fontSize: "13px", fontWeight: "700",
+                    color: activeTab === tab.id
+                      ? (activeTab === "patram" ? "#00A86B" : activeTab === "tariffiq" ? "#1B4F8A" : "#0066CC")
+                      : "rgba(255,255,255,0.85)",
+                    transition: "color 320ms ease",
+                    background: "transparent", border: "none", cursor: "pointer",
+                  }}
+                >
+                  {tab.label}
+                </button>
+              ))}
             </div>
           </div>
-          <h2 className="text-[28px] lg:text-[44px] font-bold leading-tight mb-2" style={{ color: "#0F172A" }}>
-            Three Products. <span className="text-[#0066CC]">One Mission.</span>
-          </h2>
-          <p className="text-base max-w-lg mx-auto" style={{ color: "#475569" }}>
-            Stop money leaking through your trade documents.
-          </p>
-        </div>
 
-        {/* Toggle Tab bar - Mono color blue */}
-        <div className={`flex justify-center mb-6 transition-all duration-700 delay-100 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="inline-flex p-1.5 rounded-full" style={{ background: "#0066CC", border: "2px solid #0066CC" }}>
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300`}
-                style={{
-                  background: activeTab === tab.id ? "#FFFFFF" : "transparent",
-                  color: activeTab === tab.id ? "#0066CC" : "rgba(255,255,255,0.8)",
-                  boxShadow: activeTab === tab.id ? "0 4px 15px rgba(0,0,0,0.1)" : "none",
-                }}
-              >
-                {tab.label}
-              </button>
-            ))}
+          {/* Tab content */}
+          <div className={`transition-all duration-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="animate-fade-in" key={activeTab}>
+              {activeTab === "tradeguard" && <TradeguardTab />}
+              {activeTab === "patram" && <PatramTab />}
+              {activeTab === "tariffiq" && <TariffIQTab />}
+            </div>
           </div>
         </div>
+    </section>
+  )
+}
 
-        {/* Tab content with animation */}
-        <div className={`transition-all duration-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="animate-fade-in" key={activeTab}>
-            {activeTab === "tradeguard" && <TradeguardTab />}
-            {activeTab === "patram" && <PatramTab />}
-            {activeTab === "tariffiq" && <TariffIQTab />}
+const SCAN_FIELDS = [
+  { field: "Exporter Name", value: "RAJESH EXPORTS LTD", status: "match" },
+  { field: "HSN Code",      value: "8471.30",             status: "match" },
+  { field: "FOB Value",     value: "$42,500", inv: "$41,800", delta: "−$700 (1.6%)", status: "mismatch" },
+  { field: "Port of Loading", value: "INNSA1", inv: "NHAVA SHEVA", status: "warning" },
+  { field: "Unit of Qty",   value: "PCS",                 status: "match" },
+]
+
+function TradeguardScanMockup() {
+  const [visibleCount, setVisibleCount] = useState(0)
+  const [done, setDone] = useState(false)
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>
+    let i = 0
+
+    const step = () => {
+      i++
+      setVisibleCount(i)
+      if (i < SCAN_FIELDS.length) {
+        timeout = setTimeout(step, 420)
+      } else {
+        setDone(true)
+        timeout = setTimeout(() => {
+          i = 0
+          setVisibleCount(0)
+          setDone(false)
+          timeout = setTimeout(step, 600)
+        }, 3200)
+      }
+    }
+    timeout = setTimeout(step, 400)
+    return () => clearTimeout(timeout)
+  }, [])
+
+  const verified = SCAN_FIELDS.slice(0, visibleCount).filter(f => f.status === "match").length
+  const issues   = SCAN_FIELDS.slice(0, visibleCount).filter(f => f.status !== "match").length
+
+  return (
+    <div className="rounded-2xl overflow-hidden"
+      style={{ background: "#FFFFFF", border: "2px solid #E2E8F0", boxShadow: "0 20px 60px rgba(0,102,204,0.1)" }}>
+
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: "#E2E8F0", background: "#F8FAFC" }}>
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center"
+            style={{ background: "linear-gradient(135deg, #0066CC, #00A86B)" }}>
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
           </div>
+          <div>
+            <p className="font-bold text-[13px] leading-none" style={{ color: "#0F172A" }}>TradeGuard Scan</p>
+            <p className="text-[10px] mt-0.5" style={{ color: "#94A3B8" }}>SB_0441 · INV_0441</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-1.5">
+          {done ? (
+            <>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold"
+                style={{ background: "rgba(0,168,107,0.1)", color: "#00A86B", border: "1px solid rgba(0,168,107,0.2)" }}>
+                ✓ {verified} ok
+              </span>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold"
+                style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B", border: "1px solid rgba(245,158,11,0.25)" }}>
+                ⚠ {issues} flagged
+              </span>
+            </>
+          ) : (
+            <div className="flex items-center gap-1.5">
+              <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#0066CC" }} />
+              <span className="text-[10px] font-semibold" style={{ color: "#0066CC" }}>Scanning…</span>
+            </div>
+          )}
         </div>
       </div>
-    </section>
+
+      {/* Progress bar */}
+      <div className="h-1 w-full" style={{ background: "#F1F5F9" }}>
+        <div className="h-full transition-all duration-300 ease-out"
+          style={{
+            width: `${(visibleCount / SCAN_FIELDS.length) * 100}%`,
+            background: done
+              ? "linear-gradient(90deg, #00A86B, #0066CC)"
+              : "linear-gradient(90deg, #0066CC, #00A86B)",
+          }} />
+      </div>
+
+      {/* Field list */}
+      <div className="px-4 py-3 space-y-2">
+        {SCAN_FIELDS.map((f, idx) => {
+          const visible = idx < visibleCount
+          const active  = idx === visibleCount - 1 && !done
+          const isMismatch = f.status === "mismatch"
+          const isWarning  = f.status === "warning"
+
+          return (
+            <div
+              key={f.field}
+              className="rounded-xl overflow-hidden transition-all duration-400"
+              style={{
+                opacity:    visible ? 1 : 0.08,
+                transform:  visible ? "translateY(0)" : "translateY(4px)",
+                border: isMismatch
+                  ? "1.5px solid rgba(245,158,11,0.4)"
+                  : isWarning
+                  ? "1.5px solid rgba(245,158,11,0.2)"
+                  : "1.5px solid #E2E8F0",
+                background: isMismatch
+                  ? "rgba(245,158,11,0.04)"
+                  : isWarning
+                  ? "rgba(245,158,11,0.02)"
+                  : "#FAFAFA",
+                boxShadow: active ? "0 0 0 3px rgba(0,102,204,0.12)" : "none",
+              }}
+            >
+              <div className="flex items-center justify-between px-3 py-2">
+                <div className="flex items-center gap-2.5">
+                  {/* Status icon */}
+                  <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{
+                      background: isMismatch
+                        ? "rgba(245,158,11,0.15)"
+                        : isWarning
+                        ? "rgba(245,158,11,0.1)"
+                        : active
+                        ? "rgba(0,102,204,0.12)"
+                        : "rgba(0,168,107,0.12)",
+                    }}>
+                    {active ? (
+                      <span className="text-[8px] animate-pulse" style={{ color: "#0066CC" }}>●</span>
+                    ) : isMismatch ? (
+                      <span className="text-[10px] font-bold" style={{ color: "#F59E0B" }}>≠</span>
+                    ) : isWarning ? (
+                      <span className="text-[10px]" style={{ color: "#F59E0B" }}>≈</span>
+                    ) : (
+                      <svg className="w-3 h-3" style={{ color: "#00A86B" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </div>
+                  <span className="text-[12px] font-semibold" style={{ color: "#475569" }}>{f.field}</span>
+                </div>
+
+                {/* Value */}
+                <span className="font-mono text-[11px] font-medium"
+                  style={{ color: isMismatch ? "#D97706" : isWarning ? "#B45309" : "#0F172A" }}>
+                  {f.value}
+                </span>
+              </div>
+
+              {/* Mismatch diff row */}
+              {(isMismatch || isWarning) && visible && (
+                <div className="flex items-center gap-2 px-3 pb-2 pt-0">
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded"
+                    style={{ background: "rgba(0,102,204,0.08)", color: "#0066CC" }}>
+                    SB
+                  </span>
+                  <span className="text-[11px] font-mono font-medium" style={{ color: "#0F172A" }}>{f.value}</span>
+                  <span style={{ color: "#CBD5E1" }}>→</span>
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded"
+                    style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B" }}>
+                    INV
+                  </span>
+                  <span className="text-[11px] font-mono font-medium" style={{ color: "#D97706" }}>{f.inv}</span>
+                  {f.delta && (
+                    <span className="ml-auto text-[10px] font-bold font-mono" style={{ color: "#F59E0B" }}>
+                      {f.delta}
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Footer */}
+      <div className="flex items-center justify-between px-4 py-2.5 border-t"
+        style={{ borderColor: "#E2E8F0", background: done ? "rgba(245,158,11,0.03)" : "#F8FAFC" }}>
+        {done ? (
+          <>
+            <span className="text-[12px] font-semibold" style={{ color: "#0F172A" }}>
+              FOB mismatch · <span style={{ color: "#F59E0B" }}>−$700</span> could block IGST refund
+            </span>
+            <span className="text-[12px] font-bold font-mono" style={{ color: "#F59E0B" }}>₹58K at risk</span>
+          </>
+        ) : (
+          <span className="text-[11px]" style={{ color: "#94A3B8" }}>
+            Checking {visibleCount} of {SCAN_FIELDS.length} fields…
+          </span>
+        )}
+      </div>
+    </div>
   )
 }
 
@@ -126,161 +355,209 @@ function TradeguardTab() {
   ]
 
   return (
-    <div className="grid lg:grid-cols-2 gap-8 items-center">
+    <div className="grid lg:grid-cols-2 gap-6 items-center">
       <div className="animate-slide-in-left">
-        {/* Gradient container badge */}
-        <div className="gradient-container inline-block mb-4">
-          <div className="px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase" 
-            style={{ background: "#FFFFFF", color: "#0066CC" }}>
-            MISMATCH DETECTION
-          </div>
+        {/* Label */}
+        <div className="flex items-center gap-3 mb-3">
+          <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
+          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
+            Document Verification
+          </span>
         </div>
-        <h3 className="text-[26px] lg:text-[40px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
-          Stop Mismatches <span className="text-[#0066CC]">Before They Cost You.</span>
+        <h3 className="text-[22px] lg:text-[34px] font-bold leading-tight mb-3" style={{ color: "#0F172A" }}>
+          Stop Mismatches{" "}
+          <span style={{ color: "#0066CC" }}>Before They Cost You.</span>
         </h3>
-        <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
-          Tradeguard extracts 40+ fields from your Shipping Bill and Commercial Invoice, maps them 
-          intelligently, and flags every discrepancy in under 5 minutes.
+        <p className="text-sm leading-relaxed mb-4" style={{ color: "#475569" }}>
+          Tradeguard extracts 40+ fields from your Shipping Bill and Commercial Invoice,
+          maps them intelligently, and flags every discrepancy in under 5 seconds.
         </p>
 
-        <div className="grid grid-cols-2 gap-2 mb-6">
+        <div className="grid grid-cols-2 gap-1.5 mb-4">
           {features.map((feature, idx) => (
             <div key={idx} className="flex items-center gap-2 transition-all duration-300 hover:translate-x-1">
-              <Check className="w-4 h-4 flex-shrink-0" style={{ color: "#00A86B" }} />
-              <span className="text-[13px]" style={{ color: "#0F172A" }}>{feature}</span>
+              <Check className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#00A86B" }} />
+              <span className="text-[12px]" style={{ color: "#0F172A" }}>{feature}</span>
             </div>
           ))}
         </div>
 
-        <div className="p-4 rounded-lg mb-6" style={{ background: "rgba(0,102,204,0.05)", borderLeft: "3px solid #0066CC" }}>
-          <p className="text-[13px] leading-relaxed" style={{ color: "#475569" }}>
-            {"For 100 shipments/month at ₹50L FOB — protects ₹1.5–₹3.5 Cr in annual refunds."}
-          </p>
+        {/* ROI stat row */}
+        <div className="rounded-lg overflow-hidden mb-4" style={{ border: "1px solid #E2E8F0" }}>
+          <table className="w-full text-[12px]">
+            <thead>
+              <tr style={{ background: "#F8FAFC" }}>
+                <th className="text-left font-semibold py-1.5 px-3" style={{ color: "#64748B" }}>Metric</th>
+                <th className="text-left font-semibold py-1.5 px-3" style={{ color: "#64748B" }}>Manual</th>
+                <th className="text-left font-semibold py-1.5 px-3" style={{ color: "#0066CC" }}>With Tradeguard</th>
+              </tr>
+            </thead>
+            <tbody style={{ background: "#FFFFFF" }}>
+              <tr style={{ borderTop: "1px solid #E2E8F0" }}>
+                <td className="py-1.5 px-3" style={{ color: "#475569" }}>Check Time</td>
+                <td className="py-1.5 px-3" style={{ color: "#0F172A" }}>2–4 hours</td>
+                <td className="py-1.5 px-3" style={{ color: "#0066CC" }}>{"< 5 sec"}</td>
+              </tr>
+              <tr style={{ borderTop: "1px solid #E2E8F0" }}>
+                <td className="py-1.5 px-3" style={{ color: "#475569" }}>Fields Checked</td>
+                <td className="py-1.5 px-3" style={{ color: "#0F172A" }}>~10</td>
+                <td className="py-1.5 px-3" style={{ color: "#0066CC" }}>40+</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <a href="#demo" className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
-            style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF", boxShadow: "0 4px 25px rgba(0,102,204,0.35)" }}>
+          <a
+            href="#demo"
+            className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
+            style={{
+              background: "linear-gradient(90deg, #0066CC, #00A86B)",
+              color: "#FFFFFF",
+              boxShadow: "0 4px 20px rgba(0,102,204,0.3)",
+            }}
+          >
             Get Started
           </a>
-          <a href="https://www.youtube.com/@ABORRIGINALLIQUIDMIND" target="_blank" rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 hover:border-[#0066CC] hover:text-[#0066CC]"
-            style={{ background: "transparent", border: "1.5px solid #CBD5E1", color: "#0F172A" }}>
             Watch Demo
           </a>
         </div>
       </div>
 
-      {/* New animated mismatch detection visualization */}
+      {/* Tradeguard visualization */}
       <div className="animate-slide-in-right">
-        <div className="relative p-6 rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%)", border: "2px solid #E2E8F0", boxShadow: "0 25px 80px rgba(0,0,0,0.08)" }}>
-          {/* Animated scanning line */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute left-0 right-0 h-1 animate-scan-line" style={{ background: "linear-gradient(90deg, transparent, #0066CC, transparent)" }} />
-          </div>
-          
-          {/* Header */}
-          <div className="flex items-center justify-between mb-5">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #0066CC, #00A86B)" }}>
-                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  <path d="M9 12l2 2 4-4" />
-                </svg>
-              </div>
-              <div>
-                <p className="font-bold text-sm" style={{ color: "#0F172A" }}>TradeGuard Scan</p>
-                <p className="text-[10px]" style={{ color: "#64748B" }}>Real-time mismatch detection</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#00A86B" }} />
-              <span className="text-[11px] font-medium" style={{ color: "#00A86B" }}>Live</span>
-            </div>
-          </div>
+        <TradeguardScanMockup />
+      </div>
+    </div>
+  )
+}
 
-          {/* Document comparison visual */}
-          <div className="grid grid-cols-2 gap-4 mb-5">
-            {/* Shipping Bill */}
-            <div className="p-3 rounded-xl relative overflow-hidden" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
-              <p className="text-[10px] font-bold uppercase mb-2" style={{ color: "#64748B" }}>Shipping Bill</p>
-              <div className="space-y-2">
-                <div className="flex justify-between text-[11px]">
-                  <span style={{ color: "#94A3B8" }}>HSN Code</span>
-                  <span className="font-mono font-medium" style={{ color: "#0F172A" }}>8471.30</span>
-                </div>
-                <div className="flex justify-between text-[11px]">
-                  <span style={{ color: "#94A3B8" }}>FOB Value</span>
-                  <span className="font-mono font-medium animate-pulse" style={{ color: "#DC2626" }}>$42,500</span>
-                </div>
-                <div className="flex justify-between text-[11px]">
-                  <span style={{ color: "#94A3B8" }}>Quantity</span>
-                  <span className="font-mono font-medium" style={{ color: "#0F172A" }}>500 PCS</span>
-                </div>
-              </div>
-            </div>
+const PATRAM_MESSAGES = [
+  {
+    type: "warning",
+    icon: "—",
+    title: "Restricted in Germany",
+    text: "Azo dyes are prohibited in textiles sold in the EU. Your fabric must be tested and certified below 30 mg/kg before customs will clear it.",
+    color: "#F59E0B",
+    bg: "rgba(245,158,11,0.07)",
+    border: "rgba(245,158,11,0.25)",
+  },
+  {
+    type: "doc",
+    icon: "—",
+    title: "Documents Required",
+    text: "You'll need a EUR.1 Certificate of Origin + Form A from DGFT to claim 0% import duty under the EU GSP scheme. Without them, you pay 12% BCD.",
+    color: "#0066CC",
+    bg: "rgba(0,102,204,0.06)",
+    border: "rgba(0,102,204,0.2)",
+  },
+  {
+    type: "ok",
+    icon: "—",
+    title: "You qualify for 0% Duty",
+    text: "Great news — India-EU GSP Tier A applies here. On a Rs.20L shipment, that saves you approximately Rs.2.4L in import duties.",
+    color: "#00A86B",
+    bg: "rgba(0,168,107,0.07)",
+    border: "rgba(0,168,107,0.25)",
+  },
+]
 
-            {/* Invoice */}
-            <div className="p-3 rounded-xl relative overflow-hidden" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
-              <p className="text-[10px] font-bold uppercase mb-2" style={{ color: "#64748B" }}>Commercial Invoice</p>
-              <div className="space-y-2">
-                <div className="flex justify-between text-[11px]">
-                  <span style={{ color: "#94A3B8" }}>HSN Code</span>
-                  <span className="font-mono font-medium" style={{ color: "#0F172A" }}>8471.30</span>
-                </div>
-                <div className="flex justify-between text-[11px]">
-                  <span style={{ color: "#94A3B8" }}>FOB Value</span>
-                  <span className="font-mono font-medium animate-pulse" style={{ color: "#DC2626" }}>$41,800</span>
-                </div>
-                <div className="flex justify-between text-[11px]">
-                  <span style={{ color: "#94A3B8" }}>Quantity</span>
-                  <span className="font-mono font-medium" style={{ color: "#0F172A" }}>500 PCS</span>
-                </div>
-              </div>
-            </div>
+function PatramAdvisorMockup() {
+  const [visibleCount, setVisibleCount] = useState(0)
+  const [showTyping, setShowTyping] = useState(true)
+
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout>
+    let i = 0
+
+    const step = () => {
+      setShowTyping(false)
+      i++
+      setVisibleCount(i)
+      if (i < PATRAM_MESSAGES.length) {
+        t = setTimeout(() => { setShowTyping(true); t = setTimeout(step, 700) }, 500)
+      } else {
+        // done — pause then reset
+        t = setTimeout(() => {
+          setVisibleCount(0)
+          setShowTyping(true)
+          i = 0
+          t = setTimeout(step, 700)
+        }, 3500)
+      }
+    }
+
+    // initial typing delay
+    t = setTimeout(step, 800)
+    return () => clearTimeout(t)
+  }, [])
+
+  return (
+    <div className="rounded-2xl overflow-hidden flex flex-col"
+      style={{ background: "#FFFFFF", border: "2px solid #E2E8F0", boxShadow: "0 20px 60px rgba(0,168,107,0.1)" }}>
+
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 py-2.5 border-b flex-shrink-0"
+        style={{ borderColor: "#E2E8F0", background: "#F8FAFC" }}>
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+            style={{ background: "linear-gradient(135deg, #00A86B, #0066CC)" }}>
+            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
           </div>
-
-          {/* Mismatch Alert Card */}
-          <div className="p-4 rounded-xl relative overflow-hidden animate-border-glow" style={{ background: "rgba(220,38,38,0.03)", border: "2px solid #DC2626" }}>
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 animate-pulse" style={{ background: "rgba(220,38,38,0.1)" }}>
-                <svg className="w-4 h-4" style={{ color: "#DC2626" }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-              </div>
-              <div className="flex-1">
-                <p className="font-bold text-sm mb-1" style={{ color: "#DC2626" }}>FOB Value Mismatch Detected</p>
-                <p className="text-[12px] mb-2" style={{ color: "#475569" }}>
-                  Difference of <span className="font-bold" style={{ color: "#DC2626" }}>$700 (1.6%)</span> found between documents
-                </p>
-                <div className="flex items-center gap-2">
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-medium" style={{ background: "rgba(220,38,38,0.1)", color: "#DC2626" }}>
-                    High Risk
-                  </span>
-                  <span className="text-[10px]" style={{ color: "#94A3B8" }}>
-                    Could affect IGST refund
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Stats row */}
-          <div className="flex items-center justify-between mt-4 pt-4" style={{ borderTop: "1px solid #E2E8F0" }}>
-            <div className="text-center">
-              <p className="text-lg font-bold" style={{ color: "#0066CC" }}>40+</p>
-              <p className="text-[10px]" style={{ color: "#64748B" }}>Fields Checked</p>
-            </div>
-            <div className="text-center">
-              <p className="text-lg font-bold" style={{ color: "#00A86B" }}>1</p>
-              <p className="text-[10px]" style={{ color: "#64748B" }}>Mismatch Found</p>
-            </div>
-            <div className="text-center">
-              <p className="text-lg font-bold" style={{ color: "#F59E0B" }}>{"< 5s"}</p>
-              <p className="text-[10px]" style={{ color: "#64748B" }}>Scan Time</p>
-            </div>
+          <div>
+            <p className="font-bold text-[12px] leading-none" style={{ color: "#0F172A" }}>Patram AI — Export Advisor</p>
+            <p className="text-[9px] mt-0.5" style={{ color: "#94A3B8" }}>Live regulatory intelligence</p>
           </div>
         </div>
+        <div className="flex items-center gap-1.5">
+          <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#00A86B" }} />
+          <span className="text-[10px] font-semibold" style={{ color: "#00A86B" }}>Online</span>
+        </div>
+      </div>
+
+      {/* Chat messages */}
+      <div className="px-3 py-3 space-y-2.5 flex-1">
+
+        {/* User message */}
+        <div className="flex justify-end">
+          <div className="rounded-2xl rounded-br-sm px-3 py-2 max-w-[88%]"
+            style={{ background: "linear-gradient(135deg, #0066CC, #00A86B)" }}>
+            <p className="text-[12px] font-medium leading-snug text-white">
+              I want to export organic cotton fabric to Germany
+            </p>
+          </div>
+        </div>
+
+        {/* AI response bubbles — all pre-rendered, ghost until revealed */}
+        {PATRAM_MESSAGES.map((msg, idx) => {
+          const revealed = idx < visibleCount
+          const isNext = idx === visibleCount && showTyping
+          return (
+            <div key={idx} className="flex items-start gap-2 transition-all duration-400"
+              style={{ opacity: revealed ? 1 : isNext ? 0.25 : 0.06 }}>
+              <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                style={{ background: "linear-gradient(135deg, #00A86B, #0066CC)" }}>
+                {isNext ? (
+                  <span className="inline-flex gap-0.5">
+                    {[0,1,2].map(i => (
+                      <span key={i} className="w-0.5 h-0.5 rounded-full animate-bounce bg-white"
+                        style={{ animationDelay: `${i * 150}ms` }} />
+                    ))}
+                  </span>
+                ) : (
+                  <span className="text-white text-[9px] font-bold">P</span>
+                )}
+              </div>
+              <div className="rounded-2xl rounded-tl-sm px-3 py-2 flex-1"
+                style={{ background: revealed ? msg.bg : "#F8FAFC", border: `1.5px solid ${revealed ? msg.border : "#E2E8F0"}` }}>
+                <p className="text-[11px] font-bold mb-1" style={{ color: revealed ? msg.color : "#CBD5E1" }}>{msg.title}</p>
+                <p className="text-[11px] leading-snug" style={{ color: revealed ? "#475569" : "#E2E8F0" }}>{msg.text}</p>
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )
@@ -288,117 +565,213 @@ function TradeguardTab() {
 
 function PatramTab() {
   const features = [
-    "Multi-document cross-referencing",
-    "Visual table & chart extraction",
-    "Pixel-level answer verification",
-    "Page-level evidence tracking",
-    "Handles messy scans & layouts",
-    "Natural language queries",
+    "Country-specific customs rules",
+    "Required document checklist",
+    "Live duty rate lookup",
+    "Prohibited goods detection",
+    "GSP eligibility check",
+    "Multi-country comparison",
   ]
 
   return (
-    <div className="grid lg:grid-cols-2 gap-8 items-center">
+    <div className="grid lg:grid-cols-2 gap-6 items-center">
       <div className="animate-slide-in-left">
-        {/* Gradient container badge - green variant */}
-        <div className="inline-block mb-4" style={{ padding: "3px", background: "linear-gradient(90deg, #00A86B, #0066CC)", borderRadius: "9999px" }}>
-          <div className="px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase" 
-            style={{ background: "#FFFFFF", color: "#00A86B" }}>
-            DOCUMENT INTELLIGENCE
-          </div>
+        {/* Label */}
+        <div className="flex items-center gap-3 mb-3">
+          <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #00A86B, #0066CC)" }} />
+          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
+            Export Intelligence
+          </span>
         </div>
-        <h3 className="text-[26px] lg:text-[40px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
-          Ask Anything. <span className="text-[#00A86B]">Get Verified Answers.</span>
+        <h3 className="text-[22px] lg:text-[34px] font-bold leading-tight mb-3" style={{ color: "#0F172A" }}>
+          Know the Rules{" "}
+          <span style={{ color: "#00A86B" }}>Before You Ship.</span>
         </h3>
-        <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
-          Patram AI reads your entire shipment folder and answers questions in natural language. 
-          Every answer is pixel-verified. Zero hallucinations.
+        <p className="text-sm leading-relaxed mb-4" style={{ color: "#475569" }}>
+          Tell Patram AI what you're exporting and where. Get instant customs rules,
+          required documents, duty rates and a compliance checklist — powered by live trade policy data.
         </p>
 
-        <div className="grid grid-cols-2 gap-2 mb-6">
+        <div className="grid grid-cols-2 gap-1.5 mb-4">
           {features.map((feature, idx) => (
             <div key={idx} className="flex items-center gap-2 transition-all duration-300 hover:translate-x-1">
-              <Check className="w-4 h-4 flex-shrink-0" style={{ color: "#00A86B" }} />
-              <span className="text-[13px]" style={{ color: "#0F172A" }}>{feature}</span>
+              <Check className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#00A86B" }} />
+              <span className="text-[12px]" style={{ color: "#0F172A" }}>{feature}</span>
             </div>
           ))}
         </div>
 
-        {/* ROI Table */}
-        <div className="rounded-lg overflow-hidden mb-6" style={{ border: "1px solid #E2E8F0" }}>
-          <table className="w-full text-[13px]">
+        <div className="rounded-lg overflow-hidden mb-4" style={{ border: "1px solid #E2E8F0" }}>
+          <table className="w-full text-[12px]">
             <thead>
               <tr style={{ background: "#F8FAFC" }}>
-                <th className="text-left font-semibold py-2 px-3" style={{ color: "#64748B" }}>Metric</th>
-                <th className="text-left font-semibold py-2 px-3" style={{ color: "#64748B" }}>Before</th>
-                <th className="text-left font-semibold py-2 px-3" style={{ color: "#00A86B" }}>With Patram</th>
+                <th className="text-left font-semibold py-1.5 px-3" style={{ color: "#64748B" }}>Metric</th>
+                <th className="text-left font-semibold py-1.5 px-3" style={{ color: "#64748B" }}>Manual Research</th>
+                <th className="text-left font-semibold py-1.5 px-3" style={{ color: "#00A86B" }}>With Patram</th>
               </tr>
             </thead>
             <tbody style={{ background: "#FFFFFF" }}>
               <tr style={{ borderTop: "1px solid #E2E8F0" }}>
-                <td className="py-2 px-3" style={{ color: "#475569" }}>Audit Time</td>
-                <td className="py-2 px-3" style={{ color: "#0F172A" }}>45–90 min</td>
-                <td className="py-2 px-3" style={{ color: "#00A86B" }}>{"< 2 min"}</td>
+                <td className="py-1.5 px-3" style={{ color: "#475569" }}>Research Time</td>
+                <td className="py-1.5 px-3" style={{ color: "#0F172A" }}>3–8 hours</td>
+                <td className="py-1.5 px-3" style={{ color: "#00A86B" }}>{"< 30 sec"}</td>
               </tr>
               <tr style={{ borderTop: "1px solid #E2E8F0" }}>
-                <td className="py-2 px-3" style={{ color: "#475569" }}>Accuracy</td>
-                <td className="py-2 px-3" style={{ color: "#0F172A" }}>85–90%</td>
-                <td className="py-2 px-3" style={{ color: "#00A86B" }}>99.9%</td>
+                <td className="py-1.5 px-3" style={{ color: "#475569" }}>Policy Coverage</td>
+                <td className="py-1.5 px-3" style={{ color: "#0F172A" }}>Partial</td>
+                <td className="py-1.5 px-3" style={{ color: "#00A86B" }}>190+ countries</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <a href="#try-patram" className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
-            style={{ background: "linear-gradient(90deg, #00A86B, #0066CC)", color: "#FFFFFF", boxShadow: "0 4px 25px rgba(0,168,107,0.35)" }}>
+          <a
+            href="#try-patram"
+            className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
+            style={{
+              background: "linear-gradient(90deg, #00A86B, #0066CC)",
+              color: "#FFFFFF",
+              boxShadow: "0 4px 25px rgba(0,168,107,0.35)",
+            }}
+          >
             Try Free
           </a>
-          <button className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 hover:border-[#00A86B] hover:text-[#00A86B]"
-            style={{ background: "transparent", border: "1.5px solid #CBD5E1", color: "#0F172A" }}>
-            See Live Q&A
+          <button
+            className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300"
+            style={{ background: "transparent", border: "1.5px solid #CBD5E1", color: "#0F172A" }}
+          >
+            See Live Demo
           </button>
         </div>
       </div>
 
-      {/* Chat interface mockup */}
-      <div className="border rounded-xl p-5 animate-slide-in-right animate-float card-hover" style={{ background: "#FFFFFF", borderColor: "#E2E8F0", boxShadow: "0 24px 80px rgba(0,0,0,0.08)" }}>
-        <div className="flex items-center justify-between mb-3">
-          <span className="font-bold text-[13px]" style={{ color: "#0F172A" }}>Patram AI — Document Q&A</span>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-[#27C93F]" />
-            <span className="text-xs" style={{ color: "#27C93F" }}>Active</span>
+      {/* Patram advisor mockup */}
+      <div className="animate-slide-in-right">
+        <PatramAdvisorMockup />
+      </div>
+    </div>
+  )
+}
+
+const TARIFF_MESSAGES = [
+  {
+    title: "HSN 84137096 — High confidence: 99%",
+    text: "Slurry pumps | Other centrifugal pumps. Chapter 84 — Nuclear Reactors, Boilers, Machinery. 8-digit ITC-HS: 8413 70 96.",
+    color: "#1B4F8A",
+    bg: "rgba(27,79,138,0.06)",
+    border: "rgba(27,79,138,0.2)",
+  },
+  {
+    title: "Free to export",
+    text: "No special licence or certification required for standard shipments to the UK under this HSN code.",
+    color: "#00A86B",
+    bg: "rgba(0,168,107,0.07)",
+    border: "rgba(0,168,107,0.25)",
+  },
+  {
+    title: "Drawback (AIR) beats RoDTEP here",
+    text: "Drawback rate 1.5% gives Rs.10,50,000 vs RoDTEP 0.9% giving Rs.6,30,000 on Rs.70L FOB. You gain Rs.4,20,000 more — choose Drawback. Notif 77/2023-Customs (NT).",
+    color: "#1B4F8A",
+    bg: "rgba(27,79,138,0.06)",
+    border: "rgba(27,79,138,0.2)",
+  },
+]
+
+function TariffIQChatMockup() {
+  const [visibleCount, setVisibleCount] = useState(0)
+  const [showTyping, setShowTyping] = useState(true)
+
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout>
+    let i = 0
+
+    const step = () => {
+      setShowTyping(false)
+      i++
+      setVisibleCount(i)
+      if (i < TARIFF_MESSAGES.length) {
+        t = setTimeout(() => { setShowTyping(true); t = setTimeout(step, 700) }, 500)
+      } else {
+        t = setTimeout(() => {
+          setVisibleCount(0)
+          setShowTyping(true)
+          i = 0
+          t = setTimeout(step, 700)
+        }, 3500)
+      }
+    }
+
+    t = setTimeout(step, 800)
+    return () => clearTimeout(t)
+  }, [])
+
+  return (
+    <div className="rounded-2xl overflow-hidden flex flex-col"
+      style={{ background: "#FFFFFF", border: "2px solid #E2E8F0", boxShadow: "0 20px 60px rgba(27,79,138,0.1)" }}>
+
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 py-2.5 border-b flex-shrink-0"
+        style={{ borderColor: "#E2E8F0", background: "#F8FAFC" }}>
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+            style={{ background: "linear-gradient(135deg, #1B4F8A, #2563EB)" }}>
+            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div>
+            <p className="font-bold text-[12px] leading-none" style={{ color: "#0F172A" }}>TariffIQ — HSN Classifier</p>
+            <p className="text-[9px] mt-0.5" style={{ color: "#94A3B8" }}>AI-powered duty intelligence</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#1B4F8A" }} />
+          <span className="text-[10px] font-semibold" style={{ color: "#1B4F8A" }}>Online</span>
+        </div>
+      </div>
+
+      {/* Chat messages */}
+      <div className="px-3 py-3 space-y-2.5 flex-1">
+
+        {/* User message */}
+        <div className="flex justify-end">
+          <div className="rounded-2xl rounded-br-sm px-3 py-2 max-w-[88%]"
+            style={{ background: "linear-gradient(135deg, #1B4F8A, #2563EB)" }}>
+            <p className="text-[12px] font-medium leading-snug text-white">
+              What is the HSN code and best export scheme for centrifugal pumps?
+            </p>
           </div>
         </div>
 
-        <div className="p-2 rounded-lg mb-3" style={{ background: "rgba(0,168,107,0.1)" }}>
-          <span className="text-xs" style={{ color: "#00A86B" }}>SB_2025_0441.pdf + Invoice_0441.pdf</span>
-        </div>
-
-        <div className="space-y-3">
-          <div className="flex justify-end">
-            <div className="rounded-xl rounded-br-sm px-3 py-2 max-w-[80%]" style={{ background: "#F1F5F9" }}>
-              <p className="text-[13px]" style={{ color: "#0F172A" }}>
-                {"\"Is there any discrepancy between invoice and shipping bill?\""}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex justify-start">
-            <div className="rounded-xl rounded-bl-sm px-3 py-2 max-w-[85%]" style={{ background: "#F8FAFC", borderLeft: "3px solid #00A86B" }}>
-              <p className="text-[13px] mb-2" style={{ color: "#0F172A" }}>
-                <strong>Found 1 discrepancy:</strong>
-              </p>
-              <div className="text-[12px] space-y-1 mb-2" style={{ color: "#475569" }}>
-                <p>Invoice FOB: <span className="font-mono" style={{ color: "#0F172A" }}>$42,500</span></p>
-                <p>Shipping Bill: <span className="font-mono" style={{ color: "#0F172A" }}>$41,800</span></p>
-                <p>Difference: <span className="font-mono" style={{ color: "#0066CC" }}>$700 (1.6%)</span></p>
+        {/* AI response bubbles — all pre-rendered, ghost until revealed */}
+        {TARIFF_MESSAGES.map((msg, idx) => {
+          const revealed = idx < visibleCount
+          const isNext = idx === visibleCount && showTyping
+          return (
+            <div key={idx} className="flex items-start gap-2 transition-all duration-400"
+              style={{ opacity: revealed ? 1 : isNext ? 0.25 : 0.06 }}>
+              <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                style={{ background: "linear-gradient(135deg, #1B4F8A, #2563EB)" }}>
+                {isNext ? (
+                  <span className="inline-flex gap-0.5">
+                    {[0,1,2].map(i => (
+                      <span key={i} className="w-0.5 h-0.5 rounded-full animate-bounce bg-white"
+                        style={{ animationDelay: `${i * 150}ms` }} />
+                    ))}
+                  </span>
+                ) : (
+                  <span className="text-white text-[9px] font-bold">T</span>
+                )}
               </div>
-              <div className="inline-flex items-center px-2 py-0.5 rounded text-[10px]" style={{ background: "rgba(0,168,107,0.1)" }}>
-                <span style={{ color: "#00A86B" }}>99.8% Confidence</span>
+              <div className="rounded-2xl rounded-tl-sm px-3 py-2 flex-1"
+                style={{ background: revealed ? msg.bg : "#F8FAFC", border: `1.5px solid ${revealed ? msg.border : "#E2E8F0"}` }}>
+                <p className="text-[11px] font-bold mb-1" style={{ color: revealed ? msg.color : "#CBD5E1" }}>{msg.title}</p>
+                <p className="text-[11px] leading-snug" style={{ color: revealed ? "#475569" : "#E2E8F0" }}>{msg.text}</p>
               </div>
             </div>
-          </div>
-        </div>
+          )
+        })}
       </div>
     </div>
   )
@@ -406,103 +779,89 @@ function PatramTab() {
 
 function TariffIQTab() {
   const features = [
-    "Multi-layer AI classification",
+    "8-digit ITC-HS classification",
     "Handles vague descriptions",
     "RoDTEP vs Drawback comparison",
     "Full landed cost calculation",
-    "ITC-HS Policy checking",
+    "ITC-HS policy checking",
     "Clarifying Q&A support",
   ]
 
   return (
-    <div className="grid lg:grid-cols-2 gap-8 items-center">
+    <div className="grid lg:grid-cols-2 gap-6 items-center">
       <div className="animate-slide-in-left">
-        {/* Gradient container badge */}
-        <div className="gradient-container inline-block mb-4">
-          <div className="px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase" 
-            style={{ background: "#FFFFFF", color: "#0066CC" }}>
-            HSN CLASSIFICATION & DUTY
-          </div>
+        <div className="flex items-center gap-3 mb-3">
+          <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #1B4F8A, #2563EB)" }} />
+          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
+            HSN Classification & Duty
+          </span>
         </div>
-        <h3 className="text-[26px] lg:text-[40px] font-bold leading-tight mb-4" style={{ color: "#0F172A" }}>
-          Know Your HSN Code and Duty. <span className="text-[#0066CC]">Before Shipment.</span>
+        <h3 className="text-[22px] lg:text-[34px] font-bold leading-tight mb-3" style={{ color: "#0F172A" }}>
+          Know Your HSN Code{" "}
+          <span style={{ color: "#1B4F8A" }}>Before Shipment.</span>
         </h3>
-        <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
-          TariffIQ classifies any product into the correct 8-digit HSN code using our AI 
-          engine, then calculates your exact duty liability or export incentive.
+        <p className="text-sm leading-relaxed mb-4" style={{ color: "#475569" }}>
+          Tell TariffIQ what you are shipping. It classifies your product to the correct
+          8-digit HSN code, calculates your exact duty liability, and tells you whether
+          RoDTEP or Drawback earns you more.
         </p>
 
-        <div className="grid grid-cols-2 gap-2 mb-6">
+        <div className="grid grid-cols-2 gap-1.5 mb-4">
           {features.map((feature, idx) => (
             <div key={idx} className="flex items-center gap-2 transition-all duration-300 hover:translate-x-1">
-              <Check className="w-4 h-4 flex-shrink-0" style={{ color: "#00A86B" }} />
-              <span className="text-[13px]" style={{ color: "#0F172A" }}>{feature}</span>
+              <Check className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#1B4F8A" }} />
+              <span className="text-[12px]" style={{ color: "#0F172A" }}>{feature}</span>
             </div>
           ))}
         </div>
 
+        <div className="rounded-lg overflow-hidden mb-4" style={{ border: "1px solid #E2E8F0" }}>
+          <table className="w-full text-[12px]">
+            <thead>
+              <tr style={{ background: "#F8FAFC" }}>
+                <th className="text-left font-semibold py-1.5 px-3" style={{ color: "#64748B" }}>Metric</th>
+                <th className="text-left font-semibold py-1.5 px-3" style={{ color: "#64748B" }}>Manual</th>
+                <th className="text-left font-semibold py-1.5 px-3" style={{ color: "#1B4F8A" }}>With TariffIQ</th>
+              </tr>
+            </thead>
+            <tbody style={{ background: "#FFFFFF" }}>
+              <tr style={{ borderTop: "1px solid #E2E8F0" }}>
+                <td className="py-1.5 px-3" style={{ color: "#475569" }}>Classification</td>
+                <td className="py-1.5 px-3" style={{ color: "#0F172A" }}>1–2 days</td>
+                <td className="py-1.5 px-3 font-semibold" style={{ color: "#1B4F8A" }}>{"< 10 sec"}</td>
+              </tr>
+              <tr style={{ borderTop: "1px solid #E2E8F0" }}>
+                <td className="py-1.5 px-3" style={{ color: "#475569" }}>Accuracy</td>
+                <td className="py-1.5 px-3" style={{ color: "#0F172A" }}>~70%</td>
+                <td className="py-1.5 px-3 font-semibold" style={{ color: "#1B4F8A" }}>99.2%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <div className="flex flex-wrap gap-3">
-          <a href="#classify" className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
-            style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF", boxShadow: "0 4px 25px rgba(0,102,204,0.35)" }}>
+          <a
+            href="#classify"
+            className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
+            style={{
+              background: "linear-gradient(90deg, #1B4F8A, #2563EB)",
+              color: "#FFFFFF",
+              boxShadow: "0 4px 25px rgba(27,79,138,0.3)",
+            }}
+          >
             Classify My Product
           </a>
-          <button className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 hover:border-[#0066CC] hover:text-[#0066CC]"
-            style={{ background: "transparent", border: "1.5px solid #CBD5E1", color: "#0F172A" }}>
+          <button
+            className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300"
+            style={{ background: "transparent", border: "1.5px solid #CBD5E1", color: "#0F172A" }}
+          >
             See Demo
           </button>
         </div>
       </div>
 
-      {/* TariffIQ interface mockup */}
-      <div className="border rounded-xl p-5 animate-slide-in-right animate-float card-hover" style={{ background: "#FFFFFF", borderColor: "#E2E8F0", boxShadow: "0 24px 80px rgba(0,0,0,0.08)" }}>
-        {/* Fixed Role selector - Exporter only */}
-        <div className="flex items-center gap-3 mb-4">
-          <div className="px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2"
-            style={{ background: "rgba(0,102,204,0.1)", border: "2px solid #0066CC", color: "#0066CC" }}>
-            <span className="w-2 h-2 rounded-full bg-[#0066CC]" />
-            Exporter
-          </div>
-        </div>
-
-        {/* Fixed Input field - Read only */}
-        <div className="mb-4">
-          <div
-            className="w-full px-3 py-2.5 rounded-lg text-sm"
-            style={{ background: "#F8FAFC", border: "1px solid #E2E8F0", color: "#0F172A" }}
-          >
-            stainless steel hex bolts M8
-          </div>
-        </div>
-
-        {/* Result card */}
-        <div className="rounded-lg p-4" style={{ background: "rgba(0,102,204,0.03)", border: "2px solid #0066CC", boxShadow: "0 0 30px rgba(0,102,204,0.1)" }}>
-          <div className="mb-3">
-            <span className="text-[10px]" style={{ color: "#64748B" }}>HSN Code</span>
-            <div className="text-2xl font-mono font-semibold" style={{ color: "#0066CC" }}>7318.15</div>
-            <p className="text-[12px] mt-0.5" style={{ color: "#475569" }}>Screws, bolts, nuts — stainless steel</p>
-          </div>
-
-          <div className="grid grid-cols-3 gap-2 mb-3">
-            <div className="p-2 rounded-lg" style={{ background: "#F8FAFC" }}>
-              <span className="text-[9px]" style={{ color: "#64748B" }}>BCD</span>
-              <div className="font-semibold text-sm" style={{ color: "#0F172A" }}>7.5%</div>
-            </div>
-            <div className="p-2 rounded-lg" style={{ background: "#F8FAFC" }}>
-              <span className="text-[9px]" style={{ color: "#64748B" }}>IGST</span>
-              <div className="font-semibold text-sm" style={{ color: "#0F172A" }}>18%</div>
-            </div>
-            <div className="p-2 rounded-lg" style={{ background: "#F8FAFC" }}>
-              <span className="text-[9px]" style={{ color: "#64748B" }}>RoDTEP</span>
-              <div className="font-semibold text-sm" style={{ color: "#00A86B" }}>₹21K</div>
-            </div>
-          </div>
-
-          <div className="p-2 rounded-lg" style={{ background: "rgba(0,168,107,0.1)" }}>
-            <p className="text-[12px] font-medium" style={{ color: "#00A86B" }}>
-              RoDTEP earns you ₹21K more than Drawback
-            </p>
-          </div>
-        </div>
+      <div className="animate-slide-in-right">
+        <TariffIQChatMockup />
       </div>
     </div>
   )
