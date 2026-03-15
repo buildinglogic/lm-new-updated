@@ -61,11 +61,37 @@
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden;
+    background-color: #FFFFFF;
+    color: #0F172A;
   }
   html {
     overflow-x: hidden;
     scroll-behavior: smooth;
     scroll-snap-type: y proximity;
+    /* Force light mode — prevents Android Chrome Force Dark from inverting section colors */
+    color-scheme: light only;
+  }
+}
+
+/* Override system dark mode — this site is always light */
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: light only;
+  }
+  body {
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+  }
+  /* Reset shadcn CSS variables to light values */
+  :root {
+    --background: #FFFFFF;
+    --foreground: #0F172A;
+    --card: #FFFFFF;
+    --card-foreground: #0F172A;
+    --muted: #F8FAFC;
+    --muted-foreground: #64748B;
+    --border: #E2E8F0;
+    --input: #E2E8F0;
   }
 }
 
@@ -384,6 +410,26 @@ input[type="range"]::-webkit-slider-thumb {
 .page-snap {
   scroll-snap-align: start;
   scroll-snap-stop: always;
+}
+
+/* Disable scroll snap on mobile — too jarring for stacked content */
+@media (max-width: 1023px) {
+  html {
+    scroll-snap-type: none;
+  }
+  .page-snap {
+    scroll-snap-align: none;
+    scroll-snap-stop: unset;
+  }
+}
+
+/* Horizontal scroll without scrollbar (for mobile carousels) */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 /* ===== Hero dot grid ===== */

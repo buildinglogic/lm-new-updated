@@ -106,7 +106,7 @@ export function HeroMockup({ animated = true }: { animated?: boolean }) {
       }}
     >
       <div
-        className="bg-white border rounded-2xl p-6 transition-all duration-500"
+        className="bg-white border rounded-2xl p-4 lg:p-6 transition-all duration-500"
         style={{
           transform: "rotateY(-8deg) rotateX(4deg)",
           boxShadow: "0 24px 80px rgba(0,102,204,0.15), 0 0 40px rgba(0,102,204,0.05)",
@@ -157,7 +157,7 @@ export function HeroMockup({ animated = true }: { animated?: boolean }) {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-4 pt-4 border-t -mx-6 -mb-6 px-6 py-3 rounded-b-2xl" style={{ background: "rgba(220,38,38,0.05)", borderColor: "#E2E8F0" }}>
+        <div className="mt-4 pt-4 border-t -mx-4 lg:-mx-6 -mb-4 lg:-mb-6 px-4 lg:px-6 py-3 rounded-b-2xl" style={{ background: "rgba(220,38,38,0.05)", borderColor: "#E2E8F0" }}>
           <div className="flex items-center justify-between text-sm">
             <span className="font-medium" style={{ color: "#DC2626" }}>
               ⚠ {issueCount} Issue{issueCount !== 1 ? "s" : ""} Found

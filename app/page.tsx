@@ -97,61 +97,68 @@ function HeroSection() {
 
   return (
     <section
-      className="page-snap min-h-screen pt-[120px] pb-6 px-4 lg:px-8 flex items-center"
-      style={{
-        backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/white%20textured%20background-VTbHzt4lKA0rxfUKqNSLETf6lAlqjC.jpg')`,
+      className="page-snap lg:min-h-[100svh] pt-[130px] lg:pt-[124px] pb-20 lg:pb-10 px-4 lg:px-8 flex items-start lg:items-center relative overflow-hidden"
+    >
+      {/* Blurred world map background */}
+      <div className="absolute inset-0 scale-110 pointer-events-none" style={{
+        backgroundImage: `url('/images/world-map-bg.png')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
-    >
-      <div className="w-full max-w-[1400px] mx-auto">
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+        filter: 'blur(3px)',
+      }} />
+      {/* White overlay — light enough to see map, strong enough to keep text crisp */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: 'rgba(255,255,255,0.78)',
+      }} />
+
+      <div className="w-full max-w-[1400px] mx-auto relative">
+        <div className="grid lg:grid-cols-2 gap-4 lg:gap-10 lg:items-center">
 
           <div className="lg:pl-8 xl:pl-16">
 
-            {/* Plain label — gradient rule + small caps */}
-            <div className="flex items-center gap-3 mb-5 animate-fade-in">
-              <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
-                India's #1 AI Trade Compliance Platform
+            {/* Label */}
+            <div className="flex items-center gap-2 mb-3 lg:mb-5 animate-fade-in">
+              <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
+              <span className="text-[10px] lg:text-[11px] font-semibold tracking-[0.16em] uppercase" style={{ color: "#94A3B8" }}>
+                <span className="sm:hidden">India's #1 AI Platform</span>
+                <span className="hidden sm:inline">India's #1 AI Trade Compliance Platform</span>
               </span>
             </div>
 
-            <h1 className="text-[32px] lg:text-[56px] font-extrabold leading-[1.1] tracking-[-0.03em] mb-4 animate-fade-in-up stagger-1" style={{ color: "#0F172A" }}>
+            <h1 className="text-[26px] lg:text-[56px] font-extrabold leading-[1.1] tracking-[-0.03em] mb-2 lg:mb-4 animate-fade-in-up stagger-1" style={{ color: "#0F172A" }}>
               Stop Losing<br />
               <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Crores</span> to Trade<br />
               Document Errors.
             </h1>
 
-            <p className="text-[15px] lg:text-[17px] leading-[1.6] max-w-[460px] mb-8 animate-fade-in-up stagger-2" style={{ color: "#475569" }}>
+            <p className="text-[13px] lg:text-[17px] leading-[1.55] max-w-[460px] mb-3 lg:mb-8 animate-fade-in-up stagger-2" style={{ color: "#475569" }}>
               Indian exporters lose 3–7% of FOB value every month to document mismatches.
               Liquidmind AI catches every error before customs does.
             </p>
 
             {/* Compact inline stats */}
-            <div className="flex items-start gap-0 mb-8 animate-fade-in-up stagger-3">
+            <div className="flex items-start gap-0 mb-3 lg:mb-8 animate-fade-in-up stagger-3">
               {stats.map((stat, idx) => (
                 <React.Fragment key={idx}>
                   <div className="flex flex-col">
-                    <span className="text-[30px] lg:text-[34px] font-black tracking-tight leading-none tabular-nums" style={{ color: "#0066CC" }}>
+                    <span className="text-[22px] lg:text-[34px] font-black tracking-tight leading-none tabular-nums whitespace-nowrap" style={{ color: "#0066CC" }}>
                       {stat.prefix}<AnimatedCount to={stat.to} />{stat.suffix}
                     </span>
-                    <span className="text-[10px] font-medium leading-[1.3] mt-1.5" style={{ color: "#94A3B8" }}>
+                    <span className="text-[9px] lg:text-[10px] font-medium leading-[1.3] mt-1" style={{ color: "#94A3B8" }}>
                       {stat.line1}<br />{stat.line2}
                     </span>
                   </div>
                   {idx < 2 && (
-                    <div className="w-px mx-6 mt-1" style={{ height: "44px", background: "#E2E8F0" }} />
+                    <div className="w-px mx-3 lg:mx-6 mt-1" style={{ height: "36px", background: "#E2E8F0" }} />
                   )}
                 </React.Fragment>
               ))}
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3 animate-fade-in-up stagger-4">
+            {/* CTAs — stacked on mobile, row on sm+ */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 lg:gap-3 animate-fade-in-up stagger-4">
               <Link href="/book-demo"
-                className="px-6 py-3 rounded-xl text-sm font-bold btn-shine haptic-btn inline-flex items-center gap-2"
+                className="px-5 py-2.5 lg:px-6 lg:py-3 rounded-xl text-sm font-bold btn-shine haptic-btn inline-flex items-center justify-center gap-2"
                 style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF", boxShadow: "0 4px 25px rgba(0,102,204,0.35)" }}>
                 Book Free Demo
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -159,24 +166,25 @@ function HeroSection() {
                 </svg>
               </Link>
 
-              <button className="inline-flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all hover:bg-slate-50 haptic-btn"
-                style={{ border: "1.5px solid #E2E8F0" }}>
-                <div className="relative w-8 h-8 flex-shrink-0 flex items-center justify-center">
-                  <span className="absolute inset-0 rounded-full play-ring-1" style={{ background: "rgba(0,102,204,0.12)" }} />
-                  <span className="absolute inset-0 rounded-full play-ring-2" style={{ background: "rgba(0,102,204,0.07)" }} />
-                  <span className="relative w-full h-full rounded-full flex items-center justify-center"
-                    style={{ background: "rgba(0,102,204,0.1)", border: "1px solid rgba(0,102,204,0.2)" }}>
-                    <svg className="w-3 h-3 ml-0.5" fill="#0066CC" viewBox="0 0 24 24">
+              <button
+                onClick={() => document.getElementById('demo-video')?.scrollIntoView({ behavior: 'smooth' })}
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 lg:px-6 lg:py-3 rounded-xl transition-all hover:scale-105 haptic-btn"
+                style={{ background: "#FFFFFF", border: "2px solid #0066CC", boxShadow: "0 4px 20px rgba(0,102,204,0.18)" }}>
+                <div className="relative flex-shrink-0 w-5 h-5">
+                  <span className="absolute inset-0 rounded-full animate-ping opacity-25" style={{ background: "#0066CC" }} />
+                  <span className="relative w-5 h-5 rounded-full flex items-center justify-center"
+                    style={{ background: "linear-gradient(135deg, #0066CC, #00A86B)" }}>
+                    <svg className="w-2.5 h-2.5 ml-px" fill="white" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </span>
                 </div>
-                <span className="text-sm font-semibold" style={{ color: "#0F172A" }}>Watch Demo</span>
+                <span className="text-sm font-bold bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Watch Demo</span>
               </button>
             </div>
           </div>
 
-          <div className="animate-slide-in-right">
+          <div className="mt-3 lg:mt-0 animate-slide-in-right">
             <HeroMockup animated={true} />
           </div>
         </div>
@@ -263,14 +271,21 @@ function ProblemSection() {
   return (
     <section
       ref={ref}
-      className="page-snap min-h-screen flex flex-col justify-center py-6 px-4 lg:px-8 relative"
-      style={{
-        background: `linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(248,250,252,0.92) 100%), url('/images/world-map-bg.jpg')`,
+      className="page-snap py-10 lg:min-h-screen lg:flex lg:flex-col lg:justify-center lg:py-6 px-4 lg:px-8 relative overflow-hidden"
+    >
+      {/* Blurred map layer — scale-110 prevents blur from showing edges */}
+      <div className="absolute inset-0 scale-110 pointer-events-none" style={{
+        backgroundImage: `url('/images/world-map-bg.png')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-      }}
-    >
-      <div className="w-full max-w-[1000px] mx-auto">
+        filter: 'blur(3px)',
+      }} />
+      {/* White gradient overlay on top of blurred map */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(248,250,252,0.90) 100%)',
+      }} />
+
+      <div className="w-full max-w-[1000px] mx-auto relative">
         <div className={`text-center mb-5 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="flex items-center justify-center gap-3 mb-3">
             <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
@@ -295,17 +310,20 @@ function ProblemSection() {
         <div className={`flex flex-col items-center gap-3 transition-all duration-700 delay-300 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="flex items-center gap-3">
             <div className="h-px w-12 rounded-full" style={{ background: "linear-gradient(90deg, transparent, #CBD5E1)" }} />
-            <span className="text-[10px] font-mono font-semibold tracking-[0.15em] uppercase" style={{ color: "#94A3B8" }}>
+            <span className="text-[9px] lg:text-[10px] font-mono font-semibold tracking-[0.08em] lg:tracking-[0.15em] uppercase text-center" style={{ color: "#94A3B8" }}>
               ₹2,40,000+ at risk in an average shipment
             </span>
             <div className="h-px w-12 rounded-full" style={{ background: "linear-gradient(270deg, transparent, #CBD5E1)" }} />
           </div>
 
           <a href="#products"
-            className="group btn-cta-glow btn-shine haptic-btn relative inline-flex items-center gap-3 px-9 py-4 rounded-2xl text-white font-extrabold text-[15px] tracking-tight overflow-hidden"
+            className="group btn-cta-glow btn-shine haptic-btn relative inline-flex items-center gap-3 px-6 py-3 lg:px-9 lg:py-4 rounded-2xl text-white font-extrabold text-[13px] lg:text-[15px] tracking-tight overflow-hidden"
             style={{ background: "linear-gradient(90deg, #0066CC 0%, #00A86B 100%)" }}>
             <span className="absolute left-0 right-0 h-px top-0 opacity-40" style={{ background: "linear-gradient(90deg, transparent, #ffffff, transparent)", animation: "shimmer 2s linear infinite" }} />
-            <span className="relative">Stop Losing Money. See Tradeguard in Action</span>
+            <span className="relative">
+              <span className="lg:hidden">See Tradeguard in Action</span>
+              <span className="hidden lg:inline">Stop Losing Money. See Tradeguard in Action</span>
+            </span>
             <span className="relative inline-flex items-center justify-center w-6 h-6 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors">
               <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
@@ -371,7 +389,7 @@ function ProblemCardItem({ problem, idx, isInView }: {
       <div className="p-4 pt-5">
         {/* Icon */}
         <div className="mb-2.5" style={{ color: "rgba(0,102,204,0.45)" }}>
-          {React.cloneElement(problem.icon as React.ReactElement, { className: "w-4 h-4" })}
+          {React.cloneElement(problem.icon as React.ReactElement<{ className?: string }>, { className: "w-4 h-4" })}
         </div>
 
         {/* Big number */}
@@ -406,6 +424,7 @@ function HowItWorks() {
   const { ref, isInView } = useInView()
   const [hoveredStep, setHoveredStep] = useState<number | null>(null)
   const [autoIdx, setAutoIdx] = useState(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!isInView) return
@@ -414,6 +433,17 @@ function HowItWorks() {
   }, [isInView])
 
   const activeIdx = hoveredStep !== null ? hoveredStep : autoIdx
+
+  // Auto-scroll active card into centre of the horizontal container only — never affects page scroll
+  useEffect(() => {
+    const container = scrollRef.current
+    if (!container) return
+    const cards = Array.from(container.children) as HTMLElement[]
+    const card = cards[activeIdx]
+    if (!card) return
+    const targetLeft = card.offsetLeft - (container.offsetWidth - card.offsetWidth) / 2
+    container.scrollTo({ left: targetLeft, behavior: 'smooth' })
+  }, [activeIdx])
 
   const steps = [
     {
@@ -486,7 +516,7 @@ function HowItWorks() {
   return (
     <section
       ref={ref}
-      className="page-snap min-h-screen flex flex-col justify-center py-10 px-4 lg:px-8 relative overflow-hidden"
+      className="page-snap py-8 lg:min-h-screen lg:flex lg:flex-col lg:justify-center lg:py-10 px-4 lg:px-8 relative"
       style={{ background: "#FFFFFF" }}
     >
 
@@ -507,8 +537,9 @@ function HowItWorks() {
       </div>
 
       {/* Step cards */}
-      <div className="w-full max-w-[1300px] mx-auto mb-6">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-3">
+      <div className="w-full max-w-[1300px] mx-auto mb-4">
+        {/* Mobile: horizontal scroll carousel | Desktop: 5-col grid */}
+        <div ref={scrollRef} className="flex lg:grid lg:grid-cols-5 gap-3 overflow-x-auto scrollbar-none pb-2 lg:overflow-x-visible" style={{ scrollSnapType: 'x mandatory' }}>
             {steps.map((step, idx) => {
               const active = activeIdx === idx
               return (
@@ -516,8 +547,9 @@ function HowItWorks() {
                   key={idx}
                   onMouseEnter={() => setHoveredStep(idx)}
                   onMouseLeave={() => setHoveredStep(null)}
-                  className={`relative rounded-2xl p-4 cursor-pointer transition-all duration-400 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                  className={`flex-shrink-0 w-[78vw] sm:w-[55vw] lg:w-auto lg:flex-shrink lg:snap-none relative rounded-2xl p-4 cursor-pointer transition-all duration-400 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                   style={{
+                    scrollSnapAlign: 'center',
                     transitionDelay: `${idx * 100}ms`,
                     background: active ? `linear-gradient(145deg, ${step.color}08, #FFFFFF)` : '#FAFAFA',
                     border: active ? `1.5px solid ${step.color}40` : '1.5px solid #E2E8F0',
@@ -648,24 +680,31 @@ function AwardsSection() {
   ]
 
   return (
-    <section ref={ref} className="page-snap min-h-screen flex flex-col justify-center py-16 px-4 lg:px-8" style={{ background: "#FFFFFF" }}>
+    <section ref={ref} className="page-snap flex flex-col justify-center py-8 lg:py-10 px-4 lg:px-8" style={{ background: "#FFFFFF" }}>
       <div className="w-full max-w-[1100px] mx-auto">
-        <h2 className={`text-[28px] lg:text-[44px] font-bold text-center mb-10 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ color: "#0F172A" }}>
-          Recognised. <span className="text-[#0066CC]">Validated.</span> Trusted.
+        <div className={`flex items-center justify-center gap-3 mb-3 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
+          <span className="text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Recognition</span>
+          <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
+        </div>
+        <h2 className={`text-[24px] lg:text-[36px] font-extrabold text-center mb-6 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ color: "#0F172A" }}>
+          Recognised.{" "}
+          <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Validated.</span>{" "}
+          Trusted.
         </h2>
 
-        <div className="grid lg:grid-cols-2 gap-6 mb-10">
+        <div className="grid lg:grid-cols-2 gap-4 mb-6">
           {awards.map((award, idx) => (
             <div key={idx}
               className={`rounded-2xl overflow-hidden group transition-all duration-500 hover:scale-[1.02] ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-              style={{ 
-                background: "#0F172A", 
+              style={{
+                background: "#0F172A",
                 border: "3px solid #0066CC",
-                boxShadow: "0 20px 60px rgba(0,102,204,0.2)",
+                boxShadow: "0 12px 40px rgba(0,102,204,0.2)",
                 transitionDelay: `${idx * 150}ms`,
               }}>
-              <div className="relative h-[280px] lg:h-[340px] overflow-hidden">
-                <Image src={award.image} alt={award.title} fill className="object-cover object-center group-hover:scale-105 transition-transform duration-700" />
+              <div className="relative h-[180px] lg:h-[220px] overflow-hidden">
+                <Image src={award.image} alt={award.title} fill priority className="object-cover object-center group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/30 to-transparent" />
                 <div className="absolute top-3 right-3">
                   <div className="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase"
@@ -674,26 +713,27 @@ function AwardsSection() {
                   </div>
                 </div>
               </div>
-              <div className="p-5">
-                <h3 className="text-xl font-bold mb-2 text-white">{award.title}</h3>
-                <p className="text-[14px] font-medium text-white/90">{award.subtitle}</p>
+              <div className="p-4">
+                <h3 className="text-[16px] font-bold mb-1 text-white">{award.title}</h3>
+                <p className="text-[13px] font-medium text-white/80">{award.subtitle}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
-      
+
       {/* Backed By - Partner Logos */}
-      <div className={`w-full py-8 transition-all duration-700 delay-300 ${isInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} style={{ background: "#F1F5F9" }}>
+      <div className={`w-full py-5 transition-all duration-700 delay-300 ${isInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} style={{ background: "#F1F5F9" }}>
         <div className="max-w-[900px] mx-auto text-center px-4">
-          <p className="text-base font-semibold mb-6 tracking-wide" style={{ color: "#64748B" }}>Backed by leading technology partners</p>
+          <p className="text-[13px] font-semibold mb-4 tracking-wide" style={{ color: "#64748B" }}>Backed by leading technology partners</p>
           <div className="flex justify-center items-center">
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-03-14%20133550-DW8iyYo9sqjlGDVnoCBNdZDhoLi2E4.png"
               alt="Partner Logos - NVIDIA Inception, AWS, Microsoft for Startups"
               width={800}
               height={120}
-              className="w-full max-w-[700px] h-auto object-contain"
+              priority
+              className="w-full max-w-[680px] h-auto object-contain"
             />
           </div>
         </div>
@@ -703,112 +743,63 @@ function AwardsSection() {
 }
 
 /* ========================
-   MICRO CARD WITH SPOTLIGHT
-======================== */
-function MicroCardItem({ card, idx, isInView }: {
-  card: { badge: string; title: string; body: string; cta: string; featured?: boolean }
-  idx: number
-  isInView: boolean
-}) {
-  const divRef = useRef<HTMLDivElement>(null)
-  const [spotPos, setSpotPos] = useState({ x: 0, y: 0 })
-  const [spotOn, setSpotOn] = useState(false)
-
-  return (
-    <div
-      ref={divRef}
-      onMouseMove={(e) => {
-        if (!divRef.current) return
-        const rect = divRef.current.getBoundingClientRect()
-        setSpotPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
-      }}
-      onMouseEnter={() => setSpotOn(true)}
-      onMouseLeave={() => setSpotOn(false)}
-      className={`micro-card group relative rounded-xl p-5 transition-all duration-500 cursor-pointer overflow-hidden ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-      style={{
-        background: card.featured ? "#0066CC" : "linear-gradient(to bottom, #e8f4f8, #d4eef5)",
-        transitionDelay: `${idx * 100}ms`,
-      }}
-    >
-      {!card.featured && (
-        <>
-          {/* Mouse-tracking spotlight */}
-          <div className="pointer-events-none absolute inset-0 rounded-xl transition-opacity duration-300 group-hover:opacity-0"
-            style={{
-              opacity: spotOn ? 1 : 0,
-              background: `radial-gradient(circle at ${spotPos.x}px ${spotPos.y}px, rgba(0,102,204,0.13), transparent 65%)`
-            }}
-          />
-          <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            style={{ background: "linear-gradient(135deg, #0F172A, #1e3a5f)" }} />
-          <div className="absolute top-0 right-0 w-8 h-8 overflow-hidden rounded-bl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            style={{ background: "linear-gradient(135deg, #0066CC, #0F172A)" }}>
-            <span className="absolute top-1 right-1.5 text-white text-xs font-bold">→</span>
-          </div>
-        </>
-      )}
-
-      <div className="relative z-10">
-        <div className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-[0.1em] uppercase mb-3 ${
-          card.featured ? 'bg-white/20 text-white' : 'bg-[#0066CC]/10 text-[#0066CC] group-hover:bg-white/20 group-hover:text-white'
-        } transition-colors duration-500`}>
-          {card.badge}
-        </div>
-        <h3 className={`text-base font-bold mb-2 ${
-          card.featured ? 'text-white' : 'text-[#0F172A] group-hover:text-white'
-        } transition-colors duration-500`}>{card.title}</h3>
-        <p className={`text-sm leading-relaxed mb-4 ${
-          card.featured ? 'text-white/80' : 'text-[#475569] group-hover:text-white/80'
-        } transition-colors duration-500`}>{card.body}</p>
-        {card.featured ? (
-          <Link href="/book-demo" className="inline-block px-4 py-2 rounded-lg text-sm font-bold bg-white text-[#0066CC] hover:scale-105 transition-transform">
-            {card.cta}
-          </Link>
-        ) : (
-          <span className="text-sm font-semibold text-[#0066CC] group-hover:text-white transition-colors duration-500">
-            {card.cta} →
-          </span>
-        )}
-      </div>
-    </div>
-  )
-}
-
-/* ========================
-   MICRO CONVERSION SECTION - Better card layout
+   DEMO VIDEO SECTION
 ======================== */
 function MicroConversionSection() {
   const { ref, isInView } = useInView()
-  
-  const cards = [
-    { badge: "FREE", title: "Watch Tradeguard in Action", body: "A real document audit, live on screen. No slides. No fluff.", cta: "Watch Now" },
-    { badge: "FREE", title: "Calculate Your Annual Exposure", body: "Enter your shipment volume. Get your personal rupee risk number.", cta: "Use Calculator" },
-    { badge: "FREE RESOURCE", title: "Trade Compliance Guide", body: "Everything about avoiding document mismatches and maximizing refunds.", cta: "Download" },
-    { badge: "30 MINUTES", title: "Talk to a Specialist", body: "We'll calculate your exact exposure on your real documents.", cta: "Book a Call", featured: true },
-  ]
 
   return (
-    <section ref={ref} className="page-snap min-h-screen flex flex-col justify-center py-16 px-4 lg:px-8" style={{ background: "#F8FAFC" }}>
+    <section id="demo-video" ref={ref} className="page-snap flex flex-col justify-center py-8 lg:py-10 px-4 lg:px-8" style={{ background: "#F8FAFC" }}>
       <div className="w-full max-w-[900px] mx-auto">
-        <div className={`text-center mb-10 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Gradient container badge */}
-          <div className="gradient-container inline-block mb-4">
-            <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase" 
-              style={{ background: "#FFFFFF", color: "#0066CC" }}>
-              START WHERE YOU ARE
-            </div>
+
+        {/* Header */}
+        <div className={`text-center mb-4 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="flex items-center justify-center gap-3 mb-1.5">
+            <div className="h-px w-6 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
+            <span className="text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>See It Live</span>
+            <div className="h-px w-6 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
           </div>
-          <h2 className="text-[30px] lg:text-[48px] font-bold leading-tight text-balance" style={{ color: "#0F172A" }}>
-            Not Ready for a Demo? <span className="text-[#0066CC]">Start Here.</span>
+          <h2 className="text-[20px] lg:text-[28px] font-extrabold leading-tight mb-1" style={{ color: "#0F172A" }}>
+            Watch Liquidmind AI{" "}
+            <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">
+              in Action
+            </span>
           </h2>
+          <p className="text-[11px] sm:text-[12px]" style={{ color: "#64748B" }}>
+            A real document audit, live on screen. No slides. No fluff.
+          </p>
         </div>
 
-        {/* Cards with spotlight + hover effects */}
-        <div className="grid md:grid-cols-2 gap-4">
-          {cards.map((card, idx) => (
-            <MicroCardItem key={idx} card={card} idx={idx} isInView={isInView} />
-          ))}
+        {/* Video embed — 16:9 responsive on all screens */}
+        <div
+          className={`relative rounded-2xl overflow-hidden transition-all duration-700 delay-200 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          style={{ border: "1px solid #E2E8F0", boxShadow: "0 8px 40px rgba(0,102,204,0.12)" }}
+        >
+          <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%", height: 0 }}>
+            <iframe
+              src="https://www.youtube.com/embed/OBuNapaXt2I"
+              title="Liquidmind AI Demo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+            />
+          </div>
         </div>
+
+        {/* CTA below video */}
+        <div className={`text-center mt-4 transition-all duration-700 delay-300 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <Link
+            href="/book-demo"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-[13px] font-bold btn-shine transition-all hover:scale-105"
+            style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF", boxShadow: "0 4px 20px rgba(0,102,204,0.3)" }}
+          >
+            Book a Live Demo
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </Link>
+        </div>
+
       </div>
     </section>
   )

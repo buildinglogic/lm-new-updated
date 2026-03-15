@@ -83,30 +83,32 @@ export function ProductsSection() {
               <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #00A86B, #0066CC)" }} />
             </div>
             <h2 className="text-[22px] lg:text-[32px] font-bold leading-tight mb-1" style={{ color: "#0F172A" }}>
-              Three Products. <span style={{ color: "#0066CC" }}>One Mission.</span>
+              Three Products.{" "}
+              <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">One Mission.</span>
             </h2>
             <p className="text-xs max-w-sm mx-auto" style={{ color: "#475569" }}>
               Stop money leaking through your trade documents.
             </p>
           </div>
 
-          {/* Toggle — smaller */}
+          {/* Toggle — full-width on mobile, percentage-based slider */}
           <div className={`flex justify-center mb-4 transition-all duration-700 delay-100 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="relative inline-flex p-1 rounded-full"
+            <div className="relative flex p-1 rounded-full w-full max-w-[340px]"
               style={{
                 background: activeTab === "patram" ? "#00A86B" : activeTab === "tariffiq" ? "#1B4F8A" : "#0066CC",
                 transition: "background 320ms ease",
               }}>
+              {/* Sliding indicator — percentage-based so it works at any width */}
               <div
                 style={{
                   position: "absolute",
-                  top: "4px", bottom: "4px", left: "4px",
-                  width: "100px",
+                  top: "4px", bottom: "4px",
+                  left: `calc(4px + ${activeIdx} * (100% - 8px) / 3)`,
+                  width: `calc((100% - 8px) / 3)`,
                   borderRadius: "9999px",
-                  background: activeTab === "patram" ? "#FFFFFF" : "#FFFFFF",
+                  background: "#FFFFFF",
                   boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
-                  transform: `translateX(${activeIdx * 100}px)`,
-                  transition: "transform 320ms cubic-bezier(0.4, 0, 0.2, 1)",
+                  transition: "left 320ms cubic-bezier(0.4, 0, 0.2, 1)",
                   pointerEvents: "none",
                   zIndex: 0,
                 }}
@@ -117,7 +119,7 @@ export function ProductsSection() {
                   onClick={() => setActiveTab(tab.id)}
                   style={{
                     position: "relative", zIndex: 1,
-                    width: "100px", padding: "7px 0",
+                    flex: 1, minWidth: 0, padding: "7px 0",
                     borderRadius: "9999px",
                     fontSize: "13px", fontWeight: "700",
                     color: activeTab === tab.id
@@ -390,7 +392,7 @@ function TradeguardTab() {
           </table>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-row gap-3">
           <a
             href="#demo"
             className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
@@ -411,8 +413,8 @@ function TradeguardTab() {
         </div>
       </div>
 
-      {/* Tradeguard visualization */}
-      <div className="animate-slide-in-right">
+      {/* Tradeguard visualization — hidden on mobile to keep single framepoint */}
+      <div className="hidden lg:block animate-slide-in-right">
         <TradeguardScanMockup />
       </div>
     </div>
@@ -612,7 +614,7 @@ function PatramTab() {
           </table>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-row gap-3">
           <a
             href="#try-patram"
             className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
@@ -633,8 +635,8 @@ function PatramTab() {
         </div>
       </div>
 
-      {/* Patram advisor mockup */}
-      <div className="animate-slide-in-right">
+      {/* Patram advisor mockup — hidden on mobile */}
+      <div className="hidden lg:block animate-slide-in-right">
         <PatramAdvisorMockup />
       </div>
     </div>
@@ -826,7 +828,7 @@ function TariffIQTab() {
           </table>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-row gap-3">
           <a
             href="#classify"
             className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
@@ -847,7 +849,8 @@ function TariffIQTab() {
         </div>
       </div>
 
-      <div className="animate-slide-in-right">
+      {/* TariffIQ mockup — hidden on mobile */}
+      <div className="hidden lg:block animate-slide-in-right">
         <TariffIQChatMockup />
       </div>
     </div>

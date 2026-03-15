@@ -57,12 +57,16 @@ const products = [
 ]
 
 const companyLinks = [
+  { name: "About", href: "/company" },
   { name: "Mission", href: "/company#mission" },
   { name: "Why Choose Us?", href: "/company#why-choose-us" },
   { name: "Minds Behind Liquidmind AI", href: "/company#team" },
   { name: "Timeline", href: "/company/timeline" },
   { name: "Map", href: "/company#map" },
   { name: "Giving Back", href: "/company/giving-back" },
+  { name: "divider", href: "" },
+  { name: "Privacy Policy", href: "/legal/privacy-policy" },
+  { name: "Terms of Service", href: "/legal/terms" },
 ]
 
 export function Navigation() {
@@ -70,6 +74,8 @@ export function Navigation() {
   const [productsOpen, setProductsOpen] = useState(false)
   const [companyOpen, setCompanyOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false)
+  const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -205,17 +211,21 @@ export function Navigation() {
                 className={`absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-[280px] p-2 rounded-xl transition-all duration-300 ${companyOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                 style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", boxShadow: "0 25px 60px rgba(0,0,0,0.2)" }}
               >
-                {companyLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className="block px-4 py-2.5 rounded-lg text-[14px] font-medium transition-all hover:bg-[#F1F5F9]"
-                    style={{ color: "#0F172A" }}
-                    onClick={() => setCompanyOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
+                {companyLinks.map((link) =>
+                  link.name === "divider" ? (
+                    <div key="divider" className="my-1 mx-2" style={{ height: "1px", background: "#E2E8F0" }} />
+                  ) : (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      className="block px-4 py-2.5 rounded-lg text-[14px] font-medium transition-all hover:bg-[#F1F5F9]"
+                      style={{ color: "#0F172A" }}
+                      onClick={() => setCompanyOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                  )
+                )}
               </div>
             </div>
             <Link href="/newsletter" className="text-white/80 hover:text-white text-[15px] font-semibold transition-colors">Newsletter</Link>
@@ -225,15 +235,15 @@ export function Navigation() {
           {/* Right side - Social icons + Book Demo */}
           <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
             <div className="flex items-center gap-2">
-              <a href="https://www.youtube.com/@ABORRIGINALLIQUIDMIND" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.youtube.com/@LIQUIDMIND_AI" target="_blank" rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
                 <Youtube className="w-5 h-5 text-white/70 hover:text-white" />
               </a>
-              <a href="https://www.linkedin.com/company/liquidmind-ai/" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.linkedin.com/company/liquid-mind-product-consulting-inc./" target="_blank" rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
                 <Linkedin className="w-5 h-5 text-white/70 hover:text-white" />
               </a>
-              <a href="mailto:support@liquidmind.ai"
+              <a href="mailto:naveen@liquidmind.ai"
                 className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
                 <Mail className="w-5 h-5 text-white/70 hover:text-white" />
               </a>
@@ -246,47 +256,131 @@ export function Navigation() {
           </div>
 
           {/* Mobile menu button */}
-          <button className="lg:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+          <button
+            className="lg:hidden text-white p-1"
+            onClick={() => {
+              setMobileMenuOpen(!mobileMenuOpen)
+              if (mobileMenuOpen) { setMobileProductsOpen(false); setMobileCompanyOpen(false) }
+            }}
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        <div className={`lg:hidden fixed inset-0 z-40 pt-[120px] transition-all ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-          style={{ background: "rgba(255,255,255,0.98)" }}>
-          <div className="p-6 space-y-4">
-            <button onClick={() => scrollToSection("#products")} className="block w-full text-left text-[#0F172A] text-lg font-semibold py-3 border-b border-[#E2E8F0]">Products</button>
-            <div className="border-b border-[#E2E8F0] py-3">
-              <div className="text-[#0F172A] text-lg font-semibold mb-2">Company</div>
-              <div className="pl-4 space-y-2">
-                {companyLinks.map((link) => (
-                  <Link 
-                    key={link.name} 
-                    href={link.href} 
-                    className="block text-[#64748B] text-[15px] py-1.5 hover:text-[#0066CC]"
-                    onClick={() => setMobileMenuOpen(false)}
+        {/* Mobile Menu — slides down from navbar */}
+        <div
+          className={`lg:hidden fixed left-0 right-0 z-40 overflow-y-auto transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}
+          style={{
+            top: scrolled ? "72px" : "112px",
+            bottom: 0,
+            background: "#FFFFFF",
+            borderTop: "1px solid #E2E8F0",
+          }}
+        >
+          {/* Scrollable inner */}
+          <div className="px-4 pt-3 pb-28">
+
+            {/* Products accordion */}
+            <button
+              onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+              className="w-full flex items-center justify-between py-3.5 text-[15px] font-semibold"
+              style={{ color: "#0F172A", borderBottom: "1px solid #E2E8F0" }}
+            >
+              Products
+              <ChevronDown className={`w-4 h-4 transition-transform`} style={{ color: "#64748B", transform: mobileProductsOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
+            </button>
+            {mobileProductsOpen && (
+              <div className="py-2 mb-1">
+                {products.map((product) => (
+                  <button
+                    key={product.name}
+                    onClick={() => { navigateToProduct(product); setMobileMenuOpen(false) }}
+                    className="w-full flex items-center gap-3 px-2 py-2.5 rounded-xl transition-colors hover:bg-[#F8FAFC]"
                   >
-                    {link.name}
-                  </Link>
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{ background: `linear-gradient(135deg, ${product.gradientFrom}, ${product.gradientTo})` }}>
+                      {product.icon}
+                    </div>
+                    <div className="text-left">
+                      <div className="text-[13px] font-semibold" style={{ color: "#0F172A" }}>{product.name}</div>
+                      <div className="text-[11px]" style={{ color: "#64748B" }}>{product.tagline}</div>
+                    </div>
+                  </button>
                 ))}
               </div>
-            </div>
-            <Link href="/newsletter" className="block text-[#0F172A] text-lg font-semibold py-3 border-b border-[#E2E8F0]">Newsletter</Link>
-            <Link href="/careers" className="block text-[#0F172A] text-lg font-semibold py-3 border-b border-[#E2E8F0]">Careers</Link>
-            <div className="flex items-center gap-4 pt-4">
-              <a href="https://www.youtube.com/@ABORRIGINALLIQUIDMIND" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-[#0066CC]">
-                <Youtube className="w-5 h-5 text-white" />
-              </a>
-              <a href="https://www.linkedin.com/company/liquidmind-ai/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-[#0066CC]">
-                <Linkedin className="w-5 h-5 text-white" />
-              </a>
-              <a href="mailto:support@liquidmind.ai" className="w-10 h-10 rounded-full flex items-center justify-center bg-[#0066CC]">
-                <Mail className="w-5 h-5 text-white" />
-              </a>
-            </div>
-            <Link href="/book-demo" className="block mt-4 py-3 rounded-lg text-center text-lg font-bold" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}>
-              Book Demo
+            )}
+
+            {/* Company accordion */}
+            <button
+              onClick={() => setMobileCompanyOpen(!mobileCompanyOpen)}
+              className="w-full flex items-center justify-between py-3.5 text-[15px] font-semibold"
+              style={{ color: "#0F172A", borderBottom: mobileCompanyOpen ? "none" : "1px solid #E2E8F0" }}
+            >
+              Company
+              <ChevronDown className="w-4 h-4 transition-transform" style={{ color: "#64748B", transform: mobileCompanyOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
+            </button>
+            {mobileCompanyOpen && (
+              <div className="py-2 mb-1" style={{ borderBottom: "1px solid #E2E8F0" }}>
+                {companyLinks.map((link) =>
+                  link.name === "divider" ? (
+                    <div key="divider" className="my-1.5 mx-2" style={{ height: "1px", background: "#F1F5F9" }} />
+                  ) : (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      className="block px-2 py-2.5 rounded-xl text-[13px] font-medium transition-colors hover:bg-[#F8FAFC]"
+                      style={{ color: "#475569" }}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                  )
+                )}
+              </div>
+            )}
+
+            {/* Flat links */}
+            <Link href="/newsletter"
+              className="flex items-center py-3.5 text-[15px] font-semibold"
+              style={{ color: "#0F172A", borderBottom: "1px solid #E2E8F0" }}
+              onClick={() => setMobileMenuOpen(false)}>
+              Newsletter
             </Link>
+            <Link href="/careers"
+              className="flex items-center py-3.5 text-[15px] font-semibold"
+              style={{ color: "#0F172A", borderBottom: "1px solid #E2E8F0" }}
+              onClick={() => setMobileMenuOpen(false)}>
+              Careers
+            </Link>
+
+            {/* Social + Book Demo */}
+            <div className="pt-5 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <a href="https://www.youtube.com/@LIQUIDMIND_AI" target="_blank" rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full flex items-center justify-center"
+                  style={{ background: "#F1F5F9" }}>
+                  <Youtube className="w-4 h-4" style={{ color: "#0066CC" }} />
+                </a>
+                <a href="https://www.linkedin.com/company/liquid-mind-product-consulting-inc./" target="_blank" rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full flex items-center justify-center"
+                  style={{ background: "#F1F5F9" }}>
+                  <Linkedin className="w-4 h-4" style={{ color: "#0066CC" }} />
+                </a>
+                <a href="mailto:naveen@liquidmind.ai"
+                  className="w-9 h-9 rounded-full flex items-center justify-center"
+                  style={{ background: "#F1F5F9" }}>
+                  <Mail className="w-4 h-4" style={{ color: "#0066CC" }} />
+                </a>
+              </div>
+              <Link
+                href="/book-demo"
+                className="px-5 py-2.5 rounded-full text-[13px] font-bold btn-shine"
+                style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Book Demo
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
