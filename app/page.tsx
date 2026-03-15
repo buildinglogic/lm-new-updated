@@ -400,85 +400,227 @@ function ProblemCardItem({ problem, idx, isInView }: {
 }
 
 /* ========================
-   HOW IT WORKS - Process Timeline
+   HOW IT WORKS - Exporter Journey (cinematic dark)
 ======================== */
 function HowItWorks() {
   const { ref, isInView } = useInView()
+  const [hoveredStep, setHoveredStep] = useState<number | null>(null)
+  const [autoIdx, setAutoIdx] = useState(0)
+
+  useEffect(() => {
+    if (!isInView) return
+    const t = setInterval(() => setAutoIdx(i => (i + 1) % 5), 2000)
+    return () => clearInterval(t)
+  }, [isInView])
+
+  const activeIdx = hoveredStep !== null ? hoveredStep : autoIdx
+
   const steps = [
-    { number: 1, title: "ERP Integration", description: "Auto-fetch from your ERP systems", color: "#0066CC" },
-    { number: 2, title: "AI Extraction", description: "Our AI reads and extracts key fields", color: "#0077DD" },
-    { number: 3, title: "Smart Mapping", description: "Intelligent field matching across documents", color: "#0088AA" },
-    { number: 4, title: "Multi-Layer Verification", description: "Cross-checks every answer against source", color: "#00A86B" },
-    { number: 5, title: "Report Ready", description: "Excel + PDF in under 5 minutes", color: "#00B87C" },
+    {
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      ),
+      title: "The PO lands.",
+      story: "A purchase order hits your inbox. Export deadline: 48 hours. Every document must be perfect — or the refund disappears.",
+      metric: "Day 0",
+      agent: null,
+      color: "#64748B",
+      accent: "#94A3B8",
+    },
+    {
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      ),
+      title: "Classify in 10 sec.",
+      story: "What's the HSN? What duty applies? Wrong code = blocked drawback. TariffIQ answers in 10 seconds. No guesswork. No customs roulette.",
+      metric: "< 10 sec",
+      agent: "TariffIQ",
+      color: "#2563EB",
+      accent: "#93C5FD",
+    },
+    {
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+        </svg>
+      ),
+      title: "Docs go in.",
+      story: "Shipping Bill. Commercial Invoice. Both uploaded. Tradeguard extracts 40+ fields and begins cross-matching them automatically.",
+      metric: "40+ fields",
+      agent: "Tradeguard",
+      color: "#0066CC",
+      accent: "#60A5FA",
+    },
+    {
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
+      title: "Mismatch? Caught.",
+      story: "FOB value off by $700. Port abbreviation conflict. Flagged in 4 seconds — not at the customs gate where it costs you ₹58,000.",
+      metric: "₹58K protected",
+      agent: "Tradeguard",
+      color: "#0066CC",
+      accent: "#60A5FA",
+    },
+    {
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+        </svg>
+      ),
+      title: "Ship with confidence.",
+      story: "Documents clean. Drawback filed. Patram confirms no export restrictions on your lane. Customs cleared. You focus on what's next.",
+      metric: "100% clean",
+      agent: "All Three",
+      color: "#00A86B",
+      accent: "#34D399",
+    },
   ]
 
   return (
-    <section ref={ref} className="page-snap min-h-screen flex flex-col justify-center py-16 px-4 lg:px-8" style={{ background: "#F8FAFC" }}>
-      <div className="w-full max-w-[1100px] mx-auto">
-        <div className={`text-center mb-12 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Gradient container badge */}
-          <div className="gradient-container inline-block mb-4">
-            <div className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.12em] uppercase" 
-              style={{ background: "#FFFFFF", color: "#0066CC" }}>
-              THE PROCESS
-            </div>
-          </div>
-          <h2 className="text-[30px] lg:text-[48px] font-bold leading-tight text-balance" style={{ color: "#0F172A" }}>
-            From Document to Compliance Report in <span className="text-[#0066CC]">5 Minutes</span>
-          </h2>
-        </div>
+    <section
+      ref={ref}
+      className="page-snap min-h-screen flex flex-col justify-center py-10 px-4 lg:px-8 relative overflow-hidden"
+      style={{ background: "#FFFFFF" }}
+    >
 
-        {/* Process Timeline */}
-        <div className="relative mb-12">
-          {/* Connecting line */}
-          <div className="hidden lg:block absolute top-6 left-[10%] right-[10%] h-1 rounded-full" 
-            style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-          
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-4 relative z-10">
-            {steps.map((step, idx) => (
-              <div 
-                key={step.number} 
-                className={`text-center transition-all duration-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                style={{ transitionDelay: `${idx * 100}ms` }}
-              >
-                <div 
-                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 transition-all hover:scale-110 shadow-lg"
-                  style={{ background: step.color, boxShadow: `0 4px 20px ${step.color}40` }}
+      {/* Header */}
+      <div className={`text-center mb-8 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className="flex items-center justify-center gap-3 mb-2">
+          <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
+          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>The Journey</span>
+          <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
+        </div>
+        <h2 className="text-[26px] lg:text-[42px] font-extrabold leading-tight mb-2" style={{ color: "#0F172A" }}>
+          You focus on the deal.{" "}
+          <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">
+            We handle the compliance.
+          </span>
+        </h2>
+        <p className="text-[14px]" style={{ color: "#64748B" }}>Five moments. One exporter. Zero stress.</p>
+      </div>
+
+      {/* Step cards */}
+      <div className="w-full max-w-[1300px] mx-auto mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-3">
+            {steps.map((step, idx) => {
+              const active = activeIdx === idx
+              return (
+                <div
+                  key={idx}
+                  onMouseEnter={() => setHoveredStep(idx)}
+                  onMouseLeave={() => setHoveredStep(null)}
+                  className={`relative rounded-2xl p-4 cursor-pointer transition-all duration-400 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                  style={{
+                    transitionDelay: `${idx * 100}ms`,
+                    background: active ? `linear-gradient(145deg, ${step.color}08, #FFFFFF)` : '#FAFAFA',
+                    border: active ? `1.5px solid ${step.color}40` : '1.5px solid #E2E8F0',
+                    boxShadow: active
+                      ? `0 8px 32px ${step.color}18, 0 2px 8px rgba(0,0,0,0.04)`
+                      : '0 1px 4px rgba(0,0,0,0.04)',
+                    transform: active ? 'translateY(-5px)' : 'translateY(0)',
+                  }}
                 >
-                  <span className="text-white font-mono text-lg font-bold">{step.number}</span>
-                </div>
-                <h3 className="font-bold text-sm lg:text-base mb-1" style={{ color: "#0F172A" }}>{step.title}</h3>
-                <p className="text-xs lg:text-sm leading-relaxed" style={{ color: "#64748B" }}>{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+                  {/* Faded step number */}
+                  <div className="absolute top-2 right-3 font-black select-none pointer-events-none leading-none"
+                    style={{
+                      fontSize: '56px',
+                      color: active ? `${step.color}12` : 'rgba(0,0,0,0.04)',
+                      transition: 'color 400ms',
+                    }}>
+                    {String(idx + 1).padStart(2, '0')}
+                  </div>
 
-        {/* Stats Cards */}
-        <div className="grid lg:grid-cols-2 gap-4 max-w-[800px] mx-auto">
-          <div 
-            className={`p-6 rounded-xl transition-all duration-500 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
-            style={{ background: "#FFFFFF", border: "2px solid #0066CC", boxShadow: "0 4px 20px rgba(0,102,204,0.1)" }}
-          >
-            <div className="text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">
-              99.9% Accuracy
-            </div>
-            <p className="text-sm" style={{ color: "#475569" }}>
-              Our multi-layer verification means every answer is cross-checked against the source pixel. Not just extracted — confirmed.
-            </p>
+                  {/* Icon */}
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center mb-3 relative z-10 transition-all duration-400"
+                    style={{
+                      background: active ? `linear-gradient(135deg, ${step.color}, ${step.accent})` : '#F1F5F9',
+                      boxShadow: active ? `0 4px 16px ${step.color}40` : 'none',
+                      color: active ? '#fff' : '#94A3B8',
+                    }}>
+                    {step.icon}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-bold text-[13px] lg:text-[14px] mb-1.5 leading-snug transition-colors duration-300"
+                    style={{ color: active ? '#0F172A' : '#64748B' }}>
+                    {step.title}
+                  </h3>
+
+                  {/* Story */}
+                  <p className="text-[11px] leading-relaxed mb-3 transition-colors duration-300"
+                    style={{ color: active ? '#475569' : '#94A3B8' }}>
+                    {step.story}
+                  </p>
+
+                  {/* Metric chip */}
+                  <div className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold transition-all duration-300"
+                    style={{
+                      background: active ? `${step.color}12` : '#F1F5F9',
+                      color: active ? step.color : '#94A3B8',
+                      border: `1px solid ${active ? step.color + '30' : '#E2E8F0'}`,
+                    }}>
+                    {step.metric}
+                  </div>
+
+                  {/* Agent badge */}
+                  {step.agent && (
+                    <div className="flex items-center gap-1.5 mt-2">
+                      <div className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+                        style={{ background: active ? step.color : '#CBD5E1' }} />
+                      <span className="text-[9px] font-bold tracking-[0.14em] uppercase transition-colors duration-300"
+                        style={{ color: active ? step.color : '#CBD5E1' }}>
+                        {step.agent}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Active top accent */}
+                  <div className="absolute top-0 left-4 right-4 h-[2px] rounded-b-full transition-all duration-400"
+                    style={{ background: active ? `linear-gradient(90deg, transparent, ${step.color}, transparent)` : 'transparent' }} />
+                </div>
+              )
+            })}
           </div>
-          <div 
-            className={`p-6 rounded-xl transition-all duration-500 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
-            style={{ background: "#FFFFFF", border: "2px solid #00A86B", boxShadow: "0 4px 20px rgba(0,168,107,0.1)", transitionDelay: "100ms" }}
-          >
-            <div className="text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-[#00A86B] to-[#0066CC] bg-clip-text text-transparent">
-              {"< 5 Minutes"}
-            </div>
-            <p className="text-sm" style={{ color: "#475569" }}>
-              From document upload to full mismatch report. Not hours. Not days. Five minutes, every time.
-            </p>
-          </div>
-        </div>
+      </div>
+
+      {/* Step indicator dots */}
+      <div className="flex justify-center gap-2 mb-6">
+        {steps.map((step, idx) => (
+          <button
+            key={idx}
+            onClick={() => setHoveredStep(idx === hoveredStep ? null : idx)}
+            className="transition-all duration-300 rounded-full"
+            style={{
+              width: activeIdx === idx ? '24px' : '7px',
+              height: '7px',
+              background: activeIdx === idx ? step.color : '#E2E8F0',
+            }}
+          />
+        ))}
+      </div>
+
+      {/* CTA */}
+      <div className={`text-center transition-all duration-700 delay-400 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <p className="text-[11px] font-mono tracking-widest mb-4" style={{ color: '#CBD5E1' }}>
+          — ENTIRE JOURNEY UNDER 5 MINUTES —
+        </p>
+        <Link
+          href="/book-demo"
+          className="inline-flex items-center gap-2.5 px-7 py-3 rounded-xl font-bold text-[14px] text-white transition-all hover:scale-105 haptic-btn btn-shine"
+          style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", boxShadow: "0 4px 24px rgba(0,102,204,0.35)" }}
+        >
+          Watch It Happen Live
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </Link>
       </div>
     </section>
   )

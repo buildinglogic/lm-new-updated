@@ -6,9 +6,54 @@ import Link from "next/link"
 import Image from "next/image"
 
 const products = [
-  { name: "Tradeguard", description: "Document Mismatch Detection", href: "/#products", tabId: "tradeguard" },
-  { name: "Patram AI", description: "AI Document Q&A", href: "/#products", tabId: "patram" },
-  { name: "TariffIQ", description: "HSN Classification & Duty Calculator", href: "/#products", tabId: "tariffiq" },
+  {
+    name: "Tradeguard",
+    tagline: "Document Mismatch Detection",
+    description: "Cross-checks 40+ fields between your Shipping Bill and Invoice in under 5 seconds.",
+    stats: ["40+ fields", "< 5 sec"],
+    color: "#0066CC",
+    gradientFrom: "#0066CC",
+    gradientTo: "#0052A3",
+    href: "/#products",
+    tabId: "tradeguard",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+      </svg>
+    ),
+  },
+  {
+    name: "Patram AI",
+    tagline: "Export Intelligence Advisor",
+    description: "Instant customs rules, duty rates and compliance checklists for 190+ countries.",
+    stats: ["190+ countries", "Live policy data"],
+    color: "#00A86B",
+    gradientFrom: "#00A86B",
+    gradientTo: "#008B5E",
+    href: "/#products",
+    tabId: "patram",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+  },
+  {
+    name: "TariffIQ",
+    tagline: "HSN Classification & Duty",
+    description: "AI classifies your product to 8-digit ITC-HS and compares RoDTEP vs Drawback earnings.",
+    stats: ["99.2% accuracy", "RoDTEP vs Drawback"],
+    color: "#1B4F8A",
+    gradientFrom: "#1B4F8A",
+    gradientTo: "#2563EB",
+    href: "/#products",
+    tabId: "tariffiq",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    ),
+  },
 ]
 
 const companyLinks = [
@@ -117,41 +162,26 @@ export function Navigation() {
                 Products <ChevronDown className={`w-4 h-4 transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
               </button>
               
-              <div 
-                className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[340px] p-3 rounded-2xl transition-all duration-300 ${productsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+              {/* Invisible bridge — prevents gap from closing dropdown */}
+              <div className="absolute top-full left-0 right-0 h-3" />
+
+              <div
+                className={`absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-[300px] p-2 rounded-xl transition-all duration-300 ${productsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                 style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", boxShadow: "0 25px 60px rgba(0,0,0,0.2)" }}
               >
-                {products.map((product, idx) => (
+                {products.map((product) => (
                   <button
                     key={product.name}
                     onClick={() => navigateToProduct(product)}
-                    className="w-full text-left p-4 rounded-xl transition-all duration-300 block mb-2 last:mb-0 group relative overflow-hidden hover:scale-[1.02]"
-                    style={{ 
-                      background: "linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%)",
-                      border: "2px solid #E2E8F0",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = '#0066CC'
-                      e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,102,204,0.15)'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = '#E2E8F0'
-                      e.currentTarget.style.boxShadow = 'none'
-                    }}
+                    className="w-full text-left px-4 py-3 rounded-lg transition-all hover:bg-[#F1F5F9] flex items-center gap-3 group"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0066CC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="relative flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110"
-                        style={{ background: `linear-gradient(135deg, ${idx === 0 ? '#0066CC' : idx === 1 ? '#00A86B' : '#0052A3'}, ${idx === 0 ? '#0052A3' : idx === 1 ? '#008B5E' : '#003D7A'})` }}>
-                        <span className="text-white font-bold text-sm">{product.name.charAt(0)}</span>
-                      </div>
-                      <div>
-                        <div className="text-[#0F172A] font-bold text-[15px] group-hover:text-[#0066CC] transition-colors">{product.name}</div>
-                        <div className="text-[#64748B] text-[12px]">{product.description}</div>
-                      </div>
-                      <svg className="w-5 h-5 text-[#94A3B8] group-hover:text-[#0066CC] group-hover:translate-x-1 transition-all ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{ background: `linear-gradient(135deg, ${product.gradientFrom}, ${product.gradientTo})` }}>
+                      {product.icon}
+                    </div>
+                    <div>
+                      <div className="text-[14px] font-semibold" style={{ color: "#0F172A" }}>{product.name}</div>
+                      <div className="text-[12px]" style={{ color: "#64748B" }}>{product.tagline}</div>
                     </div>
                   </button>
                 ))}

@@ -73,7 +73,7 @@ export function ProductsSection() {
   }, [])
 
   return (
-    <section ref={ref} id="products" className="page-snap min-h-screen flex flex-col pt-4 pb-6 px-4 lg:px-6" style={{ background: "#FFFFFF", scrollMarginTop: "72px" }}>
+    <section ref={ref} id="products" className="page-snap flex flex-col pt-[38px] pb-8 px-4 lg:px-6" style={{ background: "#FFFFFF", scrollMarginTop: "72px" }}>
       <div className="w-full max-w-[1400px] mx-auto">
           {/* Header — compact */}
           <div className={`text-center mb-3 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -151,7 +151,6 @@ const SCAN_FIELDS = [
   { field: "HSN Code",      value: "8471.30",             status: "match" },
   { field: "FOB Value",     value: "$42,500", inv: "$41,800", delta: "−$700 (1.6%)", status: "mismatch" },
   { field: "Port of Loading", value: "INNSA1", inv: "NHAVA SHEVA", status: "warning" },
-  { field: "Unit of Qty",   value: "PCS",                 status: "match" },
 ]
 
 function TradeguardScanMockup() {
@@ -235,8 +234,8 @@ function TradeguardScanMockup() {
           }} />
       </div>
 
-      {/* Field list */}
-      <div className="px-4 py-3 space-y-2">
+      {/* Field list — fixed height prevents layout shift when diff rows appear */}
+      <div className="px-4 py-3 space-y-2" style={{ minHeight: "260px" }}>
         {SCAN_FIELDS.map((f, idx) => {
           const visible = idx < visibleCount
           const active  = idx === visibleCount - 1 && !done
@@ -324,22 +323,6 @@ function TradeguardScanMockup() {
         })}
       </div>
 
-      {/* Footer */}
-      <div className="flex items-center justify-between px-4 py-2.5 border-t"
-        style={{ borderColor: "#E2E8F0", background: done ? "rgba(245,158,11,0.03)" : "#F8FAFC" }}>
-        {done ? (
-          <>
-            <span className="text-[12px] font-semibold" style={{ color: "#0F172A" }}>
-              FOB mismatch · <span style={{ color: "#F59E0B" }}>−$700</span> could block IGST refund
-            </span>
-            <span className="text-[12px] font-bold font-mono" style={{ color: "#F59E0B" }}>₹58K at risk</span>
-          </>
-        ) : (
-          <span className="text-[11px]" style={{ color: "#94A3B8" }}>
-            Checking {visibleCount} of {SCAN_FIELDS.length} fields…
-          </span>
-        )}
-      </div>
     </div>
   )
 }
