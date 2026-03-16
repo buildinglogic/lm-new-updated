@@ -70,7 +70,7 @@ const MAP_URL =
 const socials = [
   { label: "YouTube",   href: "https://www.youtube.com/@LIQUIDMIND_AI",                               hoverColor: "#FF0000", icon: <Youtube   className="w-3.5 h-3.5" /> },
   { label: "LinkedIn",  href: "https://www.linkedin.com/company/liquid-mind-product-consulting-inc./", hoverColor: "#0077B5", icon: <Linkedin  className="w-3.5 h-3.5" /> },
-  { label: "Email",     href: "mailto:naveen@liquidmind.ai",                                           hoverColor: "#0066CC", icon: <Mail      className="w-3.5 h-3.5" /> },
+  { label: "Email",     href: "mailto:support@liquidmind.ai",                                           hoverColor: "#0066CC", icon: <Mail      className="w-3.5 h-3.5" /> },
   { label: "Instagram", href: "https://www.instagram.com/liquidmind/",                                 hoverColor: "#E1306C", icon: <Instagram className="w-3.5 h-3.5" /> },
   { label: "Facebook",  href: "https://www.facebook.com/liquidmindaifintech/",                         hoverColor: "#1877F2", icon: <Facebook  className="w-3.5 h-3.5" /> },
   { label: "Maps",      href: MAP_URL,                                                                  hoverColor: "#00A86B", icon: <MapPin    className="w-3.5 h-3.5" /> },
@@ -188,10 +188,10 @@ export function FooterLinks() {
               </address>
             </AnimatedItem>
             <AnimatedItem delay={80} parentInView={inView}>
-              <a href="mailto:naveen@liquidmind.ai"
+              <a href="mailto:support@liquidmind.ai"
                 className="text-[11px] hover:underline block mb-3"
                 style={{ color: "#0066CC" }}>
-                naveen@liquidmind.ai
+                support@liquidmind.ai
               </a>
             </AnimatedItem>
             {/* Social icons */}

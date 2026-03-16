@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { PHProvider } from './providers'
 import './globals.css'
 
 const plusJakarta = Plus_Jakarta_Sans({ 
@@ -42,7 +43,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${plusJakarta.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        {children}
+        <PHProvider>
+          {children}
+        </PHProvider>
         <Analytics />
       </body>
     </html>

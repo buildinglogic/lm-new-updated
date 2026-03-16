@@ -98,14 +98,14 @@ const sections = [
     subsections: [
       {
         title: "Your Data Protection Rights",
-        content: `Depending on your location and subject to applicable law, you may have the following rights:\n\n• The right to request confirmation of whether LIQUIDMIND® is processing Personal Data associated with you\n• The right to request rectification or update of your Personal Data\n• The right to request erasure of your Personal Data in certain circumstances\n• The right to request restriction of use of your Personal Data\n• The right to data portability\n• The right to withdraw consent\n• The right to object to processing based on legitimate interests\n• The right not to be discriminated against for exercising these rights\n• The right to appeal any decision by contacting our DPO at reachus@liquidmind.ai`,
+        content: `Depending on your location and subject to applicable law, you may have the following rights:\n\n• The right to request confirmation of whether LIQUIDMIND® is processing Personal Data associated with you\n• The right to request rectification or update of your Personal Data\n• The right to request erasure of your Personal Data in certain circumstances\n• The right to request restriction of use of your Personal Data\n• The right to data portability\n• The right to withdraw consent\n• The right to object to processing based on legitimate interests\n• The right not to be discriminated against for exercising these rights\n• The right to appeal any decision by contacting our DPO at support@liquidmind.ai`,
       },
     ],
   },
   {
     id: "5",
     title: "Security and Retention",
-    content: `We make reasonable efforts to provide a level of security appropriate to the risk associated with processing your Personal Data. We maintain organisational, technical, and administrative measures designed to protect your Personal Data from unauthorised access, destruction, loss, alteration, or misuse.\n\nWe encourage you to use a strong password for your LIQUIDMIND® account and avoid using identical credentials across services. If you suspect your account's security has been compromised, please write to us at reachus@liquidmind.ai immediately.\n\nWe retain your Personal Data for as long as we continue to provide the Services, or for a period in which we reasonably foresee continuing to provide them, including to comply with legal obligations, enable fraud prevention, and meet tax, accounting, and financial reporting requirements.`,
+    content: `We make reasonable efforts to provide a level of security appropriate to the risk associated with processing your Personal Data. We maintain organisational, technical, and administrative measures designed to protect your Personal Data from unauthorised access, destruction, loss, alteration, or misuse.\n\nWe encourage you to use a strong password for your LIQUIDMIND® account and avoid using identical credentials across services. If you suspect your account's security has been compromised, please write to us at support@liquidmind.ai immediately.\n\nWe retain your Personal Data for as long as we continue to provide the Services, or for a period in which we reasonably foresee continuing to provide them, including to comply with legal obligations, enable fraud prevention, and meet tax, accounting, and financial reporting requirements.`,
   },
   {
     id: "6",
@@ -123,7 +123,7 @@ const sections = [
     subsections: [
       {
         title: "India",
-        content: `In some cases, and as permitted under the DPDPA, we may rely on "legitimate use" as a legal basis. You may be asked to consent to the collection and processing of your Aadhaar number by LIQUIDMIND® India Private Limited. This is purely voluntary — you may provide other identification documents instead and will not be denied service for not submitting Aadhaar details.\n\nFor questions or complaints about processing of your Personal Data in India, contact our grievance officer at reachus@liquidmind.ai.`,
+        content: `In some cases, and as permitted under the DPDPA, we may rely on "legitimate use" as a legal basis. You may be asked to consent to the collection and processing of your Aadhaar number by LIQUIDMIND® India Private Limited. This is purely voluntary — you may provide other identification documents instead and will not be denied service for not submitting Aadhaar details.\n\nFor questions or complaints about processing of your Personal Data in India, contact our grievance officer at support@liquidmind.ai.`,
       },
       {
         title: "United States",
@@ -134,7 +134,7 @@ const sections = [
   {
     id: "9",
     title: "Contact Us",
-    content: `If you have any questions or complaints about this Policy, please write to us at reachus@liquidmind.ai. If you are an End Customer, please refer to the privacy policy of the Business User for information regarding their privacy practices, or contact the Business User directly.`,
+    content: `If you have any questions or complaints about this Policy, please write to us at support@liquidmind.ai. If you are an End Customer, please refer to the privacy policy of the Business User for information regarding their privacy practices, or contact the Business User directly.`,
   },
 ]
 

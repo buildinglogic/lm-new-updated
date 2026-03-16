@@ -173,7 +173,7 @@ style={{ color: "#0066CC" }}
 ### Social links (correct URLs)
 - YouTube: `https://www.youtube.com/@LIQUIDMIND_AI`
 - LinkedIn: `https://www.linkedin.com/company/liquid-mind-product-consulting-inc./`
-- Mail: `mailto:naveen@liquidmind.ai`
+- Mail: `mailto:support@liquidmind.ai`
 
 ### Company dropdown order
 About → Mission → Why Choose Us? → Minds Behind Liquidmind AI → Timeline → Map → Giving Back → [divider] → Privacy Policy → Terms of Service

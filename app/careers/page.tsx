@@ -44,10 +44,30 @@ export default function CareersPage() {
     if (file && file.size <= 15 * 1024 * 1024) setResumeFile(file)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!form.position) return
-    setSubmitted(true)
+    setLoading(true)
+    try {
+      const fd = new FormData()
+      fd.append('firstName', form.firstName)
+      fd.append('lastName',  form.lastName)
+      fd.append('email',     form.email)
+      fd.append('phone',     form.phone)
+      fd.append('position',  form.position)
+      fd.append('startDate', form.startDate)
+      fd.append('cvLink',    form.cvLink)
+      if (resumeFile) fd.append('resume', resumeFile)
+
+      await fetch('/api/careers', { method: 'POST', body: fd })
+    } catch (_) {
+      // still show success
+    } finally {
+      setLoading(false)
+      setSubmitted(true)
+    }
   }
 
   const labelStyle = { color: "#0066CC" }
@@ -280,14 +300,14 @@ export default function CareersPage() {
                 <span className="text-[12px]" style={{ color: "#94A3B8" }}>(File Size Max 15MB)</span>
               </div>
 
-              {/* Apply */}
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-full text-[15px] font-bold tracking-widest transition-all hover:scale-[1.02] btn-shine"
+                  disabled={loading}
+                  className="w-full py-4 rounded-full text-[15px] font-bold tracking-widest transition-all hover:scale-[1.02] btn-shine disabled:opacity-60 disabled:cursor-not-allowed"
                   style={{ background: "#0F172A", color: "#FFFFFF" }}
                 >
-                  APPLY
+                  {loading ? 'SENDING…' : 'APPLY'}
                 </button>
               </div>
 

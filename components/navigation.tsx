@@ -243,7 +243,7 @@ export function Navigation() {
                 className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
                 <Linkedin className="w-5 h-5 text-white/70 hover:text-white" />
               </a>
-              <a href="mailto:naveen@liquidmind.ai"
+              <a href="mailto:support@liquidmind.ai"
                 className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
                 <Mail className="w-5 h-5 text-white/70 hover:text-white" />
               </a>
@@ -366,7 +366,7 @@ export function Navigation() {
                   style={{ background: "#F1F5F9" }}>
                   <Linkedin className="w-4 h-4" style={{ color: "#0066CC" }} />
                 </a>
-                <a href="mailto:naveen@liquidmind.ai"
+                <a href="mailto:support@liquidmind.ai"
                   className="w-9 h-9 rounded-full flex items-center justify-center"
                   style={{ background: "#F1F5F9" }}>
                   <Mail className="w-4 h-4" style={{ color: "#0066CC" }} />

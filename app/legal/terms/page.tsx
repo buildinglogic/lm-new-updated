@@ -128,7 +128,7 @@ export default function TermsPage() {
             <p className="text-[13px] leading-relaxed mt-2" style={{ color: "#475569" }}>
               You may not access or use any Services unless you agree to abide by all of the terms and conditions in this Agreement.
               Questions? Contact us at{" "}
-              <a href="mailto:reachus@liquidmind.ai" style={{ color: "#0066CC" }}>reachus@liquidmind.ai</a>.
+              <a href="mailto:support@liquidmind.ai" style={{ color: "#0066CC" }}>support@liquidmind.ai</a>.
             </p>
           </div>
         </div>

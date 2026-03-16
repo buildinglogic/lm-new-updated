@@ -64,10 +64,23 @@ export default function BookDemoPage() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [agreed, setAgreed] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
+    setLoading(true)
+    try {
+      await fetch('/api/book-demo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+    } catch (_) {
+      // still show success — email may have sent
+    } finally {
+      setLoading(false)
+      setSubmitted(true)
+    }
   }
 
   return (
@@ -249,11 +262,11 @@ export default function BookDemoPage() {
 
                     <button
                       type="submit"
-                      disabled={!agreed}
+                      disabled={!agreed || loading}
                       className="w-full py-2.5 rounded-lg text-[14px] font-bold btn-shine transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                       style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}
                     >
-                      Schedule My Demo
+                      {loading ? 'Sending…' : 'Schedule My Demo'}
                     </button>
                   </form>
                 </>

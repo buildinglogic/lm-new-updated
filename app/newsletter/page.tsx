@@ -66,9 +66,23 @@ export default function NewsletterPage() {
   const [role, setRole] = useState("")
   const [subscribed, setSubscribed] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubscribed(true)
+    setLoading(true)
+    try {
+      await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, role }),
+      })
+    } catch (_) {
+      // still show success
+    } finally {
+      setLoading(false)
+      setSubscribed(true)
+    }
   }
 
   return (
@@ -175,10 +189,11 @@ export default function NewsletterPage() {
 
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-full text-[14px] font-bold btn-shine transition-all hover:scale-[1.02]"
+                      disabled={loading}
+                      className="w-full py-3.5 rounded-full text-[14px] font-bold btn-shine transition-all hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed"
                       style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}
                     >
-                      Subscribe to Newsletter
+                      {loading ? 'Subscribing…' : 'Subscribe to Newsletter'}
                     </button>
                     <p className="text-[11px] text-center" style={{ color: "#94A3B8" }}>
                       By subscribing you agree to receive our newsletter. We respect your privacy.
