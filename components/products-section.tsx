@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Check } from "lucide-react"
+import Link from "next/link"
 
 const tabs = [
   { id: "tradeguard", label: "Tradeguard" },
@@ -382,8 +383,8 @@ function TradeguardTab() {
         </div>
 
         <div className="flex flex-row gap-3">
-          <a
-            href="#demo"
+          <Link
+            href="/#demo"
             className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
             style={{
               background: "linear-gradient(90deg, #0066CC, #00A86B)",
@@ -392,7 +393,7 @@ function TradeguardTab() {
             }}
           >
             Get Started
-          </a>
+          </Link>
           <a
             href="https://www.youtube.com/watch?v=LrHbm877l5g"
             target="_blank"
@@ -483,8 +484,11 @@ function PatramAdvisorMockup() {
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
             style={{ background: "linear-gradient(135deg, #00A86B, #0066CC)" }}>
-            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z" />
+              <path d="M9 12a3 3 0 1 1 6 0 3 3 0 1 1-6 0z" />
+              <path d="M12 9v6M9 12h6" />
+              <path d="M12 12L9 9M12 12l3-3M12 12l-3 3M12 12l3 3" />
             </svg>
           </div>
           <div>
@@ -528,7 +532,10 @@ function PatramAdvisorMockup() {
                     ))}
                   </span>
                 ) : (
-                  <span className="text-white text-[9px] font-bold">P</span>
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .52 8.242 4.426 4.426 0 0 0 8 0 4.426 4.426 0 0 0 8 0 4 4 0 0 0 .52-8.242 4 4 0 0 0-2.526-5.77A3 3 0 1 0 12 5z" />
+                    <path d="M12 8v11" />
+                  </svg>
                 )}
               </div>
               <div className="rounded-2xl rounded-tl-sm px-3 py-2 flex-1"
@@ -607,8 +614,8 @@ function PatramTab() {
         </div>
 
         <div className="flex flex-row gap-3">
-          <a
-            href="#demo"
+          <Link
+            href="/#demo"
             className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
             style={{
               background: "linear-gradient(90deg, #00A86B, #0066CC)",
@@ -617,7 +624,7 @@ function PatramTab() {
             }}
           >
             Get Started
-          </a>
+          </Link>
           <a
             href="https://www.youtube.com/watch?v=SvIrGfc1nIk"
             target="_blank"
@@ -824,8 +831,8 @@ function TariffIQTab() {
         </div>
 
         <div className="flex flex-row gap-3">
-          <a
-            href="#demo"
+          <Link
+            href="/#demo"
             className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
             style={{
               background: "linear-gradient(90deg, #1B4F8A, #2563EB)",
@@ -834,7 +841,7 @@ function TariffIQTab() {
             }}
           >
             Get Started
-          </a>
+          </Link>
           <a
             href="https://www.youtube.com/watch?v=GozRgIrKy6U"
             target="_blank"

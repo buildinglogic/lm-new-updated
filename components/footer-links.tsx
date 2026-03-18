@@ -141,9 +141,6 @@ export function FooterLinks() {
                   <HoverLink onClick={() => navigateToProduct(p.tabId)}>{p.name}</HoverLink>
                 </AnimatedItem>
               ))}
-              <AnimatedItem delay={150} parentInView={inView}>
-                <HoverLink href="#">API Documentation</HoverLink>
-              </AnimatedItem>
             </div>
           </div>
 
