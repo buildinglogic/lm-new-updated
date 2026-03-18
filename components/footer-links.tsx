@@ -187,7 +187,7 @@ export function FooterLinks() {
             </AnimatedItem>
             <AnimatedItem delay={80} parentInView={inView}>
               <a href="mailto:support@liquidmind.ai"
-                className="text-[11px] hover:underline block mb-3"
+                className="text-[11px] hover:underline inline-block mb-3 transition-all duration-200 hover:scale-110 active:scale-95 origin-left"
                 style={{ color: "#0066CC" }}>
                 support@liquidmind.ai
               </a>
