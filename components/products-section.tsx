@@ -608,7 +608,7 @@ function PatramTab() {
 
         <div className="flex flex-row gap-3">
           <a
-            href="#try-patram"
+            href="#demo"
             className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
             style={{
               background: "linear-gradient(90deg, #00A86B, #0066CC)",
@@ -616,7 +616,7 @@ function PatramTab() {
               boxShadow: "0 4px 25px rgba(0,168,107,0.35)",
             }}
           >
-            Try Free
+            Get Started
           </a>
           <a
             href="https://www.youtube.com/watch?v=SvIrGfc1nIk"
@@ -825,7 +825,7 @@ function TariffIQTab() {
 
         <div className="flex flex-row gap-3">
           <a
-            href="#classify"
+            href="#demo"
             className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
             style={{
               background: "linear-gradient(90deg, #1B4F8A, #2563EB)",
@@ -833,7 +833,7 @@ function TariffIQTab() {
               boxShadow: "0 4px 25px rgba(27,79,138,0.3)",
             }}
           >
-            Classify My Product
+            Get Started
           </a>
           <a
             href="https://www.youtube.com/watch?v=GozRgIrKy6U"

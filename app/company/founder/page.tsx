@@ -126,7 +126,7 @@ export default function FounderPage() {
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
             {/* Photo */}
             <div className="w-full lg:w-auto flex-shrink-0">
-              <div className="relative w-full lg:w-[280px] h-[340px] lg:h-[380px] rounded-2xl overflow-hidden"
+              <div className="relative w-full lg:w-[280px] h-[480px] lg:h-[380px] rounded-2xl overflow-hidden"
                 style={{ boxShadow: "0 8px 40px rgba(0,102,204,0.15)" }}>
                 <Image
                   src="/images/founder-naveen.avif"
