@@ -148,7 +148,7 @@ export function Navigation() {
       >
         <div className="w-full h-full px-4 lg:px-8 flex items-center justify-between">
           {/* Logo - Far Left, Smaller size */}
-          <Link href="/" className="flex items-center h-full py-3 flex-shrink-0">
+          <Link href="/" className="flex items-center h-full py-3 flex-shrink-0 transition-transform duration-200 active:scale-95">
             <Image 
               src="/images/liquidmind-logo.png"
               alt="Liquidmind"
