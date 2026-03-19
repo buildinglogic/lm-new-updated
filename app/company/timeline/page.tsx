@@ -305,7 +305,7 @@ function Card({ event, align }: { event: TimelineEvent; align: "left" | "right" 
       <div className="p-4">
         {!event.image && (
           <span
-            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold mb-2"
+            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold mb-2"
             style={{ background: "#EFF6FF", color: "#0066CC" }}
           >
             {event.date}
@@ -362,7 +362,7 @@ function MobileTimelineCard({ event, index }: { event: TimelineEvent; index: num
         )}
         <div className="p-3.5">
           {!event.image && (
-            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold mb-1.5"
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold mb-1.5"
               style={{ background: "#EFF6FF", color: "#0066CC" }}>
               {event.date}
             </span>
@@ -388,7 +388,7 @@ export default function TimelinePage() {
           <div className="max-w-2xl mx-auto">
             <div className="flex items-center justify-center gap-2 mb-2">
               <div className="h-px w-6 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-              <span className="text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Our Journey</span>
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Our Journey</span>
               <div className="h-px w-6 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
             </div>
             <h1 className="text-[22px] sm:text-[28px] font-extrabold leading-tight mb-2" style={{ color: "#0F172A" }}>

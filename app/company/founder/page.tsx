@@ -159,7 +159,7 @@ export default function FounderPage() {
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3">
                 <div className="h-px w-6 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-                <span className="text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Leadership</span>
+                <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Leadership</span>
               </div>
               <h1 className="text-[28px] sm:text-[36px] lg:text-[44px] font-extrabold leading-tight mb-1" style={{ color: "#0F172A" }}>
                 Naveen Athresh

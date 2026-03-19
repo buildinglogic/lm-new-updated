@@ -101,7 +101,7 @@ export default function TermsPage() {
       {/* Compact header */}
       <section className="pt-[80px] pb-5 px-5 lg:px-8 text-center" style={{ background: "#F8FAFC", borderBottom: "1px solid #E2E8F0" }}>
         <div className="max-w-[700px] mx-auto">
-          <span className="inline-flex items-center gap-2 text-[10px] font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#94A3B8" }}>
+          <span className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#94A3B8" }}>
             <span className="h-px w-5 rounded-full inline-block" style={{ background: "linear-gradient(90deg,#0066CC,#00A86B)" }} />
             Legal
             <span className="h-px w-5 rounded-full inline-block" style={{ background: "linear-gradient(270deg,#0066CC,#00A86B)" }} />

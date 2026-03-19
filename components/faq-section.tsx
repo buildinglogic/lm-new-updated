@@ -24,7 +24,7 @@ const faqGroups = [
     label: "GENERAL",
     items: [
       { question: "How is this different from manual checking?", answer: "Manual checking covers 20–30% of shipments and has an 8–12% error rate. Tradeguard checks 100% of fields on 100% of shipments with less than 1% error rate. And it takes 5 minutes instead of 4 hours." },
-      { question: "What if the AI makes a wrong call?", answer: "Every answer includes a confidence score and the exact source fields it compared. You can review and override any decision. The system also learns from corrections over time." },
+      { question: "What if the AI makes a wrong call?", answer: "Every answer includes a confidence score and the exact source fields it compared. You can review and override any decision. The system is intelligently trained to learn from each correction over time — getting sharper with every shipment." },
     ]
   }
 ]
@@ -61,7 +61,7 @@ export function FAQSection() {
         <div className={`text-center mb-6 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="flex items-center justify-center gap-3 mb-2">
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-            <span className="text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>FAQ</span>
+            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>FAQ</span>
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
           </div>
           <h2 className="text-[22px] lg:text-[36px] font-extrabold leading-tight" style={{ color: "#0F172A" }}>
