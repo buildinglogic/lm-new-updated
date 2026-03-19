@@ -86,7 +86,7 @@ export function ProductsSection() {
           <div className={`text-center mb-3 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="flex items-center justify-center gap-3 mb-1.5">
               <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-              <span className="text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Our Products</span>
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Our Products</span>
               <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #00A86B, #0066CC)" }} />
             </div>
             <h2 className="text-[22px] lg:text-[32px] font-bold leading-tight mb-1" style={{ color: "#0F172A" }}>
@@ -211,15 +211,15 @@ function TradeguardScanMockup() {
             <p className="text-[10px] mt-0.5" style={{ color: "#94A3B8" }}>SB_0441 · INV_0441</p>
           </div>
         </div>
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5" style={{ minWidth: "110px", justifyContent: "flex-end" }}>
           {done ? (
             <>
               <span className="px-2 py-0.5 rounded-full text-[10px] font-bold"
-                style={{ background: "rgba(0,168,107,0.1)", color: "#00A86B", border: "1px solid rgba(0,168,107,0.2)" }}>
+                style={{ background: "rgba(0,168,107,0.1)", color: "#00A86B", border: "1px solid rgba(0,168,107,0.2)", whiteSpace: "nowrap" }}>
                 ✓ {verified} ok
               </span>
               <span className="px-2 py-0.5 rounded-full text-[10px] font-bold"
-                style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B", border: "1px solid rgba(245,158,11,0.25)" }}>
+                style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B", border: "1px solid rgba(245,158,11,0.25)", whiteSpace: "nowrap" }}>
                 ⚠ {issues} flagged
               </span>
             </>
@@ -510,7 +510,7 @@ function PatramAdvisorMockup() {
           </div>
           <div>
             <p className="font-bold text-[12px] leading-none" style={{ color: "#0F172A" }}>Patram AI — Export Advisor</p>
-            <p className="text-[9px] mt-0.5" style={{ color: "#94A3B8" }}>Live regulatory intelligence</p>
+            <p className="text-[11px] mt-0.5" style={{ color: "#94A3B8" }}>Live regulatory intelligence</p>
           </div>
         </div>
         <div className="flex items-center gap-1.5">
@@ -730,7 +730,7 @@ function TariffIQChatMockup() {
           </div>
           <div>
             <p className="font-bold text-[12px] leading-none" style={{ color: "#0F172A" }}>TariffIQ — HSN Classifier</p>
-            <p className="text-[9px] mt-0.5" style={{ color: "#94A3B8" }}>AI-powered duty intelligence</p>
+            <p className="text-[11px] mt-0.5" style={{ color: "#94A3B8" }}>AI-powered duty intelligence</p>
           </div>
         </div>
         <div className="flex items-center gap-1.5">

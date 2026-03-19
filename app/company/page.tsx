@@ -109,9 +109,7 @@ export default function CompanyPage() {
             <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Mission</span>
           </h2>
           <p className="text-[13px] sm:text-[15px] lg:text-base max-w-3xl mx-auto text-center leading-relaxed mb-8" style={{ color: "#475569" }}>
-            Our mission is to empower enterprises with AI-driven intelligence to optimise global trade, finance, and compliance.
-            We build intelligent AI agents that automate complex workflows, enhance decision-making, and drive efficiency —
-            helping businesses unlock new opportunities, reduce risk, and scale seamlessly in an evolving digital economy.
+            LIQUIDMIND®.AI automates International Trade workflows using AI Agents — transforming the fragmented doc flow → funds flow → goods flow journey for Indian exporters and global traders.
           </p>
           <div className="relative h-[180px] sm:h-[240px] lg:h-[300px] max-w-[900px] mx-auto rounded-2xl overflow-hidden" style={{ boxShadow: "0 8px 40px rgba(0,0,0,0.08)" }}>
             <Image
@@ -226,26 +224,24 @@ export default function CompanyPage() {
 
           <div className="grid sm:grid-cols-2 gap-4 lg:gap-5 mb-10">
             <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #E2E8F0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-              <div className="relative h-[200px] sm:h-[240px] overflow-hidden">
+              <div className="relative h-[260px] sm:h-[300px] overflow-hidden">
                 <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Aegis%20graham%20bell%20award-Io0nVjDGHyxbMH3GUnh9D2M8PtIHjM.jpg" alt="Aegis Graham Bell Award" fill className="object-cover object-center" />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)" }} />
-                <span className="absolute bottom-3 left-3 px-2.5 py-0.5 rounded-full text-[11px] font-bold text-white" style={{ background: "rgba(0,102,204,0.9)" }}>FEBRUARY 2026</span>
               </div>
-              <div className="p-4" style={{ background: "#FFFFFF" }}>
-                <h3 className="text-[15px] font-bold mb-1" style={{ color: "#0F172A" }}>Aegis Graham Bell Award</h3>
-                <p className="text-[12px]" style={{ color: "#64748B" }}>16th AGBA — Gen AI CX, Sales & GTM Intelligence Category Winner</p>
+              <div className="px-4 pt-3 pb-4" style={{ background: "#FFFFFF" }}>
+                <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold mb-2" style={{ background: "#EFF6FF", color: "#0066CC" }}>FEBRUARY 2026</span>
+                <h3 className="text-[16px] font-bold mb-1" style={{ color: "#0F172A" }}>Aegis Graham Bell Award</h3>
+                <p className="text-[13px] leading-snug" style={{ color: "#64748B" }}>16th AGBA — Gen AI CX, Sales & GTM Intelligence Category Winner</p>
               </div>
             </div>
 
             <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #E2E8F0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-              <div className="relative h-[200px] sm:h-[240px] overflow-hidden">
+              <div className="relative h-[260px] sm:h-[300px] overflow-hidden">
                 <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/karnataka%20elevate%20award-6VQmT2ahCZSsynysJCRN0mwxbYjAZp.jpg" alt="Karnataka Elevate" fill className="object-cover object-center" />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)" }} />
-                <span className="absolute bottom-3 left-3 px-2.5 py-0.5 rounded-full text-[11px] font-bold text-white" style={{ background: "rgba(0,102,204,0.9)" }}>NOVEMBER 2025</span>
               </div>
-              <div className="p-4" style={{ background: "#FFFFFF" }}>
-                <h3 className="text-[15px] font-bold mb-1" style={{ color: "#0F172A" }}>Karnataka Elevate 2025</h3>
-                <p className="text-[12px]" style={{ color: "#64748B" }}>Selected from 1,474+ applicants — up to ₹50 lakh non-dilutive grant</p>
+              <div className="px-4 pt-3 pb-4" style={{ background: "#FFFFFF" }}>
+                <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold mb-2" style={{ background: "#ECFDF5", color: "#00A86B" }}>JANUARY 2026</span>
+                <h3 className="text-[16px] font-bold mb-1" style={{ color: "#0F172A" }}>Karnataka Elevate 2025</h3>
+                <p className="text-[13px] leading-snug" style={{ color: "#64748B" }}>Selected from 1,474+ applicants — up to ₹50 lakh non-dilutive grant</p>
               </div>
             </div>
           </div>

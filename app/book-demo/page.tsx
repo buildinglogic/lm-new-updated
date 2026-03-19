@@ -108,7 +108,7 @@ export default function BookDemoPage() {
           <div>
             <div className="flex items-center gap-2 mb-1.5">
               <div className="h-px w-5 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-              <span className="text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Get Started</span>
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Get Started</span>
             </div>
             <h1 className="text-[18px] sm:text-[22px] lg:text-[26px] font-extrabold leading-tight mb-1" style={{ color: "#0F172A" }}>
               Book a{" "}
@@ -133,7 +133,7 @@ export default function BookDemoPage() {
                   <span className="text-[18px] sm:text-[20px] font-black tracking-tight leading-none" style={{ color: "#0066CC" }}>
                     <AnimatedCount to={s.to} prefix={s.prefix} suffix={s.suffix} />
                   </span>
-                  <span className="text-[10px] font-medium mt-0.5 text-center" style={{ color: "#94A3B8" }}>{s.line1}</span>
+                  <span className="text-[11px] font-medium mt-0.5 text-center" style={{ color: "#94A3B8" }}>{s.line1}</span>
                 </div>
                 {i < 2 && <div className="w-px" style={{ height: "28px", background: "#E2E8F0" }} />}
               </div>
@@ -201,7 +201,7 @@ export default function BookDemoPage() {
                   <form onSubmit={handleSubmit} className="space-y-3">
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[10px] font-semibold mb-1 uppercase tracking-wide" style={{ color: "#0066CC" }}>Full Name *</label>
+                        <label className="block text-[11px] font-semibold mb-1 uppercase tracking-wide" style={{ color: "#0066CC" }}>Full Name *</label>
                         <input
                           type="text" required value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -212,7 +212,7 @@ export default function BookDemoPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-[10px] font-semibold mb-1 uppercase tracking-wide" style={{ color: "#0066CC" }}>Work Email *</label>
+                        <label className="block text-[11px] font-semibold mb-1 uppercase tracking-wide" style={{ color: "#0066CC" }}>Work Email *</label>
                         <input
                           type="email" required value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -225,7 +225,7 @@ export default function BookDemoPage() {
 
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[10px] font-semibold mb-1 uppercase tracking-wide" style={{ color: "#0066CC" }}>Company *</label>
+                        <label className="block text-[11px] font-semibold mb-1 uppercase tracking-wide" style={{ color: "#0066CC" }}>Company *</label>
                         <input
                           type="text" required value={formData.company}
                           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
@@ -235,7 +235,7 @@ export default function BookDemoPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-[10px] font-semibold mb-1 uppercase tracking-wide" style={{ color: "#0066CC" }}>Phone *</label>
+                        <label className="block text-[11px] font-semibold mb-1 uppercase tracking-wide" style={{ color: "#0066CC" }}>Phone *</label>
                         <input
                           type="tel" required value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -247,7 +247,7 @@ export default function BookDemoPage() {
                     </div>
 
                     <div>
-                      <label className="block text-[10px] font-semibold mb-1 uppercase tracking-wide" style={{ color: "#0066CC" }}>Location</label>
+                      <label className="block text-[11px] font-semibold mb-1 uppercase tracking-wide" style={{ color: "#0066CC" }}>Location</label>
                       <input
                         type="text"
                         value={formData.location}

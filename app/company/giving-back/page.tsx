@@ -68,7 +68,7 @@ function EventCard({ event, index }: { event: GivingEvent; index: number }) {
         style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", boxShadow: "0 1px 6px rgba(0,0,0,0.04)" }}
       >
         <span
-          className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold mb-2"
+          className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold mb-2"
           style={{ background: "#EFF6FF", color: "#0066CC" }}
         >
           {event.date}

@@ -35,8 +35,8 @@ export default function LiquidmindLanding() {
 
       <Navigation />
       <HeroSection />
-      <ProblemSection />
       <ProductsSection />
+      <ProblemSection />
       <HowItWorks />
       <div className="page-snap"><ROICalculator /></div>
       <AwardsSection />
@@ -136,7 +136,7 @@ function HeroSection() {
             {/* Label */}
             <div className="flex items-center gap-2 mb-3 lg:mb-5 animate-fade-in">
               <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-              <span className="text-[10px] lg:text-[11px] font-semibold tracking-[0.16em] uppercase" style={{ color: "#94A3B8" }}>
+              <span className="text-[11px] lg:text-[11px] font-semibold tracking-[0.16em] uppercase" style={{ color: "#94A3B8" }}>
                 <span className="sm:hidden">India's #1 AI Platform</span>
                 <span className="hidden sm:inline">India's #1 AI Trade Compliance Platform</span>
               </span>
@@ -161,7 +161,7 @@ function HeroSection() {
                     <span className="text-[22px] lg:text-[34px] font-black tracking-tight leading-none tabular-nums whitespace-nowrap" style={{ color: "#0066CC" }}>
                       {stat.prefix}<AnimatedCount to={stat.to} />{stat.suffix}
                     </span>
-                    <span className="text-[9px] lg:text-[10px] font-medium leading-[1.3] mt-1" style={{ color: "#94A3B8" }}>
+                    <span className="text-[11px] lg:text-[10px] font-medium leading-[1.3] mt-1" style={{ color: "#94A3B8" }}>
                       {stat.line1}<br />{stat.line2}
                     </span>
                   </div>
@@ -331,7 +331,7 @@ function ProblemSection() {
         <div className={`flex flex-col items-center gap-3 transition-all duration-700 delay-300 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="flex items-center gap-3">
             <div className="h-px w-12 rounded-full" style={{ background: "linear-gradient(90deg, transparent, #CBD5E1)" }} />
-            <span className="text-[9px] lg:text-[10px] font-mono font-semibold tracking-[0.08em] lg:tracking-[0.15em] uppercase text-center" style={{ color: "#94A3B8" }}>
+            <span className="text-[11px] lg:text-[10px] font-mono font-semibold tracking-[0.08em] lg:tracking-[0.15em] uppercase text-center" style={{ color: "#94A3B8" }}>
               ₹2,40,000+ at risk in an average shipment
             </span>
             <div className="h-px w-12 rounded-full" style={{ background: "linear-gradient(270deg, transparent, #CBD5E1)" }} />
@@ -352,7 +352,7 @@ function ProblemSection() {
             </span>
           </a>
 
-          <span className="text-[10px]" style={{ color: "#94A3B8" }}>
+          <span className="text-[11px]" style={{ color: "#94A3B8" }}>
             Works on your actual documents · Results in under 5 minutes
           </span>
         </div>
@@ -420,17 +420,17 @@ function ProblemCardItem({ problem, idx, isInView }: {
         </div>
 
         {/* Title */}
-        <div className="font-semibold text-[11px] lg:text-[12px] leading-snug mb-2" style={{ color: "#0F172A" }}>
+        <div className="font-semibold text-[12px] lg:text-[12px] leading-snug mb-2" style={{ color: "#0F172A" }}>
           {problem.title}
         </div>
 
         {/* Body */}
-        <div className="text-[10px] leading-relaxed line-clamp-2 mb-2" style={{ color: "#64748B" }}>
+        <div className="text-[12px] leading-relaxed line-clamp-2 mb-2" style={{ color: "#64748B" }}>
           {problem.body}
         </div>
 
         {/* Citation */}
-        <div className="text-[9px] font-mono uppercase tracking-wider" style={{ color: "#94A3B8" }}>
+        <div className="text-[11px] font-mono uppercase tracking-wider" style={{ color: "#94A3B8" }}>
           {problem.citation}
         </div>
       </div>
@@ -439,36 +439,75 @@ function ProblemCardItem({ problem, idx, isInView }: {
 }
 
 /* ========================
-   HOW IT WORKS - Exporter Journey (cinematic dark)
+   HOW IT WORKS - Exporter Journey
 ======================== */
 function HowItWorks() {
   const { ref, isInView } = useInView()
-  const [hoveredStep, setHoveredStep] = useState<number | null>(null)
-  const [autoIdx, setAutoIdx] = useState(0)
+  const [activeIdx, setActiveIdx] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const isUserScrolling = useRef(false)
+  const autoTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  useEffect(() => {
-    if (!isInView) return
-    const t = setInterval(() => setAutoIdx(i => (i + 1) % 5), 2000)
-    return () => clearInterval(t)
-  }, [isInView])
-
-  const activeIdx = hoveredStep !== null ? hoveredStep : autoIdx
-
-  // Auto-scroll active card into centre of the horizontal container only — never affects page scroll
+  // Sync dot to whichever card is ≥60% visible in the scroll container
   useEffect(() => {
     const container = scrollRef.current
     if (!container) return
+
     const cards = Array.from(container.children) as HTMLElement[]
-    const card = cards[activeIdx]
+
+    const observers = cards.map((card, idx) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            setActiveIdx(idx)
+          }
+        },
+        {
+          root: container,
+          threshold: 0.6,
+        }
+      )
+      observer.observe(card)
+      return observer
+    })
+
+    return () => observers.forEach(o => o.disconnect())
+  }, [])
+
+  // Auto-advance when in view and user isn't dragging
+  useEffect(() => {
+    if (!isInView) return
+    autoTimerRef.current = setInterval(() => {
+      if (isUserScrolling.current) return
+      setActiveIdx(prev => {
+        const next = (prev + 1) % 5
+        scrollToCard(next)
+        return next
+      })
+    }, 5000)
+    return () => { if (autoTimerRef.current) clearInterval(autoTimerRef.current) }
+  }, [isInView])
+
+  const scrollToCard = (idx: number) => {
+    const container = scrollRef.current
+    if (!container) return
+    const cards = Array.from(container.children) as HTMLElement[]
+    const card = cards[idx]
     if (!card) return
-    
-    // Calculate the left position to center the card within the container
     const targetLeft = card.offsetLeft - (container.offsetWidth - card.offsetWidth) / 2
-    
-    // Use container.scrollTo so only the horizontal position of this div changes
     container.scrollTo({ left: targetLeft, behavior: 'smooth' })
-  }, [activeIdx])
+  }
+
+  const goToCard = (idx: number) => {
+    setActiveIdx(idx)
+    scrollToCard(idx)
+  }
+
+  const handleTouchStart = () => { isUserScrolling.current = true }
+  const handleTouchEnd = () => {
+    // Small delay to let IntersectionObserver fire after scroll settles
+    setTimeout(() => { isUserScrolling.current = false }, 500)
+  }
 
   const steps = [
     {
@@ -544,7 +583,6 @@ function HowItWorks() {
       className="page-snap py-8 lg:min-h-screen lg:flex lg:flex-col lg:justify-center lg:py-10 px-4 lg:px-8 relative"
       style={{ background: "#FFFFFF" }}
     >
-
       {/* Header */}
       <div className={`text-center mb-8 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="flex items-center justify-center gap-3 mb-2">
@@ -562,104 +600,130 @@ function HowItWorks() {
       </div>
 
       {/* Step cards */}
-      <div className="w-full max-w-[1300px] mx-auto mb-4">
-        {/* Mobile: horizontal scroll carousel | Desktop: 5-col grid */}
-        <div ref={scrollRef} className="flex lg:grid lg:grid-cols-5 gap-3 overflow-x-auto scrollbar-none pb-2 lg:overflow-x-visible" style={{ scrollSnapType: 'x mandatory' }}>
-            {steps.map((step, idx) => {
-              const active = activeIdx === idx
-              return (
-                <div
-                  key={idx}
-                  onMouseEnter={() => setHoveredStep(idx)}
-                  onMouseLeave={() => setHoveredStep(null)}
-                  className={`flex-shrink-0 w-[78vw] sm:w-[55vw] lg:w-auto lg:flex-shrink lg:snap-none relative rounded-2xl p-4 cursor-pointer transition-all duration-400 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      <div className="w-full max-w-[1300px] mx-auto mb-5">
+        <div
+          ref={scrollRef}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="flex lg:grid lg:grid-cols-5 gap-3 overflow-x-auto scrollbar-none pb-2 lg:overflow-x-visible"
+          style={{ scrollSnapType: 'x mandatory', touchAction: 'pan-x' }}
+        >
+          {steps.map((step, idx) => {
+            const active = activeIdx === idx
+            return (
+              <div
+                key={idx}
+                onClick={() => goToCard(idx)}
+                onMouseEnter={() => { isUserScrolling.current = true; setActiveIdx(idx) }}
+                onMouseLeave={() => { isUserScrolling.current = false }}
+                className={`flex-shrink-0 w-[82vw] sm:w-[55vw] lg:w-auto lg:flex-shrink relative rounded-2xl p-4 cursor-pointer transition-all duration-400 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{
+                  scrollSnapAlign: 'center',
+                  transitionDelay: `${idx * 80}ms`,
+                  background: active ? `linear-gradient(145deg, ${step.color}08, #FFFFFF)` : '#FAFAFA',
+                  border: active ? `1.5px solid ${step.color}40` : '1.5px solid #E2E8F0',
+                  boxShadow: active
+                    ? `0 8px 32px ${step.color}18, 0 2px 8px rgba(0,0,0,0.04)`
+                    : '0 1px 4px rgba(0,0,0,0.04)',
+                  transform: active ? 'translateY(-4px)' : 'translateY(0)',
+                }}
+              >
+                {/* Faded step number */}
+                <div className="absolute top-2 right-3 font-black select-none pointer-events-none leading-none"
                   style={{
-                    scrollSnapAlign: 'center',
-                    transitionDelay: `${idx * 100}ms`,
-                    background: active ? `linear-gradient(145deg, ${step.color}08, #FFFFFF)` : '#FAFAFA',
-                    border: active ? `1.5px solid ${step.color}40` : '1.5px solid #E2E8F0',
-                    boxShadow: active
-                      ? `0 8px 32px ${step.color}18, 0 2px 8px rgba(0,0,0,0.04)`
-                      : '0 1px 4px rgba(0,0,0,0.04)',
-                    transform: active ? 'translateY(-5px)' : 'translateY(0)',
-                  }}
-                >
-                  {/* Faded step number */}
-                  <div className="absolute top-2 right-3 font-black select-none pointer-events-none leading-none"
-                    style={{
-                      fontSize: '56px',
-                      color: active ? `${step.color}12` : 'rgba(0,0,0,0.04)',
-                      transition: 'color 400ms',
-                    }}>
-                    {String(idx + 1).padStart(2, '0')}
-                  </div>
-
-                  {/* Icon */}
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center mb-3 relative z-10 transition-all duration-400"
-                    style={{
-                      background: active ? `linear-gradient(135deg, ${step.color}, ${step.accent})` : '#F1F5F9',
-                      boxShadow: active ? `0 4px 16px ${step.color}40` : 'none',
-                      color: active ? '#fff' : '#94A3B8',
-                    }}>
-                    {step.icon}
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="font-bold text-[13px] lg:text-[14px] mb-1.5 leading-snug transition-colors duration-300"
-                    style={{ color: active ? '#0F172A' : '#64748B' }}>
-                    {step.title}
-                  </h3>
-
-                  {/* Story */}
-                  <p className="text-[11px] leading-relaxed mb-3 transition-colors duration-300"
-                    style={{ color: active ? '#475569' : '#94A3B8' }}>
-                    {step.story}
-                  </p>
-
-                  {/* Metric chip */}
-                  <div className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold transition-all duration-300"
-                    style={{
-                      background: active ? `${step.color}12` : '#F1F5F9',
-                      color: active ? step.color : '#94A3B8',
-                      border: `1px solid ${active ? step.color + '30' : '#E2E8F0'}`,
-                    }}>
-                    {step.metric}
-                  </div>
-
-                  {/* Agent badge */}
-                  {step.agent && (
-                    <div className="flex items-center gap-1.5 mt-2">
-                      <div className="w-1.5 h-1.5 rounded-full transition-all duration-300"
-                        style={{ background: active ? step.color : '#CBD5E1' }} />
-                      <span className="text-[9px] font-bold tracking-[0.14em] uppercase transition-colors duration-300"
-                        style={{ color: active ? step.color : '#CBD5E1' }}>
-                        {step.agent}
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Active top accent */}
-                  <div className="absolute top-0 left-4 right-4 h-[2px] rounded-b-full transition-all duration-400"
-                    style={{ background: active ? `linear-gradient(90deg, transparent, ${step.color}, transparent)` : 'transparent' }} />
+                    fontSize: '56px',
+                    color: active ? `${step.color}12` : 'rgba(0,0,0,0.04)',
+                    transition: 'color 400ms',
+                  }}>
+                  {String(idx + 1).padStart(2, '0')}
                 </div>
-              )
-            })}
-          </div>
+
+                {/* Icon */}
+                <div className="w-10 h-10 rounded-full flex items-center justify-center mb-3 relative z-10 transition-all duration-400"
+                  style={{
+                    background: active ? `linear-gradient(135deg, ${step.color}, ${step.accent})` : '#F1F5F9',
+                    boxShadow: active ? `0 4px 16px ${step.color}40` : 'none',
+                    color: active ? '#fff' : '#94A3B8',
+                  }}>
+                  {step.icon}
+                </div>
+
+                {/* Title */}
+                <h3 className="font-bold text-[14px] lg:text-[14px] mb-1.5 leading-snug transition-colors duration-300"
+                  style={{ color: active ? '#0F172A' : '#64748B' }}>
+                  {step.title}
+                </h3>
+
+                {/* Story */}
+                <p className="text-[13px] leading-relaxed mb-3 transition-colors duration-300"
+                  style={{ color: active ? '#475569' : '#94A3B8' }}>
+                  {step.story}
+                </p>
+
+                {/* Metric chip */}
+                <div className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold transition-all duration-300"
+                  style={{
+                    background: active ? `${step.color}12` : '#F1F5F9',
+                    color: active ? step.color : '#94A3B8',
+                    border: `1px solid ${active ? step.color + '30' : '#E2E8F0'}`,
+                  }}>
+                  {step.metric}
+                </div>
+
+                {/* Agent badge */}
+                {step.agent && (
+                  <div className="flex items-center gap-1.5 mt-2">
+                    <div className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+                      style={{ background: active ? step.color : '#CBD5E1' }} />
+                    <span className="text-[11px] font-bold tracking-[0.14em] uppercase transition-colors duration-300"
+                      style={{ color: active ? step.color : '#CBD5E1' }}>
+                      {step.agent}
+                    </span>
+                  </div>
+                )}
+
+                {/* Active top accent line */}
+                <div className="absolute top-0 left-4 right-4 h-[2px] rounded-b-full transition-all duration-400"
+                  style={{ background: active ? `linear-gradient(90deg, transparent, ${step.color}, transparent)` : 'transparent' }} />
+              </div>
+            )
+          })}
+        </div>
       </div>
 
-      {/* Step indicator dots */}
-      <div className="flex justify-center gap-2 mb-6">
+      {/* Pagination — large, labelled, always in sync */}
+      <div className="flex justify-center items-center gap-3 mb-6">
         {steps.map((step, idx) => (
           <button
             key={idx}
-            onClick={() => setHoveredStep(idx === hoveredStep ? null : idx)}
-            className="transition-all duration-300 rounded-full"
-            style={{
-              width: activeIdx === idx ? '24px' : '7px',
-              height: '7px',
-              background: activeIdx === idx ? step.color : '#E2E8F0',
-            }}
-          />
+            onClick={() => goToCard(idx)}
+            aria-label={`Step ${idx + 1}: ${step.title}`}
+            className="relative flex flex-col items-center gap-1 group"
+            style={{ minWidth: '28px' }}
+          >
+            {/* Pill dot */}
+            <div
+              className="rounded-full transition-all duration-300"
+              style={{
+                width: activeIdx === idx ? '32px' : '10px',
+                height: '10px',
+                background: activeIdx === idx ? step.color : '#CBD5E1',
+                boxShadow: activeIdx === idx ? `0 0 0 3px ${step.color}25` : 'none',
+              }}
+            />
+            {/* Step number label — visible on mobile only when active */}
+            <span
+              className="text-[10px] font-bold transition-all duration-300 lg:hidden"
+              style={{
+                color: activeIdx === idx ? step.color : 'transparent',
+                position: 'absolute',
+                top: '14px',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {idx + 1}/{steps.length}
+            </span>
+          </button>
         ))}
       </div>
 
@@ -683,8 +747,9 @@ function HowItWorks() {
   )
 }
 
+
 /* ========================
-   AWARDS SECTION - High contrast colors
+   AWARDS SECTION - Clean: photo top, text bottom, no overlay
 ======================== */
 function AwardsSection() {
   const { ref, isInView } = useInView()
@@ -693,16 +758,22 @@ function AwardsSection() {
     {
       date: "FEBRUARY 2026",
       title: "Aegis Graham Bell Award",
-      subtitle: "16th AGBA Innovation in Gen AI - CX, Sales & GTM Intelligence Category Winner",
+      subtitle: "16th AGBA Innovation in Gen AI — CX, Sales & GTM Intelligence Category Winner",
       image: "/images/aegis-graham-bell-award.jpg",
       objectPosition: "object-top",
+      logo: "/images/aegis-logo.png",
+      logoAlt: "Aegis Graham Bell Award",
+      accent: "#0066CC",
     },
     {
-      date: "NOVEMBER 2025",
+      date: "JANUARY 2026",
       title: "Karnataka Elevate 2025",
-      subtitle: "Selected from 1,474+ applicants across all sectors",
+      subtitle: "Selected from 1,474+ applicants — Non-dilutive grant of up to ₹50 Lakhs",
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/karnataka%20elevate%20award-6VQmT2ahCZSsynysJCRN0mwxbYjAZp.jpg",
       objectPosition: "object-center",
+      logo: "/images/karnataka-elevate-logo.png",
+      logoAlt: "Karnataka Elevate",
+      accent: "#00A86B",
     },
   ]
 
@@ -711,7 +782,7 @@ function AwardsSection() {
       <div className="w-full max-w-[1100px] mx-auto">
         <div className={`flex items-center justify-center gap-3 mb-3 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-          <span className="text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Recognition</span>
+          <span className="text-[12px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Recognition</span>
           <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
         </div>
         <h2 className={`text-[24px] lg:text-[36px] font-extrabold text-center mb-6 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ color: "#0F172A" }}>
@@ -720,29 +791,75 @@ function AwardsSection() {
           Trusted.
         </h2>
 
-        <div className="grid lg:grid-cols-2 gap-4 mb-6">
+        <div className="grid lg:grid-cols-2 gap-5 mb-6">
           {awards.map((award, idx) => (
             <div key={idx}
-              className={`rounded-2xl overflow-hidden group transition-all duration-500 hover:scale-[1.02] ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-              style={{
-                background: "#0F172A",
-                border: "3px solid #0066CC",
-                boxShadow: "0 12px 40px rgba(0,102,204,0.2)",
-                transitionDelay: `${idx * 150}ms`,
-              }}>
-              <div className="relative h-[180px] lg:h-[220px] overflow-hidden">
-                <Image src={award.image} alt={award.title} fill priority className={`object-cover ${award.objectPosition} group-hover:scale-105 transition-transform duration-700`} />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/30 to-transparent" />
-                <div className="absolute top-3 right-3">
-                  <div className="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase"
-                    style={{ background: "#0066CC", color: "#FFFFFF" }}>
-                    {award.date}
+              className={`relative rounded-2xl overflow-hidden group transition-all duration-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ transitionDelay: `${idx * 150}ms` }}
+            >
+              {/* Gradient border shell — 2px gradient edge */}
+              <div
+                className="absolute inset-0 rounded-2xl pointer-events-none z-10 transition-opacity duration-500"
+                style={{
+                  padding: '2px',
+                  background: `linear-gradient(135deg, ${award.accent}, #0066CC, #00A86B)`,
+                  WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  WebkitMaskComposite: 'xor',
+                  maskComposite: 'exclude',
+                }}
+              />
+
+              {/* Card body */}
+              <div
+                className="rounded-2xl overflow-hidden h-full transition-all duration-500 group-hover:shadow-[0_20px_60px_rgba(0,102,204,0.22)]"
+                style={{ background: "#FFFFFF" }}
+              >
+                {/* Image */}
+                <div className="relative h-[220px] sm:h-[260px] overflow-hidden" style={{ background: "#F0F4F8" }}>
+                  <Image
+                    src={award.image}
+                    alt={award.title}
+                    fill
+                    priority
+                    className={`object-cover ${award.objectPosition} group-hover:scale-105 transition-transform duration-700`}
+                  />
+                  {/* Subtle brand-color vignette on hover only */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{ background: `linear-gradient(to top, ${award.accent}18 0%, transparent 60%)` }}
+                  />
+                  {/* Date badge */}
+                  <div className="absolute top-3 right-3 z-10">
+                    <div
+                      className="px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase backdrop-blur-sm"
+                      style={{
+                        background: award.accent,
+                        color: "#FFFFFF",
+                        boxShadow: `0 2px 12px ${award.accent}60`,
+                      }}
+                    >
+                      {award.date}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-[16px] font-bold mb-1 text-white">{award.title}</h3>
-                <p className="text-[13px] font-medium text-white/80">{award.subtitle}</p>
+
+                {/* Card footer */}
+                <div className="p-5" style={{ borderTop: `2px solid ${award.accent}18`, background: "#FAFBFC" }}>
+                  {/* Gradient accent line */}
+                  <div className="h-[3px] w-12 rounded-full mb-3" style={{ background: `linear-gradient(90deg, ${award.accent}, #0066CC)` }} />
+                  {/* Logo */}
+                  <div className="mb-3 h-[34px] relative w-[110px]">
+                    <Image
+                      src={award.logo}
+                      alt={award.logoAlt}
+                      fill
+                      className="object-contain object-left"
+                      sizes="110px"
+                    />
+                  </div>
+                  <h3 className="text-[17px] font-extrabold mb-1 leading-snug" style={{ color: "#0F172A" }}>{award.title}</h3>
+                  <p className="text-[14px] leading-relaxed" style={{ color: "#475569" }}>{award.subtitle}</p>
+                </div>
               </div>
             </div>
           ))}
@@ -769,6 +886,7 @@ function AwardsSection() {
   )
 }
 
+
 /* ========================
    DEMO VIDEO SECTION
 ======================== */
@@ -783,7 +901,7 @@ function MicroConversionSection() {
         <div className={`text-center mb-4 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="flex items-center justify-center gap-3 mb-1.5">
             <div className="h-px w-6 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-            <span className="text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>See It Live</span>
+            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>See It Live</span>
             <div className="h-px w-6 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
           </div>
           <h2 className="text-[20px] lg:text-[28px] font-extrabold leading-tight mb-1" style={{ color: "#0F172A" }}>
@@ -792,7 +910,7 @@ function MicroConversionSection() {
               in Action
             </span>
           </h2>
-          <p className="text-[11px] sm:text-[12px]" style={{ color: "#64748B" }}>
+          <p className="text-[12px] sm:text-[13px]" style={{ color: "#64748B" }}>
             A real document audit, live on screen. No slides. No fluff.
           </p>
         </div>
