@@ -29,6 +29,12 @@ export function PHProvider({ children }: { children: React.ReactNode }) {
         if (process.env.NODE_ENV === 'development') ph.debug()
       },
     })
+    
+    // Explicitly set window.posthog for global access
+    if (typeof window !== 'undefined') {
+      window.posthog = posthog
+    }
+
     initAmplitude()
   }, [])
 

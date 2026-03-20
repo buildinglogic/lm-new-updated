@@ -1,4 +1,5 @@
 import * as amplitude from '@amplitude/analytics-browser'
+import posthog from 'posthog-js'
 
 let _initialized = false
 
@@ -55,7 +56,11 @@ export const track = (
   amplitude.track(event, properties)
   
   // 2. PostHog Fire (Intelligent Semantic B2B Logging)
-  if (window.posthog && typeof window.posthog.capture === 'function') {
+  if (posthog && typeof posthog.capture === 'function') {
+    // Try the imported posthog instance first (it's a singleton)
+    posthog.capture(event, properties)
+  } else if (window.posthog && typeof window.posthog.capture === 'function') {
+    // Fallback to window object
     window.posthog.capture(event, properties)
   } else {
     console.warn('[Analytics] PostHog capture not ready for event:', event);
