@@ -223,72 +223,84 @@ export default function CompanyPage() {
           </h2>
 
           <div className="grid sm:grid-cols-2 gap-4 lg:gap-5 mb-10">
-            <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #E2E8F0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-              <div className="relative h-[260px] sm:h-[300px] overflow-hidden" style={{ background: "#F0F4F8" }}>
-                <Image src="/images/aegis-award.jpg" alt="Aegis Graham Bell Award" fill className="object-cover object-center" />
+            {/* Aegis Award */}
+            <div className="rounded-2xl overflow-hidden relative w-full h-[460px] sm:h-[500px]" style={{ border: "1px solid #E2E8F0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", background: "#0F172A" }}>
+              <Image src="/images/aegis-award.jpg" alt="Aegis Graham Bell Award" fill className="object-cover object-center" />
+              
+              {/* Gradient for text contrast */}
+              <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-[#0F172A] via-[#0F172A]/95 to-transparent pointer-events-none z-10" />
+
+              <div className="absolute top-4 right-4 z-20">
+                <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold text-white shadow-md uppercase tracking-wider backdrop-blur-sm" style={{ background: "#0066CC" }}>FEBRUARY 2026</span>
               </div>
-              {/* Card footer */}
-              <div className="p-4 sm:p-5" style={{ background: "#FAFBFC", borderTop: "1px solid #E2E8F0" }}>
-                <div className="flex items-center gap-4">
-                  {/* Logo Thumbnail */}
-                  <div className="flex-shrink-0 w-[72px] h-[72px] sm:w-[84px] sm:h-[84px] bg-white rounded-xl flex items-center justify-center p-2.5" 
-                       style={{ border: `1px solid #0066CC20`, boxShadow: "0 4px 12px rgba(0,0,0,0.03)" }}>
-                    <div className="relative w-full h-full">
-                      <Image
-                        src="/images/Aegis_award_logo.jpg"
-                        alt="Aegis Graham Bell Award Logo"
-                        fill
-                        className="object-contain"
-                        sizes="84px"
-                      />
-                    </div>
+
+              {/* Overlaid Card footer */}
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-20 flex items-end gap-4">
+                {/* Logo Thumbnail */}
+                <div className="flex-shrink-0 w-[64px] h-[64px] sm:w-[76px] sm:h-[76px] bg-white rounded-xl flex items-center justify-center p-2" 
+                     style={{ border: `1px solid #0066CC40`, boxShadow: "0 4px 16px rgba(0,0,0,0.2)" }}>
+                  <div className="relative w-full h-full">
+                    <Image
+                      src="/images/Aegis_award_logo.jpg"
+                      alt="Aegis Graham Bell Award Logo"
+                      fill
+                      className="object-contain"
+                      sizes="76px"
+                    />
                   </div>
-                  {/* Text Content */}
-                  <div className="flex-1 min-w-0 flex flex-col justify-center">
-                    <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold mb-1.5 w-max" style={{ background: "#EFF6FF", color: "#0066CC" }}>FEBRUARY 2026</span>
-                    <h3 className="text-[16px] sm:text-[18px] font-extrabold mb-1 leading-tight truncate" style={{ color: "#0F172A" }}>Aegis Graham Bell Award</h3>
-                    <p className="text-[13px] sm:text-[14px] leading-snug line-clamp-2" style={{ color: "#64748B" }}>16th AGBA — Gen AI CX, Sales & GTM Intelligence Category Winner</p>
-                  </div>
+                </div>
+
+                {/* Text Content */}
+                <div className="flex-1 min-w-0 flex flex-col justify-end" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}>
+                  <div className="h-[2px] w-8 rounded-full mb-2" style={{ background: `linear-gradient(90deg, #0066CC, transparent)` }} />
+                  <h3 className="text-[16px] sm:text-[19px] font-extrabold mb-1 leading-tight truncate text-white">Aegis Graham Bell Award</h3>
+                  <p className="text-[13px] sm:text-[14px] leading-snug line-clamp-2 text-white">16th AGBA — Gen AI CX, Sales & GTM Intelligence Category Winner</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #E2E8F0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-              <div className="relative h-[260px] sm:h-[300px] overflow-hidden" style={{ background: "#F0F4F8" }}>
-                <Image src="/images/elevate-felicitation.jpg" alt="Karnataka Elevate" fill className="object-cover object-top" />
+            {/* Elevate Award */}
+            <div className="rounded-2xl overflow-hidden relative w-full h-[460px] sm:h-[500px]" style={{ border: "1px solid #E2E8F0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", background: "#0F172A" }}>
+              <Image src="/images/elevate-felicitation.png" alt="Karnataka Elevate" fill className="object-cover object-top" />
+
+              {/* Gradient for text contrast */}
+              <div className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-[#0F172A]/90 to-transparent pointer-events-none z-10" />
+
+              <div className="absolute top-4 right-4 z-20">
+                <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold text-white shadow-md uppercase tracking-wider backdrop-blur-sm" style={{ background: "#00A86B" }}>JANUARY 2026</span>
               </div>
-              {/* Card footer */}
-              <div className="p-4 sm:p-5" style={{ background: "#FAFBFC", borderTop: "1px solid #E2E8F0" }}>
-                <div className="flex items-center gap-4">
-                  {/* Logo Thumbnail */}
-                  <div className="flex-shrink-0 w-[72px] h-[72px] sm:w-[84px] sm:h-[84px] bg-white rounded-xl flex items-center justify-center p-2.5" 
-                       style={{ border: `1px solid #00A86B20`, boxShadow: "0 4px 12px rgba(0,0,0,0.03)" }}>
-                    <div className="relative w-full h-full">
-                      <Image
-                        src="/images/karnataka_itbt_department_logo.png"
-                        alt="Karnataka Elevate Logo"
-                        fill
-                        className="object-contain"
-                        sizes="84px"
-                      />
-                    </div>
+
+              {/* Overlaid Card footer */}
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-20 flex items-end gap-4">
+                {/* Logo Thumbnail */}
+                <div className="flex-shrink-0 w-[64px] h-[64px] sm:w-[76px] sm:h-[76px] bg-white rounded-xl flex items-center justify-center p-2" 
+                     style={{ border: `1px solid #00A86B40`, boxShadow: "0 4px 16px rgba(0,0,0,0.2)" }}>
+                  <div className="relative w-full h-full">
+                    <Image
+                      src="/images/karnataka_itbt_department_logo.png"
+                      alt="Karnataka Elevate Logo"
+                      fill
+                      className="object-contain"
+                      sizes="76px"
+                    />
                   </div>
-                  {/* Text Content */}
-                  <div className="flex-1 min-w-0 flex flex-col justify-center">
-                    <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold mb-1.5 w-max" style={{ background: "#ECFDF5", color: "#00A86B" }}>JANUARY 2026</span>
-                    <h3 className="text-[16px] sm:text-[18px] font-extrabold mb-1 leading-tight truncate" style={{ color: "#0F172A" }}>Karnataka Elevate 2025</h3>
-                    <p className="text-[13px] sm:text-[14px] leading-snug line-clamp-2" style={{ color: "#64748B" }}>Selected from 1,474+ applicants — up to ₹50 lakh non-dilutive grant</p>
-                  </div>
+                </div>
+
+                {/* Text Content */}
+                <div className="flex-1 min-w-0 flex flex-col justify-end" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}>
+                  <div className="h-[2px] w-8 rounded-full mb-2" style={{ background: `linear-gradient(90deg, #00A86B, transparent)` }} />
+                  <h3 className="text-[16px] sm:text-[19px] font-extrabold mb-1 leading-tight truncate text-white">Karnataka Elevate 2025</h3>
+                  <p className="text-[13px] sm:text-[14px] leading-snug line-clamp-2 text-white">Selected from 1,474+ applicants — up to ₹50 lakh non-dilutive grant</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Partner logos */}
-          <div className="w-full text-center mt-12 mb-4 relative flex flex-col items-center">
-            <p className="text-[16px] font-medium mb-8" style={{ color: "#64748B" }}>Backed by leading technology partners</p>
+          <div className="w-full text-center mt-6 mb-4 relative flex flex-col items-center">
+            <p className="text-[16px] font-medium mb-4" style={{ color: "#64748B" }}>Backed by leading technology partners</p>
 
-            <div className="w-full max-w-[1200px] overflow-hidden relative">
+            <div className="w-full max-w-[1200px] max-w-[100vw] overflow-hidden relative h-16 sm:h-24" style={{ touchAction: 'pan-y' }}>
               {/* Gradient Fades for edges */}
               <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, #FFFFFF, transparent)' }} />
               <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, #FFFFFF, transparent)' }} />
@@ -302,7 +314,7 @@ export default function CompanyPage() {
                   { src: "/images/karnataka_itbt_department_logo.png", alt: "Karnataka Elevate", w: 180 },
                   { src: "/images/Aegis_award_logo.jpg", alt: "Aegis Award", w: 160 },
                 ].map((logo, i) => (
-                  <div key={i} className="flex-shrink-0 h-16 sm:h-24 relative transition-transform duration-300 hover:scale-105" style={{ width: logo.w }}>
+                  <div key={i} className="flex-shrink-0 h-10 sm:h-14 relative transition-transform duration-300 hover:scale-105" style={{ width: logo.w * 0.7 }}>
                     <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
                   </div>
                 ))}
@@ -314,7 +326,7 @@ export default function CompanyPage() {
                   { src: "/images/karnataka_itbt_department_logo.png", alt: "Karnataka Elevate", w: 180 },
                   { src: "/images/Aegis_award_logo.jpg", alt: "Aegis Award", w: 160 },
                 ].map((logo, i) => (
-                  <div key={`dup-${i}`} className="flex-shrink-0 h-16 sm:h-24 relative transition-transform duration-300 hover:scale-105" style={{ width: logo.w }}>
+                  <div key={`dup-${i}`} className="flex-shrink-0 h-10 sm:h-14 relative transition-transform duration-300 hover:scale-105" style={{ width: logo.w * 0.7 }}>
                     <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
                   </div>
                 ))}

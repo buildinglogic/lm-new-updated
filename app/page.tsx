@@ -447,7 +447,6 @@ function HowItWorks() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const isUserScrolling = useRef(false)
   const autoTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
-
   const trackedStepsRef = useRef<Set<number>>(new Set())
 
   // Sync dot to whichever card is ≥60% visible in the scroll container
@@ -775,7 +774,7 @@ function AwardsSection() {
       date: "JANUARY 2026",
       title: "Karnataka Elevate 2025",
       subtitle: "Selected from 1,474+ applicants — Non-dilutive grant of up to ₹50 Lakhs",
-      image: "/images/elevate-felicitation.jpg",
+      image: "/images/elevate-felicitation.png",
       objectPosition: "object-top object-cover",
       logo: "/images/karnataka_itbt_department_logo.png",
       logoAlt: "Karnataka Elevate",
@@ -818,64 +817,59 @@ function AwardsSection() {
 
               {/* Card body */}
               <div
-                className="rounded-2xl overflow-hidden h-full transition-all duration-500 group-hover:shadow-[0_20px_60px_rgba(0,102,204,0.22)]"
-                style={{ background: "#FFFFFF" }}
+                className="rounded-2xl overflow-hidden transition-all duration-500 group-hover:shadow-[0_20px_60px_rgba(0,102,204,0.22)] relative w-full h-[460px] sm:h-[500px]"
+                style={{ background: "#0F172A" }}
               >
-                {/* Image */}
-                <div className="relative h-[220px] sm:h-[260px] overflow-hidden" style={{ background: "#F0F4F8" }}>
-                  <Image
-                    src={award.image}
-                    alt={award.title}
-                    fill
-                    priority
-                    className={`object-cover ${award.objectPosition} group-hover:scale-105 transition-transform duration-700`}
-                  />
-                  {/* Subtle brand-color vignette on hover only */}
+                {/* Full Bleed Image */}
+                <Image
+                  src={award.image}
+                  alt={award.title}
+                  fill
+                  priority
+                  className={`${award.objectPosition} group-hover:scale-105 transition-transform duration-700`}
+                />
+
+                {/* Gradient for text contrast */}
+                <div className={`absolute inset-x-0 bottom-0 pointer-events-none z-10 ${idx === 0 ? 'h-[50%] bg-gradient-to-t from-[#0F172A] via-[#0F172A]/95 to-transparent' : 'h-[35%] bg-gradient-to-t from-[#0F172A]/90 to-transparent'}`} />
+
+                {/* Date badge */}
+                <div className="absolute top-4 right-4 z-20">
                   <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{ background: `linear-gradient(to top, ${award.accent}18 0%, transparent 60%)` }}
-                  />
-                  {/* Date badge */}
-                  <div className="absolute top-3 right-3 z-10">
-                    <div
-                      className="px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase backdrop-blur-sm"
-                      style={{
-                        background: award.accent,
-                        color: "#FFFFFF",
-                        boxShadow: `0 2px 12px ${award.accent}60`,
-                      }}
-                    >
-                      {award.date}
-                    </div>
+                    className="px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase backdrop-blur-sm"
+                    style={{
+                      background: award.accent,
+                      color: "#FFFFFF",
+                      boxShadow: `0 2px 12px ${award.accent}80`,
+                    }}
+                  >
+                    {award.date}
                   </div>
                 </div>
 
-                {/* Card footer */}
-                <div className="p-4 sm:p-5" style={{ borderTop: `1px solid #E2E8F0`, background: "#FAFBFC" }}>
-                  <div className="flex items-center gap-4">
-                    {/* Logo Thumbnail */}
-                    <div className="flex-shrink-0 w-[72px] h-[72px] sm:w-[84px] sm:h-[84px] bg-white rounded-xl flex items-center justify-center p-2.5" 
-                         style={{ border: `1px solid ${award.accent}20`, boxShadow: "0 4px 12px rgba(0,0,0,0.03)" }}>
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={award.logo}
-                          alt={award.logoAlt}
-                          fill
-                          className="object-contain"
-                          sizes="84px"
-                        />
-                      </div>
+                {/* Overlaid Card footer */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-20 flex items-end gap-4">
+                  {/* Logo Thumbnail */}
+                  <div className="flex-shrink-0 w-[64px] h-[64px] sm:w-[76px] sm:h-[76px] bg-white rounded-xl flex items-center justify-center p-2" 
+                        style={{ border: `1px solid ${award.accent}40`, boxShadow: "0 4px 16px rgba(0,0,0,0.2)" }}>
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={award.logo}
+                        alt={award.logoAlt}
+                        fill
+                        className="object-contain"
+                        sizes="76px"
+                      />
                     </div>
-                    {/* Text Content */}
-                    <div className="flex-1 min-w-0 flex flex-col justify-center">
-                      <div className="h-[2px] w-8 rounded-full mb-2" style={{ background: `linear-gradient(90deg, ${award.accent}, transparent)` }} />
-                      <h3 className="text-[16px] sm:text-[18px] font-extrabold mb-1 leading-tight truncate" style={{ color: "#0F172A" }}>
-                        {award.title}
-                      </h3>
-                      <p className="text-[13px] sm:text-[14px] leading-snug line-clamp-2" style={{ color: "#475569" }}>
-                        {award.subtitle}
-                      </p>
-                    </div>
+                  </div>
+                  
+                  <div className="flex-1 min-w-0 flex flex-col justify-end" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}>
+                    <div className="h-[2px] w-8 rounded-full mb-2" style={{ background: `linear-gradient(90deg, ${award.accent}, transparent)` }} />
+                    <h3 className="text-[16px] sm:text-[19px] font-extrabold mb-1 leading-tight truncate text-white">
+                      {award.title}
+                    </h3>
+                    <p className="text-[13px] sm:text-[14px] leading-snug line-clamp-2 text-white">
+                      {award.subtitle}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -885,16 +879,15 @@ function AwardsSection() {
       </div>
 
       {/* Backed By - Partner Logos Marquee */}
-      <div className={`w-full py-8 mt-4 transition-all duration-700 delay-300 ${isInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} style={{ background: "#F8FAFC", borderTop: "1px solid #E2E8F0" }}>
+      <div className="w-full py-4" style={{ background: "#F8FAFC", borderTop: "1px solid #E2E8F0" }}>
         <div className="w-full text-center px-4 relative flex flex-col items-center">
-          <p className="text-[16px] font-medium mb-8 tracking-wide" style={{ color: "#64748B" }}>Backed by leading technology partners & institutions</p>
-
-          <div className="w-full max-w-[1200px] overflow-hidden relative">
+          <p className="text-[16px] font-medium mb-4 tracking-wide" style={{ color: "#64748B" }}>Backed by leading technology partners & institutions</p>
+          <div className="w-full max-w-[1200px] max-w-[100vw] overflow-hidden relative h-16 sm:h-24" style={{ touchAction: 'pan-y' }}>
             {/* Gradient Fades for edges */}
             <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, #F8FAFC, transparent)' }} />
             <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, #F8FAFC, transparent)' }} />
 
-            <div className="flex items-center gap-12 sm:gap-24 w-max animate-marquee">
+            <div className="flex items-center gap-12 sm:gap-24 w-max animate-marquee h-full pt-2">
               {/* Group 1 */}
               {[
                 { src: "/images/nvidia-inception.png", alt: "NVIDIA Inception", w: 220 },
@@ -903,7 +896,7 @@ function AwardsSection() {
                 { src: "/images/karnataka_itbt_department_logo.png", alt: "Karnataka Elevate", w: 180 },
                 { src: "/images/Aegis_award_logo.jpg", alt: "Aegis Award", w: 160 },
               ].map((logo, i) => (
-                <div key={i} onMouseEnter={() => trackPartnerInteracted(logo.alt)} className="flex-shrink-0 h-16 sm:h-24 relative transition-transform duration-300 hover:scale-105" style={{ width: logo.w }}>
+                <div key={i} onMouseEnter={() => trackPartnerInteracted(logo.alt)} className="flex-shrink-0 h-10 sm:h-14 relative transition-transform duration-300 hover:scale-105" style={{ width: logo.w * 0.7 }}>
                   <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
                 </div>
               ))}
@@ -915,7 +908,7 @@ function AwardsSection() {
                 { src: "/images/karnataka_itbt_department_logo.png", alt: "Karnataka Elevate", w: 180 },
                 { src: "/images/Aegis_award_logo.jpg", alt: "Aegis Award", w: 160 },
               ].map((logo, i) => (
-                <div key={`dup-${i}`} onMouseEnter={() => trackPartnerInteracted(logo.alt)} className="flex-shrink-0 h-16 sm:h-24 relative transition-transform duration-300 hover:scale-105" style={{ width: logo.w }}>
+                <div key={`dup-${i}`} onMouseEnter={() => trackPartnerInteracted(logo.alt)} className="flex-shrink-0 h-10 sm:h-14 relative transition-transform duration-300 hover:scale-105" style={{ width: logo.w * 0.7 }}>
                   <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
                 </div>
               ))}
