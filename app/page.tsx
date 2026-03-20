@@ -206,7 +206,12 @@ function HeroSection() {
           </div>
 
           <div className="mt-3 lg:mt-0 animate-slide-in-right">
-            <HeroMockup animated={true} />
+            <div className="hidden lg:block">
+              <HeroMockup animated={true} />
+            </div>
+            <div className="block lg:hidden">
+              <HeroMockup animated={false} />
+            </div>
           </div>
         </div>
       </div>
