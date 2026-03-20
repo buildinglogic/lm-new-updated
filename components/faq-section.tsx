@@ -61,10 +61,10 @@ export function FAQSection() {
         <div className={`text-center mb-6 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="flex items-center justify-center gap-3 mb-2">
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>FAQ</span>
+            <span className="text-[13px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>FAQ</span>
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
           </div>
-          <h2 className="text-[22px] lg:text-[36px] font-extrabold leading-tight" style={{ color: "#0F172A" }}>
+          <h2 className="text-[26px] lg:text-[40px] font-extrabold leading-tight" style={{ color: "#0F172A" }}>
             Every Question{" "}
             <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Answered</span>
           </h2>
@@ -74,16 +74,16 @@ export function FAQSection() {
           {faqGroups.map((group, groupIdx) => (
             <div key={groupIdx} className={`transition-all duration-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
               style={{ transitionDelay: `${groupIdx * 100}ms` }}>
-              <span className="text-[11px] font-bold tracking-[0.12em] uppercase block mb-2" style={{ color: "#0066CC" }}>{group.label}</span>
+              <span className="text-[13px] font-bold tracking-[0.12em] uppercase block mb-2" style={{ color: "#0066CC" }}>{group.label}</span>
               <div className="rounded-xl overflow-hidden" style={{ border: "1px solid #E2E8F0", background: "#FFFFFF" }}>
                 {group.items.map((item, itemIdx) => {
                   const id = `${groupIdx}-${itemIdx}`
                   const isOpen = openItems.has(id)
-                  
+
                   return (
                     <div key={id} style={{ borderTop: itemIdx > 0 ? "1px solid #E2E8F0" : "none" }}>
                       <button onClick={() => toggleItem(id, item.question)} className="w-full py-3 px-4 flex items-center justify-between text-left group">
-                        <span className="text-sm font-semibold transition-all pr-3" style={{ color: isOpen ? "#0066CC" : "#0F172A" }}>{item.question}</span>
+                        <span className="text-[16px] font-semibold transition-all pr-3" style={{ color: isOpen ? "#0066CC" : "#0F172A" }}>{item.question}</span>
                         <span className={`faq-plus-btn flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center ${isOpen ? 'open' : ''}`}
                           style={{ background: isOpen ? "#0066CC" : "#F1F5F9", boxShadow: isOpen ? "0 4px 15px rgba(0,102,204,0.4)" : "none" }}>
                           <Plus className="w-3.5 h-3.5" style={{ color: isOpen ? "#FFFFFF" : "#64748B" }} />
@@ -91,7 +91,7 @@ export function FAQSection() {
                       </button>
                       <div className="overflow-hidden transition-all duration-400 ease-out" style={{ maxHeight: isOpen ? "200px" : "0px", opacity: isOpen ? 1 : 0 }}>
                         <div className="px-4 pb-3">
-                          <p className="text-[13px] leading-relaxed" style={{ color: "#475569" }}>{item.answer}</p>
+                          <p className="text-[15px] leading-relaxed" style={{ color: "#475569" }}>{item.answer}</p>
                         </div>
                       </div>
                     </div>

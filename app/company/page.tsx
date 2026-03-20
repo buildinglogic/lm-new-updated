@@ -64,7 +64,7 @@ export default function CompanyPage() {
         <div className="max-w-[1100px] mx-auto">
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Who We Are</span>
+            <span className="text-[14px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Who We Are</span>
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
           </div>
           <h1 className="text-[26px] sm:text-[36px] lg:text-[48px] font-extrabold leading-tight mb-5" style={{ color: "#0F172A" }}>
@@ -73,7 +73,7 @@ export default function CompanyPage() {
               Liquidmind AI
             </span>
           </h1>
-          <p className="text-[13px] sm:text-[15px] lg:text-base max-w-3xl mx-auto leading-relaxed" style={{ color: "#475569" }}>
+          <p className="text-[16px] sm:text-[17px] lg:text-[18px] max-w-3xl mx-auto leading-relaxed" style={{ color: "#475569" }}>
             Liquidmind AI is redefining trade finance and supply chain management with intelligent AI agents that automate
             workflows, optimise liquidity, and enhance compliance. Designed for large and mid-sized enterprises, our AI-driven
             products eliminate inefficiencies, improve decision-making, and scale effortlessly with business growth.
@@ -101,14 +101,14 @@ export default function CompanyPage() {
         <div className="max-w-[1100px] mx-auto">
           <div className="flex items-center justify-center gap-3 mb-3">
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Purpose</span>
+            <span className="text-[14px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Purpose</span>
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
           </div>
           <h2 className="text-[22px] sm:text-[30px] lg:text-[40px] font-extrabold text-center mb-4" style={{ color: "#0F172A" }}>
             Our{" "}
             <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Mission</span>
           </h2>
-          <p className="text-[13px] sm:text-[15px] lg:text-base max-w-3xl mx-auto text-center leading-relaxed mb-8" style={{ color: "#475569" }}>
+          <p className="text-[16px] sm:text-[17px] lg:text-[18px] max-w-3xl mx-auto text-center leading-relaxed mb-8" style={{ color: "#475569" }}>
             LIQUIDMIND®.AI automates International Trade workflows using AI Agents — transforming the fragmented doc flow → funds flow → goods flow journey for Indian exporters and global traders.
           </p>
           <div className="relative h-[180px] sm:h-[240px] lg:h-[300px] max-w-[900px] mx-auto rounded-2xl overflow-hidden" style={{ boxShadow: "0 8px 40px rgba(0,0,0,0.08)" }}>
@@ -127,7 +127,7 @@ export default function CompanyPage() {
         <div className="max-w-[1100px] mx-auto">
           <div className="flex items-center justify-center gap-3 mb-3">
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Differentiators</span>
+            <span className="text-[14px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Differentiators</span>
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
           </div>
           <h2 className="text-[22px] sm:text-[30px] lg:text-[40px] font-extrabold text-center mb-8" style={{ color: "#0F172A" }}>
@@ -147,8 +147,8 @@ export default function CompanyPage() {
                   {card.icon}
                 </div>
                 <div className="h-0.5 w-8 rounded-full mb-3" style={{ background: `linear-gradient(90deg, ${card.color}, transparent)` }} />
-                <h3 className="text-[15px] lg:text-[16px] font-bold mb-2" style={{ color: card.color }}>{card.title}</h3>
-                <p className="text-[13px] leading-relaxed" style={{ color: "#475569" }}>{card.description}</p>
+                <h3 className="text-[17px] lg:text-[18px] font-bold mb-2" style={{ color: card.color }}>{card.title}</h3>
+                <p className="text-[16px] leading-relaxed" style={{ color: "#475569" }}>{card.description}</p>
               </div>
             ))}
           </div>
@@ -160,7 +160,7 @@ export default function CompanyPage() {
         <div className="max-w-[1100px] mx-auto">
           <div className="flex items-center justify-center gap-3 mb-3">
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Leadership</span>
+            <span className="text-[14px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Leadership</span>
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
           </div>
           <h2 className="text-[22px] sm:text-[30px] lg:text-[40px] font-extrabold text-center mb-8" style={{ color: "#0F172A" }}>
@@ -182,14 +182,14 @@ export default function CompanyPage() {
                 />
               </div>
               <div className="p-5 lg:p-7 flex flex-col justify-center">
-                <h3 className="text-[18px] lg:text-[20px] font-bold mb-1" style={{ color: "#0066CC" }}>Naveen Athresh</h3>
-                <p className="text-[13px] font-semibold mb-3" style={{ color: "#00A86B" }}>Founder / CEO & Chief Product Officer</p>
-                <p className="text-[13px] leading-relaxed mb-3" style={{ color: "#475569" }}>
+                <h3 className="text-[20px] lg:text-[22px] font-bold mb-1" style={{ color: "#0066CC" }}>Naveen Athresh</h3>
+                <p className="text-[15px] font-semibold mb-3" style={{ color: "#00A86B" }}>Founder / CEO & Chief Product Officer</p>
+                <p className="text-[16px] leading-relaxed mb-3" style={{ color: "#475569" }}>
                   TEDx speaker, Forbes India 2020 top 100 leader, Naveen has built 200+ member high-performance teams and led
                   cross-geo Product Engineering and Data Science teams. Featured in Business Today and USAwire as a global thought
                   leader making an impact in the world.
                 </p>
-                <Link href="/company/founder" className="text-[13px] font-semibold" style={{ color: "#00A86B" }}>
+                <Link href="/company/founder" className="text-[15px] font-semibold" style={{ color: "#00A86B" }}>
                   Click here to know more →
                 </Link>
               </div>
@@ -198,9 +198,9 @@ export default function CompanyPage() {
 
           {/* CTO */}
           <div className="p-5 lg:p-7 rounded-2xl" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", boxShadow: "0 2px 12px rgba(0,0,0,0.05)" }}>
-            <h3 className="text-[18px] lg:text-[20px] font-bold mb-1" style={{ color: "#0066CC" }}>Srivani Dharwar Vijaya</h3>
-            <p className="text-[13px] font-semibold mb-3" style={{ color: "#0F172A" }}>Co-Founder & Chief Technology Officer</p>
-            <p className="text-[13px] leading-relaxed" style={{ color: "#475569" }}>
+            <h3 className="text-[20px] lg:text-[22px] font-bold mb-1" style={{ color: "#0066CC" }}>Srivani Dharwar Vijaya</h3>
+            <p className="text-[15px] font-semibold mb-3" style={{ color: "#0F172A" }}>Co-Founder & Chief Technology Officer</p>
+            <p className="text-[16px] leading-relaxed" style={{ color: "#475569" }}>
               With 15+ years at Capgemini, Mindtree, Wipro, and Infosys, Srivani brings deep technology architecture experience
               in enterprise software and SAP systems. She approaches every problem from first principles with a focus on
               strategic objectives. Holds a BE from Visvesvaraya Technology University (VTU) in Information Science.
@@ -214,7 +214,7 @@ export default function CompanyPage() {
         <div className="max-w-[1100px] mx-auto">
           <div className="flex items-center justify-center gap-3 mb-3">
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Recognition</span>
+            <span className="text-[14px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Recognition</span>
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
           </div>
           <h2 className="text-[22px] sm:text-[30px] lg:text-[40px] font-extrabold text-center mb-8" style={{ color: "#0F172A" }}>
@@ -224,39 +224,101 @@ export default function CompanyPage() {
 
           <div className="grid sm:grid-cols-2 gap-4 lg:gap-5 mb-10">
             <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #E2E8F0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-              <div className="relative h-[260px] sm:h-[300px] overflow-hidden">
-                <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Aegis%20graham%20bell%20award-Io0nVjDGHyxbMH3GUnh9D2M8PtIHjM.jpg" alt="Aegis Graham Bell Award" fill className="object-cover object-center" />
+              <div className="relative h-[260px] sm:h-[300px] overflow-hidden" style={{ background: "#F0F4F8" }}>
+                <Image src="/images/aegis-award.jpg" alt="Aegis Graham Bell Award" fill className="object-cover object-center" />
               </div>
-              <div className="px-4 pt-3 pb-4" style={{ background: "#FFFFFF" }}>
-                <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold mb-2" style={{ background: "#EFF6FF", color: "#0066CC" }}>FEBRUARY 2026</span>
-                <h3 className="text-[16px] font-bold mb-1" style={{ color: "#0F172A" }}>Aegis Graham Bell Award</h3>
-                <p className="text-[13px] leading-snug" style={{ color: "#64748B" }}>16th AGBA — Gen AI CX, Sales & GTM Intelligence Category Winner</p>
+              {/* Card footer */}
+              <div className="p-4 sm:p-5" style={{ background: "#FAFBFC", borderTop: "1px solid #E2E8F0" }}>
+                <div className="flex items-center gap-4">
+                  {/* Logo Thumbnail */}
+                  <div className="flex-shrink-0 w-[72px] h-[72px] sm:w-[84px] sm:h-[84px] bg-white rounded-xl flex items-center justify-center p-2.5" 
+                       style={{ border: `1px solid #0066CC20`, boxShadow: "0 4px 12px rgba(0,0,0,0.03)" }}>
+                    <div className="relative w-full h-full">
+                      <Image
+                        src="/images/Aegis_award_logo.jpg"
+                        alt="Aegis Graham Bell Award Logo"
+                        fill
+                        className="object-contain"
+                        sizes="84px"
+                      />
+                    </div>
+                  </div>
+                  {/* Text Content */}
+                  <div className="flex-1 min-w-0 flex flex-col justify-center">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold mb-1.5 w-max" style={{ background: "#EFF6FF", color: "#0066CC" }}>FEBRUARY 2026</span>
+                    <h3 className="text-[16px] sm:text-[18px] font-extrabold mb-1 leading-tight truncate" style={{ color: "#0F172A" }}>Aegis Graham Bell Award</h3>
+                    <p className="text-[13px] sm:text-[14px] leading-snug line-clamp-2" style={{ color: "#64748B" }}>16th AGBA — Gen AI CX, Sales & GTM Intelligence Category Winner</p>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #E2E8F0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-              <div className="relative h-[260px] sm:h-[300px] overflow-hidden">
-                <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/karnataka%20elevate%20award-6VQmT2ahCZSsynysJCRN0mwxbYjAZp.jpg" alt="Karnataka Elevate" fill className="object-cover object-center" />
+              <div className="relative h-[260px] sm:h-[300px] overflow-hidden" style={{ background: "#F0F4F8" }}>
+                <Image src="/images/elevate-award.jpg" alt="Karnataka Elevate" fill className="object-cover object-center" />
               </div>
-              <div className="px-4 pt-3 pb-4" style={{ background: "#FFFFFF" }}>
-                <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold mb-2" style={{ background: "#ECFDF5", color: "#00A86B" }}>JANUARY 2026</span>
-                <h3 className="text-[16px] font-bold mb-1" style={{ color: "#0F172A" }}>Karnataka Elevate 2025</h3>
-                <p className="text-[13px] leading-snug" style={{ color: "#64748B" }}>Selected from 1,474+ applicants — up to ₹50 lakh non-dilutive grant</p>
+              {/* Card footer */}
+              <div className="p-4 sm:p-5" style={{ background: "#FAFBFC", borderTop: "1px solid #E2E8F0" }}>
+                <div className="flex items-center gap-4">
+                  {/* Logo Thumbnail */}
+                  <div className="flex-shrink-0 w-[72px] h-[72px] sm:w-[84px] sm:h-[84px] bg-white rounded-xl flex items-center justify-center p-2.5" 
+                       style={{ border: `1px solid #00A86B20`, boxShadow: "0 4px 12px rgba(0,0,0,0.03)" }}>
+                    <div className="relative w-full h-full">
+                      <Image
+                        src="/images/karnataka_itbt_department_logo.png"
+                        alt="Karnataka Elevate Logo"
+                        fill
+                        className="object-contain"
+                        sizes="84px"
+                      />
+                    </div>
+                  </div>
+                  {/* Text Content */}
+                  <div className="flex-1 min-w-0 flex flex-col justify-center">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold mb-1.5 w-max" style={{ background: "#ECFDF5", color: "#00A86B" }}>JANUARY 2026</span>
+                    <h3 className="text-[16px] sm:text-[18px] font-extrabold mb-1 leading-tight truncate" style={{ color: "#0F172A" }}>Karnataka Elevate 2025</h3>
+                    <p className="text-[13px] sm:text-[14px] leading-snug line-clamp-2" style={{ color: "#64748B" }}>Selected from 1,474+ applicants — up to ₹50 lakh non-dilutive grant</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Partner logos */}
-          <div className="text-center">
-            <p className="text-[13px] font-medium mb-4" style={{ color: "#64748B" }}>Backed by leading technology partners</p>
-            <div className="flex justify-center">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Gqt7incm1St02ycvVbXNCKm4NzQz1I.png"
-                alt="NVIDIA Inception, AWS, Microsoft for Startups"
-                width={700}
-                height={90}
-                className="h-14 sm:h-20 w-auto object-contain"
-              />
+          <div className="w-full text-center mt-12 mb-4 relative flex flex-col items-center">
+            <p className="text-[16px] font-medium mb-8" style={{ color: "#64748B" }}>Backed by leading technology partners</p>
+
+            <div className="w-full max-w-[1200px] overflow-hidden relative">
+              {/* Gradient Fades for edges */}
+              <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, #FFFFFF, transparent)' }} />
+              <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, #FFFFFF, transparent)' }} />
+
+              <div className="flex items-center gap-12 sm:gap-24 w-max animate-marquee">
+                {/* Group 1 */}
+                {[
+                  { src: "/images/nvidia-inception.png", alt: "NVIDIA Inception", w: 220 },
+                  { src: "/images/aws-powered.png", alt: "AWS Powered", w: 160 },
+                  { src: "/images/microsoft-startups.png", alt: "Microsoft for Startups", w: 220 },
+                  { src: "/images/karnataka_itbt_department_logo.png", alt: "Karnataka Elevate", w: 180 },
+                  { src: "/images/Aegis_award_logo.jpg", alt: "Aegis Award", w: 160 },
+                ].map((logo, i) => (
+                  <div key={i} className="flex-shrink-0 h-16 sm:h-24 relative transition-transform duration-300 hover:scale-105" style={{ width: logo.w }}>
+                    <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
+                  </div>
+                ))}
+                {/* Group 2 (Duplicate for infinite seamless scroll) */}
+                {[
+                  { src: "/images/nvidia-inception.png", alt: "NVIDIA Inception", w: 220 },
+                  { src: "/images/aws-powered.png", alt: "AWS Powered", w: 160 },
+                  { src: "/images/microsoft-startups.png", alt: "Microsoft for Startups", w: 220 },
+                  { src: "/images/karnataka_itbt_department_logo.png", alt: "Karnataka Elevate", w: 180 },
+                  { src: "/images/Aegis_award_logo.jpg", alt: "Aegis Award", w: 160 },
+                ].map((logo, i) => (
+                  <div key={`dup-${i}`} className="flex-shrink-0 h-16 sm:h-24 relative transition-transform duration-300 hover:scale-105" style={{ width: logo.w }}>
+                    <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -267,14 +329,14 @@ export default function CompanyPage() {
         <div className="max-w-[1100px] mx-auto">
           <div className="flex items-center justify-center gap-3 mb-3">
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Location</span>
+            <span className="text-[14px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Location</span>
             <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
           </div>
           <h2 className="text-[22px] sm:text-[28px] lg:text-[36px] font-extrabold text-center mb-2" style={{ color: "#0F172A" }}>
             Find{" "}
             <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Us</span>
           </h2>
-          <p className="text-[13px] text-center mb-6" style={{ color: "#64748B" }}>
+          <p className="text-[16px] text-center mb-6" style={{ color: "#64748B" }}>
             Banashankari III Stage, Kathriguppe, Bangalore, Karnataka — 560085
           </p>
           <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #E2E8F0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>

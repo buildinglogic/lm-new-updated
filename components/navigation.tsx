@@ -102,7 +102,7 @@ export function Navigation() {
     if (typeof window !== 'undefined') {
       sessionStorage.setItem('selectedProductTab', product.tabId)
     }
-    
+
     // Check if we're on the home page
     if (window.location.pathname === '/') {
       // Scroll to products section
@@ -124,13 +124,13 @@ export function Navigation() {
     <>
       {/* Award Announcement Bar - Marquee - High contrast blue */}
       {!scrolled && (
-        <div 
+        <div
           className="fixed top-0 left-0 right-0 z-50 h-10 overflow-hidden"
           style={{ background: "#0066CC" }}
         >
           <div className="h-full flex items-center animate-marquee whitespace-nowrap">
             {[...Array(6)].map((_, i) => (
-              <span key={i} className="mx-8 text-[13px] font-bold text-white flex items-center gap-4">
+              <span key={i} className="mx-8 text-[14px] font-bold text-white flex items-center gap-4">
                 <span>Aegis Graham Bell Award 2026 Winner</span>
                 <span className="opacity-40">|</span>
                 <span>Karnataka Elevate 2025 Winner</span>
@@ -149,7 +149,7 @@ export function Navigation() {
         <div className="w-full h-full px-4 lg:px-8 flex items-center justify-between">
           {/* Logo - Far Left, Smaller size */}
           <Link href="/" className="flex items-center h-full py-3 flex-shrink-0 transition-transform duration-200 active:scale-95">
-            <Image 
+            <Image
               src="/images/liquidmind-logo.png"
               alt="Liquidmind"
               width={150}
@@ -161,15 +161,15 @@ export function Navigation() {
 
           {/* Desktop Nav - Center with equal spacing */}
           <div className="hidden lg:flex items-center justify-center flex-1 gap-10">
-            <div 
+            <div
               className="relative"
               onMouseEnter={() => setProductsOpen(true)}
               onMouseLeave={() => setProductsOpen(false)}
             >
-              <button className="flex items-center gap-1.5 text-white/80 hover:text-white text-[15px] font-semibold transition-colors">
+              <button className="flex items-center gap-1.5 text-white/80 hover:text-white text-[16px] font-semibold transition-colors">
                 Products <ChevronDown className={`w-4 h-4 transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
               </button>
-              
+
               {/* Invisible bridge — prevents gap from closing dropdown */}
               <div className="absolute top-full left-0 right-0 h-3" />
 
@@ -197,19 +197,19 @@ export function Navigation() {
             </div>
 
             {/* Company Dropdown */}
-            <div 
+            <div
               className="relative"
               onMouseEnter={() => setCompanyOpen(true)}
               onMouseLeave={() => setCompanyOpen(false)}
             >
-              <button className="flex items-center gap-1.5 text-white/80 hover:text-white text-[15px] font-semibold transition-colors py-4">
+              <button className="flex items-center gap-1.5 text-white/80 hover:text-white text-[16px] font-semibold transition-colors py-4">
                 Company <ChevronDown className={`w-4 h-4 transition-transform ${companyOpen ? 'rotate-180' : ''}`} />
               </button>
-              
+
               {/* Invisible bridge to prevent gap from closing dropdown */}
               <div className="absolute top-full left-0 right-0 h-3" />
-              
-              <div 
+
+              <div
                 className={`absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-[280px] p-2 rounded-xl transition-all duration-300 ${companyOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                 style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", boxShadow: "0 25px 60px rgba(0,0,0,0.2)" }}
               >
@@ -220,7 +220,7 @@ export function Navigation() {
                     <Link
                       key={link.name}
                       href={link.href}
-                      className="block px-4 py-2.5 rounded-lg text-[14px] font-medium transition-all hover:bg-[#F1F5F9]"
+                      className="block px-4 py-2.5 rounded-lg text-[15px] font-medium transition-all hover:bg-[#F1F5F9]"
                       style={{ color: "#0F172A" }}
                       onClick={() => setCompanyOpen(false)}
                     >
@@ -230,8 +230,8 @@ export function Navigation() {
                 )}
               </div>
             </div>
-            <Link href="/newsletter" className="text-white/80 hover:text-white text-[15px] font-semibold transition-colors">Newsletter</Link>
-            <Link href="/careers" className="text-white/80 hover:text-white text-[15px] font-semibold transition-colors">Careers</Link>
+            <Link href="/newsletter" className="text-white/80 hover:text-white text-[16px] font-semibold transition-colors">Newsletter</Link>
+            <Link href="/careers" className="text-white/80 hover:text-white text-[16px] font-semibold transition-colors">Careers</Link>
           </div>
 
           {/* Right side - Social icons + Book Demo */}
@@ -250,8 +250,8 @@ export function Navigation() {
                 <Mail className="w-5 h-5 text-white/70 hover:text-white" />
               </a>
             </div>
-            
-            <Link href="/book-demo" className="px-6 py-2.5 rounded-lg text-[15px] font-bold btn-shine transition-all hover:scale-105"
+
+            <Link href="/book-demo" className="px-6 py-2.5 rounded-lg text-[16px] font-bold btn-shine transition-all hover:scale-105"
               style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}>
               Book Demo
             </Link>
@@ -285,7 +285,7 @@ export function Navigation() {
             {/* Products accordion */}
             <button
               onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-              className="w-full flex items-center justify-between py-3.5 text-[15px] font-semibold"
+              className="w-full flex items-center justify-between py-3.5 text-[16px] font-semibold"
               style={{ color: "#0F172A", borderBottom: "1px solid #E2E8F0" }}
             >
               Products
@@ -304,8 +304,8 @@ export function Navigation() {
                       {product.icon}
                     </div>
                     <div className="text-left">
-                      <div className="text-[13px] font-semibold" style={{ color: "#0F172A" }}>{product.name}</div>
-                      <div className="text-[11px]" style={{ color: "#64748B" }}>{product.tagline}</div>
+                      <div className="text-[15px] font-semibold" style={{ color: "#0F172A" }}>{product.name}</div>
+                      <div className="text-[13px]" style={{ color: "#64748B" }}>{product.tagline}</div>
                     </div>
                   </button>
                 ))}
@@ -315,7 +315,7 @@ export function Navigation() {
             {/* Company accordion */}
             <button
               onClick={() => setMobileCompanyOpen(!mobileCompanyOpen)}
-              className="w-full flex items-center justify-between py-3.5 text-[15px] font-semibold"
+              className="w-full flex items-center justify-between py-3.5 text-[16px] font-semibold"
               style={{ color: "#0F172A", borderBottom: mobileCompanyOpen ? "none" : "1px solid #E2E8F0" }}
             >
               Company
@@ -330,7 +330,7 @@ export function Navigation() {
                     <Link
                       key={link.name}
                       href={link.href}
-                      className="block px-2 py-2.5 rounded-xl text-[13px] font-medium transition-colors hover:bg-[#F8FAFC]"
+                      className="block px-2 py-2.5 rounded-xl text-[15px] font-medium transition-colors hover:bg-[#F8FAFC]"
                       style={{ color: "#475569" }}
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -343,13 +343,13 @@ export function Navigation() {
 
             {/* Flat links */}
             <Link href="/newsletter"
-              className="flex items-center py-3.5 text-[15px] font-semibold"
+              className="flex items-center py-3.5 text-[16px] font-semibold"
               style={{ color: "#0F172A", borderBottom: "1px solid #E2E8F0" }}
               onClick={() => setMobileMenuOpen(false)}>
               Newsletter
             </Link>
             <Link href="/careers"
-              className="flex items-center py-3.5 text-[15px] font-semibold"
+              className="flex items-center py-3.5 text-[16px] font-semibold"
               style={{ color: "#0F172A", borderBottom: "1px solid #E2E8F0" }}
               onClick={() => setMobileMenuOpen(false)}>
               Careers
@@ -376,7 +376,7 @@ export function Navigation() {
               </div>
               <Link
                 href="/book-demo"
-                className="px-5 py-2.5 rounded-full text-[13px] font-bold btn-shine"
+                className="px-5 py-2.5 rounded-full text-[15px] font-bold btn-shine"
                 style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -389,8 +389,8 @@ export function Navigation() {
 
       {/* Mobile bottom bar */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex" style={{ background: "#FFFFFF", borderTop: "1px solid #E2E8F0" }}>
-        <a href="https://wa.me/919845592468" className="flex-1 py-3 text-center text-[#0F172A] font-semibold text-sm border-r border-[#E2E8F0]">WhatsApp</a>
-        <Link href="/book-demo" className="flex-1 py-3 text-center font-semibold text-sm" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}>Book Demo</Link>
+        <a href="https://wa.me/919845592468" className="flex-1 py-3 text-center text-[#0F172A] font-semibold text-[16px] border-r border-[#E2E8F0]">WhatsApp</a>
+        <Link href="/book-demo" className="flex-1 py-3 text-center font-semibold text-[16px]" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}>Book Demo</Link>
       </div>
     </>
   )

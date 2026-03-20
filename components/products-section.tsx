@@ -39,7 +39,7 @@ export function ProductsSection() {
     // This fixed the "Back" button issue where the user wouldn't return to the
     // demo section after navigating away and coming back.
     router.push("/#demo")
-    
+
     // If we're already on the home page, manual scroll provides a smoother immediately
     // feedback than the native hash-change scroll in some browsers.
     if (window.location.pathname === "/") {
@@ -82,83 +82,83 @@ export function ProductsSection() {
   return (
     <section ref={ref} id="products" className="page-snap flex flex-col pt-[38px] pb-8 px-4 lg:px-6" style={{ background: "#FFFFFF", scrollMarginTop: "72px" }}>
       <div className="w-full max-w-[1400px] mx-auto">
-          {/* Header — compact */}
-          <div className={`text-center mb-3 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="flex items-center justify-center gap-3 mb-1.5">
-              <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Our Products</span>
-              <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #00A86B, #0066CC)" }} />
-            </div>
-            <h2 className="text-[22px] lg:text-[32px] font-bold leading-tight mb-1" style={{ color: "#0F172A" }}>
-              Three Products.{" "}
-              <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">One Mission.</span>
-            </h2>
-            <p className="text-xs max-w-sm mx-auto" style={{ color: "#475569" }}>
-              Stop money leaking through your trade documents.
-            </p>
+        {/* Header — compact */}
+        <div className={`text-center mb-3 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="flex items-center justify-center gap-3 mb-1.5">
+            <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
+            <span className="text-[13px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Our Products</span>
+            <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #00A86B, #0066CC)" }} />
           </div>
+          <h2 className="text-[26px] lg:text-[36px] font-bold leading-tight mb-1" style={{ color: "#0F172A" }}>
+            Three Products.{" "}
+            <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">One Mission.</span>
+          </h2>
+          <p className="text-sm max-w-sm mx-auto" style={{ color: "#475569" }}>
+            Stop money leaking through your trade documents.
+          </p>
+        </div>
 
-          {/* Toggle — full-width on mobile, percentage-based slider */}
-          <div className={`flex justify-center mb-4 transition-all duration-700 delay-100 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="relative flex p-1 rounded-full w-full max-w-[340px]"
+        {/* Toggle — full-width on mobile, percentage-based slider */}
+        <div className={`flex justify-center mb-4 transition-all duration-700 delay-100 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="relative flex p-1 rounded-full w-full max-w-[340px]"
+            style={{
+              background: activeTab === "patram" ? "#00A86B" : activeTab === "tariffiq" ? "#1B4F8A" : "#0066CC",
+              transition: "background 320ms ease",
+            }}>
+            {/* Sliding indicator — percentage-based so it works at any width */}
+            <div
               style={{
-                background: activeTab === "patram" ? "#00A86B" : activeTab === "tariffiq" ? "#1B4F8A" : "#0066CC",
-                transition: "background 320ms ease",
-              }}>
-              {/* Sliding indicator — percentage-based so it works at any width */}
-              <div
+                position: "absolute",
+                top: "4px", bottom: "4px",
+                left: `calc(4px + ${activeIdx} * (100% - 8px) / 3)`,
+                width: `calc((100% - 8px) / 3)`,
+                borderRadius: "9999px",
+                background: "#FFFFFF",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+                transition: "left 320ms cubic-bezier(0.4, 0, 0.2, 1)",
+                pointerEvents: "none",
+                zIndex: 0,
+              }}
+            />
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
                 style={{
-                  position: "absolute",
-                  top: "4px", bottom: "4px",
-                  left: `calc(4px + ${activeIdx} * (100% - 8px) / 3)`,
-                  width: `calc((100% - 8px) / 3)`,
+                  position: "relative", zIndex: 1,
+                  flex: 1, minWidth: 0, padding: "7px 0",
                   borderRadius: "9999px",
-                  background: "#FFFFFF",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
-                  transition: "left 320ms cubic-bezier(0.4, 0, 0.2, 1)",
-                  pointerEvents: "none",
-                  zIndex: 0,
+                  fontSize: "15px", fontWeight: "700",
+                  color: activeTab === tab.id
+                    ? (activeTab === "patram" ? "#00A86B" : activeTab === "tariffiq" ? "#1B4F8A" : "#0066CC")
+                    : "rgba(255,255,255,0.85)",
+                  transition: "color 320ms ease",
+                  background: "transparent", border: "none", cursor: "pointer",
                 }}
-              />
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  style={{
-                    position: "relative", zIndex: 1,
-                    flex: 1, minWidth: 0, padding: "7px 0",
-                    borderRadius: "9999px",
-                    fontSize: "13px", fontWeight: "700",
-                    color: activeTab === tab.id
-                      ? (activeTab === "patram" ? "#00A86B" : activeTab === "tariffiq" ? "#1B4F8A" : "#0066CC")
-                      : "rgba(255,255,255,0.85)",
-                    transition: "color 320ms ease",
-                    background: "transparent", border: "none", cursor: "pointer",
-                  }}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Tab content */}
-          <div className={`transition-all duration-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="animate-fade-in" key={activeTab}>
-              {activeTab === "tradeguard" && <TradeguardTab onGetStarted={handleGetStarted} />}
-              {activeTab === "patram" && <PatramTab onGetStarted={handleGetStarted} />}
-              {activeTab === "tariffiq" && <TariffIQTab onGetStarted={handleGetStarted} />}
-            </div>
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
         </div>
+
+        {/* Tab content */}
+        <div className={`transition-all duration-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="animate-fade-in" key={activeTab}>
+            {activeTab === "tradeguard" && <TradeguardTab onGetStarted={handleGetStarted} />}
+            {activeTab === "patram" && <PatramTab onGetStarted={handleGetStarted} />}
+            {activeTab === "tariffiq" && <TariffIQTab onGetStarted={handleGetStarted} />}
+          </div>
+        </div>
+      </div>
     </section>
   )
 }
 
 const SCAN_FIELDS = [
   { field: "Exporter Name", value: "RAJESH EXPORTS LTD", status: "match" },
-  { field: "HSN Code",      value: "8471.30",             status: "match" },
-  { field: "FOB Value",     value: "$42,500", inv: "$41,800", delta: "−$700 (1.6%)", status: "mismatch" },
+  { field: "HSN Code", value: "8471.30", status: "match" },
+  { field: "FOB Value", value: "$42,500", inv: "$41,800", delta: "−$700 (1.6%)", status: "mismatch" },
   { field: "Port of Loading", value: "INNSA1", inv: "NHAVA SHEVA", status: "warning" },
 ]
 
@@ -190,7 +190,7 @@ function TradeguardScanMockup() {
   }, [])
 
   const verified = SCAN_FIELDS.slice(0, visibleCount).filter(f => f.status === "match").length
-  const issues   = SCAN_FIELDS.slice(0, visibleCount).filter(f => f.status !== "match").length
+  const issues = SCAN_FIELDS.slice(0, visibleCount).filter(f => f.status !== "match").length
 
   return (
     <div className="rounded-2xl overflow-hidden"
@@ -207,8 +207,8 @@ function TradeguardScanMockup() {
             </svg>
           </div>
           <div>
-            <p className="font-bold text-[13px] leading-none" style={{ color: "#0F172A" }}>TradeGuard Scan</p>
-            <p className="text-[10px] mt-0.5" style={{ color: "#94A3B8" }}>SB_0441 · INV_0441</p>
+            <p className="font-bold text-[14px] leading-none" style={{ color: "#0F172A" }}>TradeGuard Scan</p>
+            <p className="text-[12px] mt-0.5" style={{ color: "#94A3B8" }}>SB_0441 · INV_0441</p>
           </div>
         </div>
         <div className="flex items-center gap-1.5" style={{ minWidth: "110px", justifyContent: "flex-end" }}>
@@ -247,27 +247,27 @@ function TradeguardScanMockup() {
       <div className="px-4 py-3 space-y-2" style={{ minHeight: "260px" }}>
         {SCAN_FIELDS.map((f, idx) => {
           const visible = idx < visibleCount
-          const active  = idx === visibleCount - 1 && !done
+          const active = idx === visibleCount - 1 && !done
           const isMismatch = f.status === "mismatch"
-          const isWarning  = f.status === "warning"
+          const isWarning = f.status === "warning"
 
           return (
             <div
               key={f.field}
               className="rounded-xl overflow-hidden transition-all duration-400"
               style={{
-                opacity:    visible ? 1 : 0.08,
-                transform:  visible ? "translateY(0)" : "translateY(4px)",
+                opacity: visible ? 1 : 0.08,
+                transform: visible ? "translateY(0)" : "translateY(4px)",
                 border: isMismatch
                   ? "1.5px solid rgba(245,158,11,0.4)"
                   : isWarning
-                  ? "1.5px solid rgba(245,158,11,0.2)"
-                  : "1.5px solid #E2E8F0",
+                    ? "1.5px solid rgba(245,158,11,0.2)"
+                    : "1.5px solid #E2E8F0",
                 background: isMismatch
                   ? "rgba(245,158,11,0.04)"
                   : isWarning
-                  ? "rgba(245,158,11,0.02)"
-                  : "#FAFAFA",
+                    ? "rgba(245,158,11,0.02)"
+                    : "#FAFAFA",
                 boxShadow: active ? "0 0 0 3px rgba(0,102,204,0.12)" : "none",
               }}
             >
@@ -279,10 +279,10 @@ function TradeguardScanMockup() {
                       background: isMismatch
                         ? "rgba(245,158,11,0.15)"
                         : isWarning
-                        ? "rgba(245,158,11,0.1)"
-                        : active
-                        ? "rgba(0,102,204,0.12)"
-                        : "rgba(0,168,107,0.12)",
+                          ? "rgba(245,158,11,0.1)"
+                          : active
+                            ? "rgba(0,102,204,0.12)"
+                            : "rgba(0,168,107,0.12)",
                     }}>
                     {active ? (
                       <span className="text-[8px] animate-pulse" style={{ color: "#0066CC" }}>●</span>
@@ -296,7 +296,7 @@ function TradeguardScanMockup() {
                       </svg>
                     )}
                   </div>
-                  <span className="text-[12px] font-semibold" style={{ color: "#475569" }}>{f.field}</span>
+                  <span className="text-[13px] font-semibold" style={{ color: "#475569" }}>{f.field}</span>
                 </div>
 
                 {/* Value */}
@@ -352,15 +352,15 @@ function TradeguardTab({ onGetStarted }: { onGetStarted: () => void }) {
         {/* Label */}
         <div className="flex items-center gap-3 mb-3">
           <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
+          <span className="text-[13px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
             Document Verification
           </span>
         </div>
-        <h3 className="text-[22px] lg:text-[34px] font-bold leading-tight mb-3" style={{ color: "#0F172A" }}>
+        <h3 className="text-[26px] lg:text-[38px] font-bold leading-tight mb-3" style={{ color: "#0F172A" }}>
           Stop Mismatches{" "}
           <span style={{ color: "#0066CC" }}>Before They Cost You.</span>
         </h3>
-        <p className="text-sm leading-relaxed mb-4" style={{ color: "#475569" }}>
+        <p className="text-[15px] leading-relaxed mb-4" style={{ color: "#475569" }}>
           Tradeguard extracts 40+ fields from your Shipping Bill and Commercial Invoice,
           maps them intelligently, and flags every discrepancy in under 5 seconds.
         </p>
@@ -369,7 +369,7 @@ function TradeguardTab({ onGetStarted }: { onGetStarted: () => void }) {
           {features.map((feature, idx) => (
             <div key={idx} className="flex items-center gap-2 transition-all duration-300 hover:translate-x-1">
               <Check className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#00A86B" }} />
-              <span className="text-[12px]" style={{ color: "#0F172A" }}>{feature}</span>
+              <span className="text-[13px]" style={{ color: "#0F172A" }}>{feature}</span>
             </div>
           ))}
         </div>
@@ -402,7 +402,7 @@ function TradeguardTab({ onGetStarted }: { onGetStarted: () => void }) {
         <div className="flex flex-row gap-3">
           <button
             onClick={onGetStarted}
-            className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
+            className="px-5 py-2.5 rounded-lg text-[15px] font-bold transition-all duration-300 hover:scale-105 btn-shine"
             style={{
               background: "linear-gradient(90deg, #0066CC, #00A86B)",
               color: "#FFFFFF",
@@ -415,7 +415,7 @@ function TradeguardTab({ onGetStarted }: { onGetStarted: () => void }) {
             href="https://www.youtube.com/watch?v=LrHbm877l5g"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105"
+            className="px-5 py-2.5 rounded-lg text-[15px] font-semibold transition-all duration-300 hover:scale-105"
             style={{ background: "transparent", border: "1.5px solid #CBD5E1", color: "#0F172A" }}
           >
             Watch Demo
@@ -543,7 +543,7 @@ function PatramAdvisorMockup() {
                 style={{ background: "linear-gradient(135deg, #00A86B, #0066CC)" }}>
                 {isNext ? (
                   <span className="inline-flex gap-0.5">
-                    {[0,1,2].map(i => (
+                    {[0, 1, 2].map(i => (
                       <span key={i} className="w-0.5 h-0.5 rounded-full animate-bounce bg-white"
                         style={{ animationDelay: `${i * 150}ms` }} />
                     ))}
@@ -584,15 +584,15 @@ function PatramTab({ onGetStarted }: { onGetStarted: () => void }) {
         {/* Label */}
         <div className="flex items-center gap-3 mb-3">
           <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #00A86B, #0066CC)" }} />
-          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
+          <span className="text-[13px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
             Export Intelligence
           </span>
         </div>
-        <h3 className="text-[22px] lg:text-[34px] font-bold leading-tight mb-3" style={{ color: "#0F172A" }}>
+        <h3 className="text-[26px] lg:text-[38px] font-bold leading-tight mb-3" style={{ color: "#0F172A" }}>
           Know the Rules{" "}
           <span style={{ color: "#00A86B" }}>Before You Ship.</span>
         </h3>
-        <p className="text-sm leading-relaxed mb-4" style={{ color: "#475569" }}>
+        <p className="text-[15px] leading-relaxed mb-4" style={{ color: "#475569" }}>
           Tell Patram AI what you're exporting and where. Get instant customs rules,
           required documents, duty rates and a compliance checklist — powered by live trade policy data.
         </p>
@@ -763,7 +763,7 @@ function TariffIQChatMockup() {
                 style={{ background: "linear-gradient(135deg, #1B4F8A, #2563EB)" }}>
                 {isNext ? (
                   <span className="inline-flex gap-0.5">
-                    {[0,1,2].map(i => (
+                    {[0, 1, 2].map(i => (
                       <span key={i} className="w-0.5 h-0.5 rounded-full animate-bounce bg-white"
                         style={{ animationDelay: `${i * 150}ms` }} />
                     ))}
@@ -800,15 +800,15 @@ function TariffIQTab({ onGetStarted }: { onGetStarted: () => void }) {
       <div className="animate-slide-in-left">
         <div className="flex items-center gap-3 mb-3">
           <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #1B4F8A, #2563EB)" }} />
-          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
+          <span className="text-[13px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
             HSN Classification & Duty
           </span>
         </div>
-        <h3 className="text-[22px] lg:text-[34px] font-bold leading-tight mb-3" style={{ color: "#0F172A" }}>
+        <h3 className="text-[26px] lg:text-[38px] font-bold leading-tight mb-3" style={{ color: "#0F172A" }}>
           Know Your HSN Code{" "}
           <span style={{ color: "#1B4F8A" }}>Before Shipment.</span>
         </h3>
-        <p className="text-sm leading-relaxed mb-4" style={{ color: "#475569" }}>
+        <p className="text-[15px] leading-relaxed mb-4" style={{ color: "#475569" }}>
           Tell TariffIQ what you are shipping. It classifies your product to the correct
           8-digit HSN code, calculates your exact duty liability, and tells you whether
           RoDTEP or Drawback earns you more.

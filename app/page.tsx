@@ -109,7 +109,7 @@ function HeroSection() {
   const stats = [
     { to: 50, suffix: "%", line1: "trade data", line2: "mismatches" },
     { to: 30, suffix: "%", line1: "docs with", line2: "critical errors" },
-    { to: 7,  suffix: "%", prefix: "3–", line1: "FOB value", line2: "at risk" },
+    { to: 7, suffix: "%", prefix: "3–", line1: "FOB value", line2: "at risk" },
   ] as { to: number; suffix: string; line1: string; line2: string; prefix?: string }[]
 
   return (
@@ -136,19 +136,19 @@ function HeroSection() {
             {/* Label */}
             <div className="flex items-center gap-2 mb-3 lg:mb-5 animate-fade-in">
               <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-              <span className="text-[11px] lg:text-[11px] font-semibold tracking-[0.16em] uppercase" style={{ color: "#94A3B8" }}>
+              <span className="text-[13px] lg:text-[13px] font-semibold tracking-[0.16em] uppercase" style={{ color: "#94A3B8" }}>
                 <span className="sm:hidden">India's #1 AI Platform</span>
                 <span className="hidden sm:inline">India's #1 AI Trade Compliance Platform</span>
               </span>
             </div>
 
-            <h1 className="text-[26px] lg:text-[56px] font-extrabold leading-[1.1] tracking-[-0.03em] mb-2 lg:mb-4 animate-fade-in-up stagger-1" style={{ color: "#0F172A" }}>
+            <h1 className="text-[32px] lg:text-[60px] font-extrabold leading-[1.1] tracking-[-0.03em] mb-2 lg:mb-4 animate-fade-in-up stagger-1" style={{ color: "#0F172A" }}>
               Stop Losing<br />
               <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Crores</span> to Trade<br />
               Document Errors.
             </h1>
 
-            <p className="text-[13px] lg:text-[17px] leading-[1.55] max-w-[460px] mb-3 lg:mb-8 animate-fade-in-up stagger-2" style={{ color: "#475569" }}>
+            <p className="text-[15px] lg:text-[18px] leading-[1.55] max-w-[460px] mb-3 lg:mb-8 animate-fade-in-up stagger-2" style={{ color: "#475569" }}>
               Indian exporters lose 3–7% of FOB value every month to document mismatches.
               Liquidmind AI catches every error before customs does.
             </p>
@@ -158,10 +158,10 @@ function HeroSection() {
               {stats.map((stat, idx) => (
                 <React.Fragment key={idx}>
                   <div className="flex flex-col">
-                    <span className="text-[22px] lg:text-[34px] font-black tracking-tight leading-none tabular-nums whitespace-nowrap" style={{ color: "#0066CC" }}>
+                    <span className="text-[26px] lg:text-[36px] font-black tracking-tight leading-none tabular-nums whitespace-nowrap" style={{ color: "#0066CC" }}>
                       {stat.prefix}<AnimatedCount to={stat.to} />{stat.suffix}
                     </span>
-                    <span className="text-[11px] lg:text-[10px] font-medium leading-[1.3] mt-1" style={{ color: "#94A3B8" }}>
+                    <span className="text-[13px] lg:text-[12px] font-medium leading-[1.3] mt-1" style={{ color: "#94A3B8" }}>
                       {stat.line1}<br />{stat.line2}
                     </span>
                   </div>
@@ -176,7 +176,7 @@ function HeroSection() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 lg:gap-3 animate-fade-in-up stagger-4">
               <Link href="/book-demo"
                 onClick={() => trackBookDemoCTAClick('Hero')}
-                className="px-5 py-2.5 lg:px-6 lg:py-3 rounded-xl text-sm font-bold btn-shine haptic-btn inline-flex items-center justify-center gap-2"
+                className="px-5 py-2.5 lg:px-6 lg:py-3 rounded-xl text-[15px] font-bold btn-shine haptic-btn inline-flex items-center justify-center gap-2"
                 style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF", boxShadow: "0 4px 25px rgba(0,102,204,0.35)" }}>
                 Book Free Demo
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -200,7 +200,7 @@ function HeroSection() {
                     </svg>
                   </span>
                 </div>
-                <span className="text-sm font-bold bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Watch Demo</span>
+                <span className="text-[15px] font-bold bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Watch Demo</span>
               </button>
             </div>
           </div>
@@ -219,72 +219,72 @@ function HeroSection() {
 ======================== */
 function ProblemSection() {
   const { ref, isInView } = useInView()
-  
+
   const problems = [
-    { 
+    {
       icon: (
         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      number: "3,000+", 
-      title: "New Policies Raise Costs by 20%", 
-      body: "Rising trade policies increase operational expenses by 20% annually.", 
+      number: "3,000+",
+      title: "New Policies Raise Costs by 20%",
+      body: "Rising trade policies increase operational expenses by 20% annually.",
       citation: "World Economic Forum"
     },
-    { 
+    {
       icon: (
         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
         </svg>
       ),
-      number: "50%", 
-      title: "Mismatches in Trade Data", 
-      body: "Export-import data errors exceed 50%, distorting global trade figures.", 
+      number: "50%",
+      title: "Mismatches in Trade Data",
+      body: "Export-import data errors exceed 50%, distorting global trade figures.",
       citation: "ADB Report"
     },
-    { 
+    {
       icon: (
         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
         </svg>
       ),
-      number: "$1.5T", 
-      title: "Lost to Trade Inefficiencies", 
-      body: "This have led to a $1.5 trillion contraction, driven by changing geopolitical relations and reduced demand.", 
+      number: "$1.5T",
+      title: "Lost to Trade Inefficiencies",
+      body: "This have led to a $1.5 trillion contraction, driven by changing geopolitical relations and reduced demand.",
       citation: "UNCTAD Report"
     },
-    { 
+    {
       icon: (
         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
         </svg>
       ),
-      number: "30%", 
-      title: "Documents Contain Critical Errors", 
-      body: "This high error rate can lead to significant delays and increased costs in global supply chains.", 
+      number: "30%",
+      title: "Documents Contain Critical Errors",
+      body: "This high error rate can lead to significant delays and increased costs in global supply chains.",
       citation: "World Bank Logistics Performance Index"
     },
-    { 
+    {
       icon: (
         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      number: "3-7%", 
-      title: "Of FOB Value Lost Per Shipment", 
-      body: "Drawback, IGST refunds, RODTEP scrips. The money is owed to you but doesn't come back.", 
+      number: "3-7%",
+      title: "Of FOB Value Lost Per Shipment",
+      body: "Drawback, IGST refunds, RODTEP scrips. The money is owed to you but doesn't come back.",
       citation: "CBIC Analysis"
     },
-    { 
+    {
       icon: (
         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
         </svg>
       ),
-      number: "95%", 
-      title: "Accuracy Needed for Compliance", 
-      body: "One wrong digit in HSN code or port abbreviation can reject your entire drawback claim.", 
+      number: "95%",
+      title: "Accuracy Needed for Compliance",
+      body: "One wrong digit in HSN code or port abbreviation can reject your entire drawback claim.",
       citation: "Industry Standard"
     },
   ]
@@ -310,12 +310,12 @@ function ProblemSection() {
         <div className={`text-center mb-5 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="flex items-center justify-center gap-3 mb-3">
             <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
+            <span className="text-[13px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
               The Cost of Doing Nothing
             </span>
             <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
           </div>
-          <h2 className="text-[22px] lg:text-[36px] font-bold leading-tight" style={{ color: "#0F172A" }}>
+          <h2 className="text-[26px] lg:text-[40px] font-bold leading-tight" style={{ color: "#0F172A" }}>
             Your Trade Documents Are{" "}
             <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Bleeding Money</span>{" "}
             Right Now.
@@ -331,14 +331,14 @@ function ProblemSection() {
         <div className={`flex flex-col items-center gap-3 transition-all duration-700 delay-300 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="flex items-center gap-3">
             <div className="h-px w-12 rounded-full" style={{ background: "linear-gradient(90deg, transparent, #CBD5E1)" }} />
-            <span className="text-[11px] lg:text-[10px] font-mono font-semibold tracking-[0.08em] lg:tracking-[0.15em] uppercase text-center" style={{ color: "#94A3B8" }}>
+            <span className="text-[13px] lg:text-[12px] font-mono font-semibold tracking-[0.08em] lg:tracking-[0.15em] uppercase text-center" style={{ color: "#94A3B8" }}>
               ₹2,40,000+ at risk in an average shipment
             </span>
             <div className="h-px w-12 rounded-full" style={{ background: "linear-gradient(270deg, transparent, #CBD5E1)" }} />
           </div>
 
           <a href="#products"
-            className="group btn-cta-glow btn-shine haptic-btn relative inline-flex items-center gap-3 px-6 py-3 lg:px-9 lg:py-4 rounded-2xl text-white font-extrabold text-[13px] lg:text-[15px] tracking-tight overflow-hidden"
+            className="group btn-cta-glow btn-shine haptic-btn relative inline-flex items-center gap-3 px-6 py-3 lg:px-9 lg:py-4 rounded-2xl text-white font-extrabold text-[15px] lg:text-[17px] tracking-tight overflow-hidden"
             style={{ background: "linear-gradient(90deg, #0066CC 0%, #00A86B 100%)" }}>
             <span className="absolute left-0 right-0 h-px top-0 opacity-40" style={{ background: "linear-gradient(90deg, transparent, #ffffff, transparent)", animation: "shimmer 2s linear infinite" }} />
             <span className="relative">
@@ -352,7 +352,7 @@ function ProblemSection() {
             </span>
           </a>
 
-          <span className="text-[11px]" style={{ color: "#94A3B8" }}>
+          <span className="text-[13px]" style={{ color: "#94A3B8" }}>
             Works on your actual documents · Results in under 5 minutes
           </span>
         </div>
@@ -420,7 +420,7 @@ function ProblemCardItem({ problem, idx, isInView }: {
         </div>
 
         {/* Title */}
-        <div className="font-semibold text-[12px] lg:text-[12px] leading-snug mb-2" style={{ color: "#0F172A" }}>
+        <div className="font-semibold text-[14px] lg:text-[14px] leading-snug mb-2" style={{ color: "#0F172A" }}>
           {problem.title}
         </div>
 
@@ -587,16 +587,16 @@ function HowItWorks() {
       <div className={`text-center mb-8 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="flex items-center justify-center gap-3 mb-2">
           <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>The Journey</span>
+          <span className="text-[13px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>The Journey</span>
           <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
         </div>
-        <h2 className="text-[26px] lg:text-[42px] font-extrabold leading-tight mb-2" style={{ color: "#0F172A" }}>
+        <h2 className="text-[30px] lg:text-[46px] font-extrabold leading-tight mb-2" style={{ color: "#0F172A" }}>
           You focus on the deal.{" "}
           <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">
             We handle the compliance.
           </span>
         </h2>
-        <p className="text-[14px]" style={{ color: "#64748B" }}>Five moments. One exporter. Zero stress.</p>
+        <p className="text-[15px]" style={{ color: "#64748B" }}>Five moments. One exporter. Zero stress.</p>
       </div>
 
       {/* Step cards */}
@@ -649,19 +649,19 @@ function HowItWorks() {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-bold text-[14px] lg:text-[14px] mb-1.5 leading-snug transition-colors duration-300"
+                <h3 className="font-bold text-[16px] lg:text-[16px] mb-1.5 leading-snug transition-colors duration-300"
                   style={{ color: active ? '#0F172A' : '#64748B' }}>
                   {step.title}
                 </h3>
 
                 {/* Story */}
-                <p className="text-[13px] leading-relaxed mb-3 transition-colors duration-300"
+                <p className="text-[14px] leading-relaxed mb-3 transition-colors duration-300"
                   style={{ color: active ? '#475569' : '#94A3B8' }}>
                   {step.story}
                 </p>
 
                 {/* Metric chip */}
-                <div className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold transition-all duration-300"
+                <div className="inline-flex items-center px-2.5 py-1 rounded-full text-[13px] font-bold transition-all duration-300"
                   style={{
                     background: active ? `${step.color}12` : '#F1F5F9',
                     color: active ? step.color : '#94A3B8',
@@ -675,7 +675,7 @@ function HowItWorks() {
                   <div className="flex items-center gap-1.5 mt-2">
                     <div className="w-1.5 h-1.5 rounded-full transition-all duration-300"
                       style={{ background: active ? step.color : '#CBD5E1' }} />
-                    <span className="text-[11px] font-bold tracking-[0.14em] uppercase transition-colors duration-300"
+                    <span className="text-[12px] font-bold tracking-[0.14em] uppercase transition-colors duration-300"
                       style={{ color: active ? step.color : '#CBD5E1' }}>
                       {step.agent}
                     </span>
@@ -729,12 +729,12 @@ function HowItWorks() {
 
       {/* CTA */}
       <div className={`text-center transition-all duration-700 delay-400 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <p className="text-[11px] font-mono tracking-widest mb-4" style={{ color: '#CBD5E1' }}>
+        <p className="text-[13px] font-mono tracking-widest mb-4" style={{ color: '#CBD5E1' }}>
           — ENTIRE JOURNEY UNDER 5 MINUTES —
         </p>
         <Link
           href="/book-demo"
-          className="inline-flex items-center gap-2.5 px-7 py-3 rounded-xl font-bold text-[14px] text-white transition-all hover:scale-105 haptic-btn btn-shine"
+          className="inline-flex items-center gap-2.5 px-7 py-3 rounded-xl font-bold text-[15px] text-white transition-all hover:scale-105 haptic-btn btn-shine"
           style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", boxShadow: "0 4px 24px rgba(0,102,204,0.35)" }}
         >
           Watch It Happen Live
@@ -753,15 +753,15 @@ function HowItWorks() {
 ======================== */
 function AwardsSection() {
   const { ref, isInView } = useInView()
-  
+
   const awards = [
     {
       date: "FEBRUARY 2026",
       title: "Aegis Graham Bell Award",
       subtitle: "16th AGBA Innovation in Gen AI — CX, Sales & GTM Intelligence Category Winner",
-      image: "/images/aegis-graham-bell-award.jpg",
-      objectPosition: "object-top",
-      logo: "/images/aegis-logo.png",
+      image: "/images/aegis-award.jpg",
+      objectPosition: "object-center object-cover",
+      logo: "/images/Aegis_award_logo.jpg",
       logoAlt: "Aegis Graham Bell Award",
       accent: "#0066CC",
     },
@@ -769,9 +769,9 @@ function AwardsSection() {
       date: "JANUARY 2026",
       title: "Karnataka Elevate 2025",
       subtitle: "Selected from 1,474+ applicants — Non-dilutive grant of up to ₹50 Lakhs",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/karnataka%20elevate%20award-6VQmT2ahCZSsynysJCRN0mwxbYjAZp.jpg",
-      objectPosition: "object-center",
-      logo: "/images/karnataka-elevate-logo.png",
+      image: "/images/elevate-award.jpg",
+      objectPosition: "object-center object-cover",
+      logo: "/images/karnataka_itbt_department_logo.png",
       logoAlt: "Karnataka Elevate",
       accent: "#00A86B",
     },
@@ -782,10 +782,10 @@ function AwardsSection() {
       <div className="w-full max-w-[1100px] mx-auto">
         <div className={`flex items-center justify-center gap-3 mb-3 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-          <span className="text-[12px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Recognition</span>
+          <span className="text-[13px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Recognition</span>
           <div className="h-px w-8 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
         </div>
-        <h2 className={`text-[24px] lg:text-[36px] font-extrabold text-center mb-6 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ color: "#0F172A" }}>
+        <h2 className={`text-[28px] lg:text-[40px] font-extrabold text-center mb-6 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ color: "#0F172A" }}>
           Recognised.{" "}
           <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Validated.</span>{" "}
           Trusted.
@@ -844,21 +844,32 @@ function AwardsSection() {
                 </div>
 
                 {/* Card footer */}
-                <div className="p-5" style={{ borderTop: `2px solid ${award.accent}18`, background: "#FAFBFC" }}>
-                  {/* Gradient accent line */}
-                  <div className="h-[3px] w-12 rounded-full mb-3" style={{ background: `linear-gradient(90deg, ${award.accent}, #0066CC)` }} />
-                  {/* Logo */}
-                  <div className="mb-3 h-[34px] relative w-[110px]">
-                    <Image
-                      src={award.logo}
-                      alt={award.logoAlt}
-                      fill
-                      className="object-contain object-left"
-                      sizes="110px"
-                    />
+                <div className="p-4 sm:p-5" style={{ borderTop: `1px solid #E2E8F0`, background: "#FAFBFC" }}>
+                  <div className="flex items-center gap-4">
+                    {/* Logo Thumbnail */}
+                    <div className="flex-shrink-0 w-[72px] h-[72px] sm:w-[84px] sm:h-[84px] bg-white rounded-xl flex items-center justify-center p-2.5" 
+                         style={{ border: `1px solid ${award.accent}20`, boxShadow: "0 4px 12px rgba(0,0,0,0.03)" }}>
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={award.logo}
+                          alt={award.logoAlt}
+                          fill
+                          className="object-contain"
+                          sizes="84px"
+                        />
+                      </div>
+                    </div>
+                    {/* Text Content */}
+                    <div className="flex-1 min-w-0 flex flex-col justify-center">
+                      <div className="h-[2px] w-8 rounded-full mb-2" style={{ background: `linear-gradient(90deg, ${award.accent}, transparent)` }} />
+                      <h3 className="text-[16px] sm:text-[18px] font-extrabold mb-1 leading-tight truncate" style={{ color: "#0F172A" }}>
+                        {award.title}
+                      </h3>
+                      <p className="text-[13px] sm:text-[14px] leading-snug line-clamp-2" style={{ color: "#475569" }}>
+                        {award.subtitle}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-[17px] font-extrabold mb-1 leading-snug" style={{ color: "#0F172A" }}>{award.title}</h3>
-                  <p className="text-[14px] leading-relaxed" style={{ color: "#475569" }}>{award.subtitle}</p>
                 </div>
               </div>
             </div>
@@ -866,19 +877,42 @@ function AwardsSection() {
         </div>
       </div>
 
-      {/* Backed By - Partner Logos */}
-      <div className={`w-full py-5 transition-all duration-700 delay-300 ${isInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} style={{ background: "#F1F5F9" }}>
-        <div className="max-w-[900px] mx-auto text-center px-4">
-          <p className="text-[13px] font-semibold mb-4 tracking-wide" style={{ color: "#64748B" }}>Backed by leading technology partners</p>
-          <div className="flex justify-center items-center">
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-03-14%20133550-DW8iyYo9sqjlGDVnoCBNdZDhoLi2E4.png"
-              alt="Partner Logos - NVIDIA Inception, AWS, Microsoft for Startups"
-              width={800}
-              height={120}
-              priority
-              className="w-full max-w-[680px] h-auto object-contain"
-            />
+      {/* Backed By - Partner Logos Marquee */}
+      <div className={`w-full py-8 mt-4 transition-all duration-700 delay-300 ${isInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} style={{ background: "#F8FAFC", borderTop: "1px solid #E2E8F0" }}>
+        <div className="w-full text-center px-4 relative flex flex-col items-center">
+          <p className="text-[16px] font-medium mb-8 tracking-wide" style={{ color: "#64748B" }}>Backed by leading technology partners & institutions</p>
+
+          <div className="w-full max-w-[1200px] overflow-hidden relative">
+            {/* Gradient Fades for edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, #F8FAFC, transparent)' }} />
+            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, #F8FAFC, transparent)' }} />
+
+            <div className="flex items-center gap-12 sm:gap-24 w-max animate-marquee">
+              {/* Group 1 */}
+              {[
+                { src: "/images/nvidia-inception.png", alt: "NVIDIA Inception", w: 220 },
+                { src: "/images/aws-powered.png", alt: "AWS Powered", w: 160 },
+                { src: "/images/microsoft-startups.png", alt: "Microsoft for Startups", w: 220 },
+                { src: "/images/karnataka_itbt_department_logo.png", alt: "Karnataka Elevate", w: 180 },
+                { src: "/images/Aegis_award_logo.jpg", alt: "Aegis Award", w: 160 },
+              ].map((logo, i) => (
+                <div key={i} className="flex-shrink-0 h-16 sm:h-24 relative transition-transform duration-300 hover:scale-105" style={{ width: logo.w }}>
+                  <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
+                </div>
+              ))}
+              {/* Group 2 (Duplicate for infinite seamless scroll) */}
+              {[
+                { src: "/images/nvidia-inception.png", alt: "NVIDIA Inception", w: 220 },
+                { src: "/images/aws-powered.png", alt: "AWS Powered", w: 160 },
+                { src: "/images/microsoft-startups.png", alt: "Microsoft for Startups", w: 220 },
+                { src: "/images/karnataka_itbt_department_logo.png", alt: "Karnataka Elevate", w: 180 },
+                { src: "/images/Aegis_award_logo.jpg", alt: "Aegis Award", w: 160 },
+              ].map((logo, i) => (
+                <div key={`dup-${i}`} className="flex-shrink-0 h-16 sm:h-24 relative transition-transform duration-300 hover:scale-105" style={{ width: logo.w }}>
+                  <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -159,7 +159,7 @@ export default function FounderPage() {
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3">
                 <div className="h-px w-6 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-                <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Leadership</span>
+                <span className="text-[14px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Leadership</span>
               </div>
               <h1 className="text-[28px] sm:text-[36px] lg:text-[44px] font-extrabold leading-tight mb-1" style={{ color: "#0F172A" }}>
                 Naveen Athresh
@@ -167,7 +167,7 @@ export default function FounderPage() {
               <p className="text-[14px] font-semibold mb-4" style={{ color: "#00A86B" }}>
                 Founder & CEO · Chief Product Officer
               </p>
-              <p className="text-[13px] sm:text-[14px] leading-relaxed mb-4" style={{ color: "#475569" }}>
+              <p className="text-[16px] sm:text-[17px] leading-relaxed mb-4" style={{ color: "#475569" }}>
                 TEDx speaker and Forbes India 2020 Top 100 Leader, Naveen Athresh has spent over two decades at the intersection
                 of product, technology, and entrepreneurship. He has built 200+ member high-performance teams and led cross-geo
                 Product Engineering and Data Science organisations at PayU, Rakuten, and Flipkart.
@@ -181,7 +181,7 @@ export default function FounderPage() {
               {/* Achievement pills */}
               <div className="flex flex-wrap gap-2 mb-6">
                 {achievements.map((a) => (
-                  <div key={a.label} className="px-3 py-1.5 rounded-full text-[11px] font-semibold" style={{ background: "#EFF6FF", color: "#0066CC" }}>
+                  <div key={a.label} className="px-3 py-1.5 rounded-full text-[13px] font-semibold" style={{ background: "#EFF6FF", color: "#0066CC" }}>
                     <span style={{ color: "#0F172A" }}>{a.value}</span>
                     <span className="mx-1 opacity-40">·</span>
                     {a.label}
@@ -272,8 +272,8 @@ export default function FounderPage() {
                   style={{ background: h.lightBg, color: h.color }}>
                   {h.icon}
                 </div>
-                <h3 className="text-[13px] sm:text-[14px] font-bold mb-2" style={{ color: h.color }}>{h.title}</h3>
-                <p className="text-[12px] sm:text-[13px] leading-relaxed" style={{ color: "#475569" }}>{h.description}</p>
+                <h3 className="text-[15px] sm:text-[16px] font-bold mb-2" style={{ color: h.color }}>{h.title}</h3>
+                <p className="text-[14px] sm:text-[15px] leading-relaxed" style={{ color: "#475569" }}>{h.description}</p>
               </div>
             ))}
           </div>
@@ -306,8 +306,8 @@ export default function FounderPage() {
                 <div className="text-[26px] font-black mb-1 bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">
                   {p.term}
                 </div>
-                <div className="text-[11px] font-semibold mb-2 uppercase tracking-wider" style={{ color: "#94A3B8" }}>{p.meaning}</div>
-                <p className="text-[12px] leading-relaxed" style={{ color: "#475569" }}>{p.description}</p>
+                <div className="text-[13px] font-semibold mb-2 uppercase tracking-wider" style={{ color: "#94A3B8" }}>{p.meaning}</div>
+                <p className="text-[14px] leading-relaxed" style={{ color: "#475569" }}>{p.description}</p>
               </div>
             ))}
           </div>
@@ -336,8 +336,8 @@ export default function FounderPage() {
                   {h.icon}
                 </div>
                 <div>
-                  <div className="text-[13px] font-bold mb-1" style={{ color: "#0F172A" }}>{h.name}</div>
-                  <p className="text-[12px] leading-relaxed" style={{ color: "#64748B" }}>{h.detail}</p>
+                  <div className="text-[15px] font-bold mb-1" style={{ color: "#0F172A" }}>{h.name}</div>
+                  <p className="text-[14px] leading-relaxed" style={{ color: "#64748B" }}>{h.detail}</p>
                 </div>
               </div>
             ))}
@@ -364,11 +364,11 @@ export default function FounderPage() {
                 SV
               </div>
               <div>
-                <h3 className="text-[14px] font-bold leading-tight" style={{ color: "#0066CC" }}>Srivani Dharwar Vijaya</h3>
-                <p className="text-[11px] font-semibold" style={{ color: "#0F172A" }}>Co-Founder & Chief Technology Officer</p>
+                <h3 className="text-[16px] font-bold leading-tight" style={{ color: "#0066CC" }}>Srivani Dharwar Vijaya</h3>
+                <p className="text-[13px] font-semibold" style={{ color: "#0F172A" }}>Co-Founder & Chief Technology Officer</p>
               </div>
             </div>
-            <p className="text-[12px] sm:text-[13px] leading-relaxed" style={{ color: "#475569" }}>
+            <p className="text-[15px] sm:text-[16px] leading-relaxed" style={{ color: "#475569" }}>
               With 15+ years at Capgemini, Mindtree, Wipro, and Infosys, Srivani brings deep technology architecture
               experience in enterprise software and SAP systems. She approaches every problem from first principles with
               a focus on strategic objectives. Holds a BE from Visvesvaraya Technology University (VTU) in Information Science.
@@ -380,7 +380,7 @@ export default function FounderPage() {
       {/* Back to Company CTA */}
       <section className="py-8 px-5 lg:px-8 text-center" style={{ background: "#FFFFFF", borderTop: "1px solid #E2E8F0" }}>
         <div className="max-w-[480px] mx-auto">
-          <p className="text-[13px] mb-4" style={{ color: "#64748B" }}>
+          <p className="text-[16px] mb-4" style={{ color: "#64748B" }}>
             Want to build the future of trade finance with us?
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">

@@ -108,7 +108,7 @@ export function HeroMockup({ animated = true }: { animated?: boolean }) {
       <div
         className="bg-white border rounded-2xl p-4 lg:p-6 transition-all duration-500"
         style={{
-          transform: "rotateY(-8deg) rotateX(4deg)",
+          transform: "none",
           boxShadow: "0 24px 80px rgba(0,102,204,0.15), 0 0 40px rgba(0,102,204,0.05)",
           borderColor: "#E2E8F0"
         }}
@@ -120,15 +120,15 @@ export function HeroMockup({ animated = true }: { animated?: boolean }) {
             <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
             <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
           </div>
-          <span className="text-[13px] font-bold" style={{ color: "#0F172A" }}>Tradeguard — Compliance Check</span>
+          <span className="text-[15px] font-bold" style={{ color: "#0F172A" }}>Tradeguard — Compliance Check</span>
         </div>
 
         {/* Tabs */}
         <div className="flex gap-2 mb-4">
-          <button className="px-4 py-2 text-sm font-medium border-b-2" style={{ color: "#0066CC", borderColor: "#0066CC" }}>
+          <button className="px-4 py-2 text-[15px] font-medium border-b-2" style={{ color: "#0066CC", borderColor: "#0066CC" }}>
             Shipping Bill
           </button>
-          <button className="px-4 py-2 text-sm font-medium" style={{ color: "#94A3B8" }}>Commercial Invoice</button>
+          <button className="px-4 py-2 text-[15px] font-medium" style={{ color: "#94A3B8" }}>Commercial Invoice</button>
         </div>
 
         {/* Field comparison list */}
@@ -141,12 +141,12 @@ export function HeroMockup({ animated = true }: { animated?: boolean }) {
               <div className="flex items-center justify-between py-2 px-2">
                 <div className="flex items-center gap-3">
                   <span className="text-base">{getStatusIcon(field.status, idx)}</span>
-                  <span className="text-[13px]" style={{ color: "#475569" }}>{field.field}</span>
+                  <span className="text-[15px]" style={{ color: "#475569" }}>{field.field}</span>
                 </div>
                 {getStatusBadge(field.status, idx)}
               </div>
               {field.status !== "match" && field.invoiceValue && (
-                <div className="pl-8 pb-2 text-[11px]" style={{ color: "#94A3B8" }}>
+                <div className="pl-8 pb-2 text-[13px]" style={{ color: "#94A3B8" }}>
                   {field.invoiceValue}{" "}
                   <span style={{ color: "#64748B" }}>{field.status === "warning" ? "≈" : "→"}</span>{" "}
                   {field.billValue}
@@ -159,11 +159,11 @@ export function HeroMockup({ animated = true }: { animated?: boolean }) {
         {/* Bottom bar */}
         <div className="mt-4 pt-4 border-t -mx-4 lg:-mx-6 -mb-4 lg:-mb-6 px-4 lg:px-6 py-3 rounded-b-2xl" style={{ background: "rgba(220,38,38,0.05)", borderColor: "#E2E8F0" }}>
           <div className="flex items-center justify-between text-sm">
-            <span className="font-medium" style={{ color: "#DC2626" }}>
+            <span className="text-[15px] font-medium" style={{ color: "#DC2626" }}>
               ⚠ {issueCount} Issue{issueCount !== 1 ? "s" : ""} Found
             </span>
-            <span className="font-mono" style={{ color: "#F59E0B" }}>₹2,40,000 at risk</span>
-            <span className="font-medium cursor-pointer hover:underline" style={{ color: "#0066CC" }}>
+            <span className="text-[15px] font-mono" style={{ color: "#F59E0B" }}>₹2,40,000 at risk</span>
+            <span className="text-[15px] font-medium cursor-pointer hover:underline" style={{ color: "#0066CC" }}>
               View Full Report →
             </span>
           </div>

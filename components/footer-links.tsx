@@ -45,21 +45,21 @@ function useInView(threshold = 0.15) {
 // ── Data ─────────────────────────────────────────────────────────────────────
 const products = [
   { name: "Tradeguard", tabId: "tradeguard" },
-  { name: "Patram AI",  tabId: "patram" },
-  { name: "TariffIQ",  tabId: "tariffiq" },
+  { name: "Patram AI", tabId: "patram" },
+  { name: "TariffIQ", tabId: "tariffiq" },
 ]
 
 // Split into two columns so footer stays compact
 const companyLinksCol1 = [
-  { name: "About",                       href: "/company" },
-  { name: "Mission",                     href: "/company#mission" },
-  { name: "Why Choose Us?",             href: "/company#why-choose-us" },
+  { name: "About", href: "/company" },
+  { name: "Mission", href: "/company#mission" },
+  { name: "Why Choose Us?", href: "/company#why-choose-us" },
   { name: "Minds Behind Liquidmind AI", href: "/company#team" },
-  { name: "Timeline",                   href: "/company/timeline" },
+  { name: "Timeline", href: "/company/timeline" },
 ]
 const companyLinksCol2 = [
-  { name: "Map",           href: "/company#map" },
-  { name: "Giving Back",  href: "/company/giving-back" },
+  { name: "Map", href: "/company#map" },
+  { name: "Giving Back", href: "/company/giving-back" },
   { name: "Privacy Policy", href: "/legal/privacy-policy" },
   { name: "Terms of Service", href: "/legal/terms" },
 ]
@@ -68,12 +68,12 @@ const MAP_URL =
   "https://www.google.com/maps/search/?api=1&query=Banashankari+III+Stage+Kathriguppe+Bangalore+Karnataka+560085+India"
 
 const socials = [
-  { label: "YouTube",   href: "https://www.youtube.com/@LIQUIDMIND_AI",                               hoverColor: "#FF0000", icon: <Youtube   className="w-3.5 h-3.5" /> },
-  { label: "LinkedIn",  href: "https://www.linkedin.com/company/liquid-mind-product-consulting-inc./", hoverColor: "#0077B5", icon: <Linkedin  className="w-3.5 h-3.5" /> },
-  { label: "Email",     href: "mailto:support@liquidmind.ai",                                           hoverColor: "#0066CC", icon: <Mail      className="w-3.5 h-3.5" /> },
-  { label: "Instagram", href: "https://www.instagram.com/liquidmind/",                                 hoverColor: "#E1306C", icon: <Instagram className="w-3.5 h-3.5" /> },
-  { label: "Facebook",  href: "https://www.facebook.com/liquidmindaifintech/",                         hoverColor: "#1877F2", icon: <Facebook  className="w-3.5 h-3.5" /> },
-  { label: "Maps",      href: MAP_URL,                                                                  hoverColor: "#00A86B", icon: <MapPin    className="w-3.5 h-3.5" /> },
+  { label: "YouTube", href: "https://www.youtube.com/@LIQUIDMIND_AI", hoverColor: "#FF0000", icon: <Youtube className="w-3.5 h-3.5" /> },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/liquid-mind-product-consulting-inc./", hoverColor: "#0077B5", icon: <Linkedin className="w-3.5 h-3.5" /> },
+  { label: "Email", href: "mailto:support@liquidmind.ai", hoverColor: "#0066CC", icon: <Mail className="w-3.5 h-3.5" /> },
+  { label: "Instagram", href: "https://www.instagram.com/liquidmind/", hoverColor: "#E1306C", icon: <Instagram className="w-3.5 h-3.5" /> },
+  { label: "Facebook", href: "https://www.facebook.com/liquidmindaifintech/", hoverColor: "#1877F2", icon: <Facebook className="w-3.5 h-3.5" /> },
+  { label: "Maps", href: MAP_URL, hoverColor: "#00A86B", icon: <MapPin className="w-3.5 h-3.5" /> },
 ]
 
 function navigateToProduct(tabId: string) {
@@ -92,7 +92,7 @@ function navigateToProduct(tabId: string) {
 // ── Hover-animated link ──────────────────────────────────────────────────────
 function HoverLink({ children, onClick, href }: { children: React.ReactNode; onClick?: () => void; href?: string }) {
   const [hovered, setHovered] = useState(false)
-  const base = "text-[12px] transition-all duration-150 rounded px-1.5 py-0.5 -mx-1.5 block"
+  const base = "text-[14px] transition-all duration-150 rounded px-1.5 py-0.5 -mx-1.5 block"
   const style = {
     color: "#475569",
     background: hovered ? "rgba(0,102,204,0.07)" : "transparent",
@@ -132,7 +132,7 @@ export function FooterLinks() {
 
           {/* ── Products ── */}
           <div>
-            <h4 className="text-[11px] font-bold uppercase tracking-wider mb-3" style={{ color: "#0F172A" }}>
+            <h4 className="text-[13px] font-bold uppercase tracking-wider mb-3" style={{ color: "#0F172A" }}>
               Products
             </h4>
             <div className="space-y-1">
@@ -179,7 +179,7 @@ export function FooterLinks() {
               Contact
             </h4>
             <AnimatedItem delay={0} parentInView={inView}>
-              <address className="not-italic text-[11px] leading-relaxed mb-2" style={{ color: "#475569" }}>
+              <address className="not-italic text-[13px] leading-relaxed mb-2" style={{ color: "#475569" }}>
                 Banashankari III Stage<br />
                 Kathriguppe, Bangalore<br />
                 Karnataka - 560085, India
@@ -187,7 +187,7 @@ export function FooterLinks() {
             </AnimatedItem>
             <AnimatedItem delay={80} parentInView={inView}>
               <a href="mailto:support@liquidmind.ai"
-                className="text-[11px] hover:underline inline-block mb-3 transition-all duration-200 hover:scale-110 active:scale-95 origin-left"
+                className="text-[13px] hover:underline inline-block mb-3 transition-all duration-200 hover:scale-110 active:scale-95 origin-left"
                 style={{ color: "#0066CC" }}>
                 support@liquidmind.ai
               </a>
@@ -228,14 +228,14 @@ export function FooterLinks() {
               Stay Updated
             </h4>
             <AnimatedItem delay={0} parentInView={inView}>
-              <p className="text-[11px] mb-3" style={{ color: "#475569" }}>
+              <p className="text-[13px] mb-3" style={{ color: "#475569" }}>
                 Weekly trade compliance insights to your inbox.
               </p>
             </AnimatedItem>
             <AnimatedItem delay={80} parentInView={inView}>
               <Link
                 href="/newsletter"
-                className="inline-block px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all hover:scale-105"
+                className="inline-block px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all hover:scale-105"
                 style={{ background: "#0066CC", color: "#FFFFFF" }}
               >
                 Subscribe

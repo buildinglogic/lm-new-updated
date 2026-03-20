@@ -294,7 +294,7 @@ function Card({ event, align }: { event: TimelineEvent; align: "left" | "right" 
           {/* Gradient overlay for date badge readability */}
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 60%)" }} />
           <span
-            className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold text-white"
+            className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-[13px] font-bold text-white"
             style={{ background: "rgba(0,102,204,0.85)", backdropFilter: "blur(4px)" }}
           >
             {event.date}
@@ -305,16 +305,16 @@ function Card({ event, align }: { event: TimelineEvent; align: "left" | "right" 
       <div className="p-4">
         {!event.image && (
           <span
-            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold mb-2"
+            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[13px] font-bold mb-2"
             style={{ background: "#EFF6FF", color: "#0066CC" }}
           >
             {event.date}
           </span>
         )}
-        <h3 className="font-bold text-[14px] sm:text-[15px] mb-1.5 leading-snug" style={{ color: "#0F172A" }}>
+        <h3 className="font-bold text-[16px] sm:text-[17px] mb-1.5 leading-snug" style={{ color: "#0F172A" }}>
           {event.title}
         </h3>
-        <p className="text-[12px] leading-relaxed" style={{ color: "#64748B" }}>
+        <p className="text-[14px] leading-relaxed" style={{ color: "#64748B" }}>
           {event.description}
         </p>
       </div>
@@ -354,7 +354,7 @@ function MobileTimelineCard({ event, index }: { event: TimelineEvent; index: num
               sizes="85vw"
             />
             <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 60%)" }} />
-            <span className="absolute bottom-2.5 left-3 px-2 py-0.5 rounded-full text-[10px] font-bold text-white"
+            <span className="absolute bottom-2.5 left-3 px-2 py-0.5 rounded-full text-[12px] font-bold text-white"
               style={{ background: "rgba(0,102,204,0.85)", backdropFilter: "blur(4px)" }}>
               {event.date}
             </span>
@@ -362,13 +362,13 @@ function MobileTimelineCard({ event, index }: { event: TimelineEvent; index: num
         )}
         <div className="p-3.5">
           {!event.image && (
-            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold mb-1.5"
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[13px] font-bold mb-1.5"
               style={{ background: "#EFF6FF", color: "#0066CC" }}>
               {event.date}
             </span>
           )}
-          <h3 className="font-bold text-[13px] mb-1 leading-snug" style={{ color: "#0F172A" }}>{event.title}</h3>
-          <p className="text-[11px] leading-relaxed" style={{ color: "#64748B" }}>{event.description}</p>
+          <h3 className="font-bold text-[15px] mb-1 leading-snug" style={{ color: "#0F172A" }}>{event.title}</h3>
+          <p className="text-[14px] leading-relaxed" style={{ color: "#64748B" }}>{event.description}</p>
         </div>
       </div>
     </div>
@@ -388,7 +388,7 @@ export default function TimelinePage() {
           <div className="max-w-2xl mx-auto">
             <div className="flex items-center justify-center gap-2 mb-2">
               <div className="h-px w-6 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Our Journey</span>
+              <span className="text-[14px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Our Journey</span>
               <div className="h-px w-6 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
             </div>
             <h1 className="text-[22px] sm:text-[28px] font-extrabold leading-tight mb-2" style={{ color: "#0F172A" }}>
@@ -397,7 +397,7 @@ export default function TimelinePage() {
                 Company Timeline
               </span>
             </h1>
-            <p className="text-[12px] sm:text-[13px] leading-relaxed" style={{ color: "#64748B" }}>
+            <p className="text-[15px] sm:text-[16px] leading-relaxed" style={{ color: "#64748B" }}>
               From our humble beginnings in 2017 to becoming India's leading AI trade compliance platform.
             </p>
           </div>
@@ -432,8 +432,8 @@ export default function TimelinePage() {
 
             <div className="text-center py-8">
               <div className="inline-block px-6 py-4 rounded-xl" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
-                <p className="font-bold text-[15px] mb-0.5" style={{ color: "#0F172A" }}>More milestones coming soon</p>
-                <p className="text-[12px]" style={{ color: "#94A3B8" }}>Stay tuned for updates</p>
+                <p className="font-bold text-[17px] mb-0.5" style={{ color: "#0F172A" }}>More milestones coming soon</p>
+                <p className="text-[14px]" style={{ color: "#94A3B8" }}>Stay tuned for updates</p>
               </div>
             </div>
           </div>

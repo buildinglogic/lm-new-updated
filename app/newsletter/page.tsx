@@ -99,7 +99,7 @@ export default function NewsletterPage() {
               {/* Label */}
               <div className="flex items-center gap-3 mb-4">
                 <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-                <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
+                <span className="text-[14px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
                   Weekly Newsletter
                 </span>
               </div>
@@ -110,7 +110,7 @@ export default function NewsletterPage() {
                   Made Simple
                 </span>
               </h1>
-              <p className="text-[14px] sm:text-[15px] lg:text-base leading-relaxed mb-6 max-w-md" style={{ color: "#475569" }}>
+              <p className="text-[16px] sm:text-[17px] lg:text-[18px] leading-relaxed mb-6 max-w-md" style={{ color: "#475569" }}>
                 Actionable insights on trade compliance, export documentation, and refund optimisation —
                 delivered every week. Join thousands of exporters already saving crores.
               </p>
@@ -122,7 +122,7 @@ export default function NewsletterPage() {
                       style={{ background: "#ECFDF5" }}>
                       <Check className="w-3 h-3" style={{ color: "#00A86B" }} />
                     </div>
-                    <span className="text-[13px] sm:text-[14px]" style={{ color: "#0F172A" }}>{benefit}</span>
+                    <span className="text-[15px] sm:text-[16px]" style={{ color: "#0F172A" }}>{benefit}</span>
                   </div>
                 ))}
               </div>
@@ -138,18 +138,18 @@ export default function NewsletterPage() {
                     <Check className="w-7 h-7 text-white" />
                   </div>
                   <h3 className="text-[18px] font-bold mb-2" style={{ color: "#0F172A" }}>{"You're Subscribed!"}</h3>
-                  <p className="text-[13px]" style={{ color: "#475569" }}>
+                  <p className="text-[16px]" style={{ color: "#475569" }}>
                     Check your inbox for a confirmation email. Your first issue arrives this week.
                   </p>
                 </div>
               ) : (
                 <>
                   <h3 className="text-[18px] sm:text-[20px] font-bold mb-1" style={{ color: "#0F172A" }}>Subscribe Now</h3>
-                  <p className="text-[13px] mb-5" style={{ color: "#64748B" }}>Free. No spam. Unsubscribe anytime.</p>
+                  <p className="text-[16px] mb-5" style={{ color: "#64748B" }}>Free. No spam. Unsubscribe anytime.</p>
 
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <label className="block text-[13px] font-semibold mb-1.5" style={{ color: "#0066CC" }}>
+                      <label className="block text-[15px] font-semibold mb-1.5" style={{ color: "#0066CC" }}>
                         Work Email <span style={{ color: "#0066CC" }}>*</span>
                       </label>
                       <input
@@ -174,7 +174,7 @@ export default function NewsletterPage() {
                             key={r}
                             type="button"
                             onClick={() => setRole(r)}
-                            className="px-3 py-1.5 rounded-full text-[12px] font-medium transition-all"
+                            className="px-3 py-1.5 rounded-full text-[14px] font-medium transition-all"
                             style={{
                               background: role === r ? "#0066CC" : "#F1F5F9",
                               color: role === r ? "#FFFFFF" : "#475569",
@@ -190,12 +190,12 @@ export default function NewsletterPage() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full py-3.5 rounded-full text-[14px] font-bold btn-shine transition-all hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full py-3.5 rounded-full text-[16px] font-bold btn-shine transition-all hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed"
                       style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}
                     >
                       {loading ? 'Subscribing…' : 'Subscribe to Newsletter'}
                     </button>
-                    <p className="text-[11px] text-center" style={{ color: "#94A3B8" }}>
+                    <p className="text-[13px] text-center" style={{ color: "#94A3B8" }}>
                       By subscribing you agree to receive our newsletter. We respect your privacy.
                     </p>
                   </form>
@@ -240,10 +240,10 @@ export default function NewsletterPage() {
                   className="h-0.5 w-8 rounded-full mb-4"
                   style={{ background: `linear-gradient(90deg, ${item.color}, transparent)` }}
                 />
-                <h3 className="text-[15px] sm:text-[16px] font-bold mb-2" style={{ color: "#0F172A" }}>
+                <h3 className="text-[17px] sm:text-[18px] font-bold mb-2" style={{ color: "#0F172A" }}>
                   {item.title}
                 </h3>
-                <p className="text-[13px] leading-relaxed" style={{ color: "#475569" }}>
+                <p className="text-[16px] leading-relaxed" style={{ color: "#475569" }}>
                   {item.description}
                 </p>
               </div>
@@ -280,18 +280,18 @@ export default function NewsletterPage() {
                 style={{ background: "#F8FAFC", border: "1px solid #E2E8F0" }}
               >
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-[11px]" style={{ color: "#94A3B8" }}>{issue.date}</span>
+                  <span className="text-[13px]" style={{ color: "#94A3B8" }}>{issue.date}</span>
                   <span
-                    className="text-[11px] px-2 py-0.5 rounded-full font-medium"
+                    className="text-[13px] px-2 py-0.5 rounded-full font-medium"
                     style={{ background: "rgba(0,102,204,0.08)", color: "#0066CC" }}
                   >
                     {issue.readTime}
                   </span>
                 </div>
-                <h3 className="text-[13px] sm:text-[14px] font-bold leading-snug" style={{ color: "#0F172A" }}>
+                <h3 className="text-[16px] sm:text-[17px] font-bold leading-snug" style={{ color: "#0F172A" }}>
                   {issue.title}
                 </h3>
-                <div className="mt-3 flex items-center gap-1 text-[12px] font-semibold" style={{ color: "#0066CC" }}>
+                <div className="mt-3 flex items-center gap-1 text-[14px] font-semibold" style={{ color: "#0066CC" }}>
                   Read issue
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -313,13 +313,13 @@ export default function NewsletterPage() {
             </span>{" "}
             Already Subscribed
           </h2>
-          <p className="text-[13px] sm:text-[14px] mb-6" style={{ color: "#64748B" }}>
+          <p className="text-[16px] sm:text-[17px] mb-6" style={{ color: "#64748B" }}>
             Free. No spam. Unsubscribe anytime.
           </p>
           <a
             href="#top"
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }) }}
-            className="inline-block px-8 py-3.5 rounded-full text-[14px] font-bold btn-shine transition-all hover:scale-105"
+            className="inline-block px-8 py-3.5 rounded-full text-[16px] font-bold btn-shine transition-all hover:scale-105"
             style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF", boxShadow: "0 4px 25px rgba(0,102,204,0.3)" }}
           >
             Subscribe Now — It's Free

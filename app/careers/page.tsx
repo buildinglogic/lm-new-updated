@@ -53,12 +53,12 @@ export default function CareersPage() {
     try {
       const fd = new FormData()
       fd.append('firstName', form.firstName)
-      fd.append('lastName',  form.lastName)
-      fd.append('email',     form.email)
-      fd.append('phone',     form.phone)
-      fd.append('position',  form.position)
+      fd.append('lastName', form.lastName)
+      fd.append('email', form.email)
+      fd.append('phone', form.phone)
+      fd.append('position', form.position)
       fd.append('startDate', form.startDate)
-      fd.append('cvLink',    form.cvLink)
+      fd.append('cvLink', form.cvLink)
       if (resumeFile) fd.append('resume', resumeFile)
 
       await fetch('/api/careers', { method: 'POST', body: fd })
@@ -92,7 +92,7 @@ export default function CareersPage() {
               </h1>
               <a
                 href="#apply"
-                className="inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-bold transition-all duration-300 hover:scale-105 btn-shine"
+                className="inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 rounded-full text-[15px] sm:text-[17px] font-bold transition-all duration-300 hover:scale-105 btn-shine"
                 style={{ background: "#0066CC", color: "#FFFFFF", boxShadow: "0 4px 25px rgba(0,102,204,0.35)" }}
               >
                 EXPLORE VACANCIES <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -113,7 +113,7 @@ export default function CareersPage() {
               <h2 className="text-[22px] sm:text-[28px] lg:text-[40px] font-bold mb-4" style={{ color: "#0F172A" }}>
                 Unity in <span style={{ color: "#0066CC" }}>Diversity</span>
               </h2>
-              <p className="text-[13px] sm:text-[15px] lg:text-lg leading-relaxed" style={{ color: "#475569" }}>
+              <p className="text-[16px] sm:text-[17px] lg:text-xl leading-relaxed" style={{ color: "#475569" }}>
                 Join our innovative team where diverse backgrounds drive financial revolution.
                 Embrace a collaborative environment uniting varied perspectives. Shape the future
                 of finance with us today!
@@ -137,7 +137,7 @@ export default function CareersPage() {
               <h2 className="text-[22px] sm:text-[28px] lg:text-[40px] font-bold mb-4" style={{ color: "#0F172A" }}>
                 Positive Learning <span style={{ color: "#00A86B" }}>Curve</span>
               </h2>
-              <p className="text-[13px] sm:text-[15px] lg:text-lg leading-relaxed" style={{ color: "#475569" }}>
+              <p className="text-[16px] sm:text-[17px] lg:text-xl leading-relaxed" style={{ color: "#475569" }}>
                 Join our team to explore innovative use cases and experiment with proof of concepts
                 in a dynamic learning environment. Empowerment drives us to push boundaries and
                 contribute to groundbreaking solutions in financial operations. Unlock your potential
@@ -156,7 +156,7 @@ export default function CareersPage() {
               <h2 className="text-[20px] sm:text-[26px] lg:text-[36px] font-bold mb-4 italic" style={{ color: "#0066CC" }}>
                 Create something better for the world through innovation
               </h2>
-              <p className="text-[13px] sm:text-[15px] lg:text-lg leading-relaxed mb-5" style={{ color: "#475569" }}>
+              <p className="text-[16px] sm:text-[17px] lg:text-xl leading-relaxed mb-5" style={{ color: "#475569" }}>
                 Our team dedicated to various initiatives, uplifting underprivileged communities,
                 and advocating for education. Make a tangible impact through our robust programs,
                 driving innovation while fostering positive change. Join us in making a difference today.
@@ -193,8 +193,8 @@ export default function CareersPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-[20px] font-bold mb-2" style={{ color: "#0F172A" }}>Application Submitted!</h3>
-              <p className="text-[14px]" style={{ color: "#64748B" }}>
+              <h3 className="text-[22px] font-bold mb-2" style={{ color: "#0F172A" }}>Application Submitted!</h3>
+              <p className="text-[16px]" style={{ color: "#64748B" }}>
                 We'll review your application and get back to you shortly.
               </p>
             </div>
@@ -204,12 +204,12 @@ export default function CareersPage() {
               {/* First + Last name */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[13px] font-semibold mb-1.5" style={labelStyle}>First name</label>
+                  <label className="block text-[15px] font-semibold mb-1.5" style={labelStyle}>First name</label>
                   <input name="firstName" value={form.firstName} onChange={handleChange}
                     className={inputClass} style={inputStyle} />
                 </div>
                 <div>
-                  <label className="block text-[13px] font-semibold mb-1.5" style={labelStyle}>Last name</label>
+                  <label className="block text-[15px] font-semibold mb-1.5" style={labelStyle}>Last name</label>
                   <input name="lastName" value={form.lastName} onChange={handleChange}
                     className={inputClass} style={inputStyle} />
                 </div>
@@ -218,14 +218,14 @@ export default function CareersPage() {
               {/* Email + Phone */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[13px] font-semibold mb-1.5" style={labelStyle}>
+                  <label className="block text-[15px] font-semibold mb-1.5" style={labelStyle}>
                     Email <span style={{ color: "#0066CC" }}>*</span>
                   </label>
                   <input name="email" type="email" value={form.email} onChange={handleChange}
                     required className={inputClass} style={inputStyle} />
                 </div>
                 <div>
-                  <label className="block text-[13px] font-semibold mb-1.5" style={labelStyle}>Phone</label>
+                  <label className="block text-[15px] font-semibold mb-1.5" style={labelStyle}>Phone</label>
                   <input name="phone" type="tel" value={form.phone} onChange={handleChange}
                     className={inputClass} style={inputStyle} />
                 </div>
@@ -297,7 +297,7 @@ export default function CareersPage() {
                 >
                   {resumeFile ? resumeFile.name : "Upload Resume"} <Upload className="w-4 h-4" />
                 </button>
-                <span className="text-[12px]" style={{ color: "#94A3B8" }}>(File Size Max 15MB)</span>
+                <span className="text-[14px]" style={{ color: "#94A3B8" }}>(File Size Max 15MB)</span>
               </div>
 
               <div className="pt-2">
