@@ -136,19 +136,19 @@ function HeroSection() {
             {/* Label */}
             <div className="flex items-center gap-2 mb-3 lg:mb-5 animate-fade-in">
               <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-              <span className="text-[11px] lg:text-[11px] font-semibold tracking-[0.16em] uppercase" style={{ color: "#94A3B8" }}>
+              <span className="text-[12px] lg:text-[13px] font-semibold tracking-[0.16em] uppercase" style={{ color: "#94A3B8" }}>
                 <span className="sm:hidden">India's #1 AI Platform</span>
                 <span className="hidden sm:inline">India's #1 AI Trade Compliance Platform</span>
               </span>
             </div>
 
-            <h1 className="text-[26px] lg:text-[56px] font-extrabold leading-[1.1] tracking-[-0.03em] mb-2 lg:mb-4 animate-fade-in-up stagger-1" style={{ color: "#0F172A" }}>
+            <h1 className="text-[32px] lg:text-[64px] font-extrabold leading-[1.1] tracking-[-0.03em] mb-2 lg:mb-4 animate-fade-in-up stagger-1" style={{ color: "#0F172A" }}>
               Stop Losing<br />
               <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Crores</span> to Trade<br />
               Document Errors.
             </h1>
 
-            <p className="text-[13px] lg:text-[17px] leading-[1.55] max-w-[460px] mb-3 lg:mb-8 animate-fade-in-up stagger-2" style={{ color: "#475569" }}>
+            <p className="text-[15px] lg:text-[20px] leading-[1.55] max-w-[460px] mb-3 lg:mb-8 animate-fade-in-up stagger-2" style={{ color: "#475569" }}>
               Indian exporters lose 3–7% of FOB value every month to document mismatches.
               Liquidmind AI catches every error before customs does.
             </p>
@@ -158,10 +158,10 @@ function HeroSection() {
               {stats.map((stat, idx) => (
                 <React.Fragment key={idx}>
                   <div className="flex flex-col">
-                    <span className="text-[22px] lg:text-[34px] font-black tracking-tight leading-none tabular-nums whitespace-nowrap" style={{ color: "#0066CC" }}>
+                    <span className="text-[26px] lg:text-[40px] font-black tracking-tight leading-none tabular-nums whitespace-nowrap" style={{ color: "#0066CC" }}>
                       {stat.prefix}<AnimatedCount to={stat.to} />{stat.suffix}
                     </span>
-                    <span className="text-[11px] lg:text-[10px] font-medium leading-[1.3] mt-1" style={{ color: "#94A3B8" }}>
+                    <span className="text-[12px] lg:text-[11px] font-medium leading-[1.3] mt-1" style={{ color: "#94A3B8" }}>
                       {stat.line1}<br />{stat.line2}
                     </span>
                   </div>
@@ -176,7 +176,7 @@ function HeroSection() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 lg:gap-3 animate-fade-in-up stagger-4">
               <Link href="/book-demo"
                 onClick={() => trackBookDemoCTAClick('Hero')}
-                className="px-5 py-2.5 lg:px-6 lg:py-3 rounded-xl text-sm font-bold btn-shine haptic-btn inline-flex items-center justify-center gap-2"
+                className="px-5 py-3 lg:px-6 lg:py-3 rounded-xl text-base font-bold btn-shine haptic-btn inline-flex items-center justify-center gap-2"
                 style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF", boxShadow: "0 4px 25px rgba(0,102,204,0.35)" }}>
                 Book Free Demo
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -189,7 +189,7 @@ function HeroSection() {
                   trackWatchDemoClick('Hero')
                   document.getElementById('video-demo')?.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 lg:px-6 lg:py-3 rounded-xl transition-all hover:scale-105 haptic-btn"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 lg:px-6 lg:py-3 rounded-xl transition-all hover:scale-105 haptic-btn"
                 style={{ background: "#FFFFFF", border: "2px solid #0066CC", boxShadow: "0 4px 20px rgba(0,102,204,0.18)" }}>
                 <div className="relative flex-shrink-0 w-5 h-5">
                   <span className="absolute inset-0 rounded-full animate-ping opacity-25" style={{ background: "#0066CC" }} />
@@ -200,7 +200,7 @@ function HeroSection() {
                     </svg>
                   </span>
                 </div>
-                <span className="text-sm font-bold bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Watch Demo</span>
+                <span className="text-base font-bold bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Watch Demo</span>
               </button>
             </div>
           </div>
@@ -310,12 +310,12 @@ function ProblemSection() {
         <div className={`text-center mb-5 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="flex items-center justify-center gap-3 mb-3">
             <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
+            <span className="text-[12px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
               The Cost of Doing Nothing
             </span>
             <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(270deg, #0066CC, #00A86B)" }} />
           </div>
-          <h2 className="text-[22px] lg:text-[36px] font-bold leading-tight" style={{ color: "#0F172A" }}>
+          <h2 className="text-[26px] lg:text-[42px] font-bold leading-tight" style={{ color: "#0F172A" }}>
             Your Trade Documents Are{" "}
             <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">Bleeding Money</span>{" "}
             Right Now.
@@ -331,14 +331,14 @@ function ProblemSection() {
         <div className={`flex flex-col items-center gap-3 transition-all duration-700 delay-300 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="flex items-center gap-3">
             <div className="h-px w-12 rounded-full" style={{ background: "linear-gradient(90deg, transparent, #CBD5E1)" }} />
-            <span className="text-[11px] lg:text-[10px] font-mono font-semibold tracking-[0.08em] lg:tracking-[0.15em] uppercase text-center" style={{ color: "#94A3B8" }}>
+            <span className="text-[12px] lg:text-[12px] font-mono font-semibold tracking-[0.08em] lg:tracking-[0.15em] uppercase text-center" style={{ color: "#94A3B8" }}>
               ₹2,40,000+ at risk in an average shipment
             </span>
             <div className="h-px w-12 rounded-full" style={{ background: "linear-gradient(270deg, transparent, #CBD5E1)" }} />
           </div>
 
           <a href="#products"
-            className="group btn-cta-glow btn-shine haptic-btn relative inline-flex items-center gap-3 px-6 py-3 lg:px-9 lg:py-4 rounded-2xl text-white font-extrabold text-[13px] lg:text-[15px] tracking-tight overflow-hidden"
+            className="group btn-cta-glow btn-shine haptic-btn relative inline-flex items-center gap-3 px-6 py-3 lg:px-9 lg:py-4 rounded-2xl text-white font-extrabold text-[15px] lg:text-[17px] tracking-tight overflow-hidden"
             style={{ background: "linear-gradient(90deg, #0066CC 0%, #00A86B 100%)" }}>
             <span className="absolute left-0 right-0 h-px top-0 opacity-40" style={{ background: "linear-gradient(90deg, transparent, #ffffff, transparent)", animation: "shimmer 2s linear infinite" }} />
             <span className="relative">
@@ -352,7 +352,7 @@ function ProblemSection() {
             </span>
           </a>
 
-          <span className="text-[11px]" style={{ color: "#94A3B8" }}>
+          <span className="text-[12px]" style={{ color: "#94A3B8" }}>
             Works on your actual documents · Results in under 5 minutes
           </span>
         </div>
@@ -410,27 +410,27 @@ function ProblemCardItem({ problem, idx, isInView }: {
       <div className="p-4 pt-5">
         {/* Icon */}
         <div className="mb-2.5" style={{ color: "rgba(0,102,204,0.45)" }}>
-          {React.cloneElement(problem.icon as React.ReactElement<{ className?: string }>, { className: "w-4 h-4" })}
+          {React.cloneElement(problem.icon as React.ReactElement<{ className?: string }>, { className: "w-5 h-5" })}
         </div>
 
         {/* Big number */}
-        <div className="text-[28px] lg:text-[30px] font-black tracking-tight leading-none mb-1.5"
+        <div className="text-[32px] lg:text-[36px] font-black tracking-tight leading-none mb-1.5"
           style={{ color: "#0066CC" }}>
           {problem.number}
         </div>
 
         {/* Title */}
-        <div className="font-semibold text-[12px] lg:text-[12px] leading-snug mb-2" style={{ color: "#0F172A" }}>
+        <div className="font-semibold text-[14px] lg:text-[15px] leading-snug mb-2" style={{ color: "#0F172A" }}>
           {problem.title}
         </div>
 
         {/* Body */}
-        <div className="text-[12px] leading-relaxed line-clamp-2 mb-2" style={{ color: "#64748B" }}>
+        <div className="text-[14px] leading-relaxed line-clamp-2 mb-2" style={{ color: "#64748B" }}>
           {problem.body}
         </div>
 
         {/* Citation */}
-        <div className="text-[11px] font-mono uppercase tracking-wider" style={{ color: "#94A3B8" }}>
+        <div className="text-[12px] font-mono uppercase tracking-wider" style={{ color: "#94A3B8" }}>
           {problem.citation}
         </div>
       </div>

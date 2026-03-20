@@ -86,14 +86,14 @@ export function ProductsSection() {
           <div className={`text-center mb-3 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="flex items-center justify-center gap-3 mb-1.5">
               <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Our Products</span>
+              <span className="text-[12px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>Our Products</span>
               <div className="h-px w-6 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #00A86B, #0066CC)" }} />
             </div>
-            <h2 className="text-[22px] lg:text-[32px] font-bold leading-tight mb-1" style={{ color: "#0F172A" }}>
+            <h2 className="text-[26px] lg:text-[38px] font-bold leading-tight mb-1" style={{ color: "#0F172A" }}>
               Three Products.{" "}
               <span className="bg-gradient-to-r from-[#0066CC] to-[#00A86B] bg-clip-text text-transparent">One Mission.</span>
             </h2>
-            <p className="text-xs max-w-sm mx-auto" style={{ color: "#475569" }}>
+            <p className="text-[14px] max-w-sm mx-auto" style={{ color: "#475569" }}>
               Stop money leaking through your trade documents.
             </p>
           </div>
@@ -128,7 +128,7 @@ export function ProductsSection() {
                     position: "relative", zIndex: 1,
                     flex: 1, minWidth: 0, padding: "7px 0",
                     borderRadius: "9999px",
-                    fontSize: "13px", fontWeight: "700",
+                    fontSize: "15px", fontWeight: "700",
                     color: activeTab === tab.id
                       ? (activeTab === "patram" ? "#00A86B" : activeTab === "tariffiq" ? "#1B4F8A" : "#0066CC")
                       : "rgba(255,255,255,0.85)",
@@ -207,18 +207,18 @@ function TradeguardScanMockup() {
             </svg>
           </div>
           <div>
-            <p className="font-bold text-[13px] leading-none" style={{ color: "#0F172A" }}>TradeGuard Scan</p>
-            <p className="text-[10px] mt-0.5" style={{ color: "#94A3B8" }}>SB_0441 · INV_0441</p>
+            <p className="font-bold text-[15px] leading-none" style={{ color: "#0F172A" }}>TradeGuard Scan</p>
+            <p className="text-[12px] mt-0.5" style={{ color: "#94A3B8" }}>SB_0441 · INV_0441</p>
           </div>
         </div>
         <div className="flex items-center gap-1.5" style={{ minWidth: "110px", justifyContent: "flex-end" }}>
           {done ? (
             <>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold"
+              <span className="px-2 py-0.5 rounded-full text-[12px] font-bold"
                 style={{ background: "rgba(0,168,107,0.1)", color: "#00A86B", border: "1px solid rgba(0,168,107,0.2)", whiteSpace: "nowrap" }}>
                 ✓ {verified} ok
               </span>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold"
+              <span className="px-2 py-0.5 rounded-full text-[12px] font-bold"
                 style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B", border: "1px solid rgba(245,158,11,0.25)", whiteSpace: "nowrap" }}>
                 ⚠ {issues} flagged
               </span>
@@ -226,7 +226,7 @@ function TradeguardScanMockup() {
           ) : (
             <div className="flex items-center gap-1.5">
               <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#0066CC" }} />
-              <span className="text-[10px] font-semibold" style={{ color: "#0066CC" }}>Scanning…</span>
+              <span className="text-[12px] font-semibold" style={{ color: "#0066CC" }}>Scanning…</span>
             </div>
           )}
         </div>
@@ -285,22 +285,22 @@ function TradeguardScanMockup() {
                         : "rgba(0,168,107,0.12)",
                     }}>
                     {active ? (
-                      <span className="text-[8px] animate-pulse" style={{ color: "#0066CC" }}>●</span>
+                      <span className="text-[9px] animate-pulse" style={{ color: "#0066CC" }}>●</span>
                     ) : isMismatch ? (
-                      <span className="text-[10px] font-bold" style={{ color: "#F59E0B" }}>≠</span>
+                      <span className="text-[11px] font-bold" style={{ color: "#F59E0B" }}>≠</span>
                     ) : isWarning ? (
-                      <span className="text-[10px]" style={{ color: "#F59E0B" }}>≈</span>
+                      <span className="text-[11px]" style={{ color: "#F59E0B" }}>≈</span>
                     ) : (
                       <svg className="w-3 h-3" style={{ color: "#00A86B" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     )}
                   </div>
-                  <span className="text-[12px] font-semibold" style={{ color: "#475569" }}>{f.field}</span>
+                  <span className="text-[14px] font-semibold" style={{ color: "#475569" }}>{f.field}</span>
                 </div>
 
                 {/* Value */}
-                <span className="font-mono text-[11px] font-medium"
+                <span className="font-mono text-[13px] font-medium"
                   style={{ color: isMismatch ? "#D97706" : isWarning ? "#B45309" : "#0F172A" }}>
                   {f.value}
                 </span>
@@ -309,19 +309,19 @@ function TradeguardScanMockup() {
               {/* Mismatch diff row */}
               {(isMismatch || isWarning) && visible && (
                 <div className="flex items-center gap-2 px-3 pb-2 pt-0">
-                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded"
+                  <span className="text-[12px] font-mono px-1.5 py-0.5 rounded"
                     style={{ background: "rgba(0,102,204,0.08)", color: "#0066CC" }}>
                     SB
                   </span>
-                  <span className="text-[11px] font-mono font-medium" style={{ color: "#0F172A" }}>{f.value}</span>
+                  <span className="text-[13px] font-mono font-medium" style={{ color: "#0F172A" }}>{f.value}</span>
                   <span style={{ color: "#CBD5E1" }}>→</span>
-                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded"
+                  <span className="text-[12px] font-mono px-1.5 py-0.5 rounded"
                     style={{ background: "rgba(245,158,11,0.1)", color: "#F59E0B" }}>
                     INV
                   </span>
-                  <span className="text-[11px] font-mono font-medium" style={{ color: "#D97706" }}>{f.inv}</span>
+                  <span className="text-[13px] font-mono font-medium" style={{ color: "#D97706" }}>{f.inv}</span>
                   {f.delta && (
-                    <span className="ml-auto text-[10px] font-bold font-mono" style={{ color: "#F59E0B" }}>
+                    <span className="ml-auto text-[12px] font-bold font-mono" style={{ color: "#F59E0B" }}>
                       {f.delta}
                     </span>
                   )}
@@ -352,15 +352,15 @@ function TradeguardTab({ onGetStarted }: { onGetStarted: () => void }) {
         {/* Label */}
         <div className="flex items-center gap-3 mb-3">
           <div className="h-px w-8 flex-shrink-0 rounded-full" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)" }} />
-          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
+          <span className="text-[12px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#94A3B8" }}>
             Document Verification
           </span>
         </div>
-        <h3 className="text-[22px] lg:text-[34px] font-bold leading-tight mb-3" style={{ color: "#0F172A" }}>
+        <h3 className="text-[26px] lg:text-[40px] font-bold leading-tight mb-3" style={{ color: "#0F172A" }}>
           Stop Mismatches{" "}
           <span style={{ color: "#0066CC" }}>Before They Cost You.</span>
         </h3>
-        <p className="text-sm leading-relaxed mb-4" style={{ color: "#475569" }}>
+        <p className="text-base leading-relaxed mb-4" style={{ color: "#475569" }}>
           Tradeguard extracts 40+ fields from your Shipping Bill and Commercial Invoice,
           maps them intelligently, and flags every discrepancy in under 5 seconds.
         </p>
@@ -368,32 +368,32 @@ function TradeguardTab({ onGetStarted }: { onGetStarted: () => void }) {
         <div className="grid grid-cols-2 gap-1.5 mb-4">
           {features.map((feature, idx) => (
             <div key={idx} className="flex items-center gap-2 transition-all duration-300 hover:translate-x-1">
-              <Check className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#00A86B" }} />
-              <span className="text-[12px]" style={{ color: "#0F172A" }}>{feature}</span>
+              <Check className="w-4 h-4 flex-shrink-0" style={{ color: "#00A86B" }} />
+              <span className="text-[14px]" style={{ color: "#0F172A" }}>{feature}</span>
             </div>
           ))}
         </div>
 
         {/* ROI stat row */}
         <div className="rounded-lg overflow-hidden mb-4" style={{ border: "1px solid #E2E8F0" }}>
-          <table className="w-full text-[12px]">
+          <table className="w-full text-[14px]">
             <thead>
               <tr style={{ background: "#F8FAFC" }}>
-                <th className="text-left font-semibold py-1.5 px-3" style={{ color: "#64748B" }}>Metric</th>
-                <th className="text-left font-semibold py-1.5 px-3" style={{ color: "#64748B" }}>Manual</th>
-                <th className="text-left font-semibold py-1.5 px-3" style={{ color: "#0066CC" }}>With Tradeguard</th>
+                <th className="text-left font-semibold py-2 px-3" style={{ color: "#64748B" }}>Metric</th>
+                <th className="text-left font-semibold py-2 px-3" style={{ color: "#64748B" }}>Manual</th>
+                <th className="text-left font-semibold py-2 px-3" style={{ color: "#0066CC" }}>With Tradeguard</th>
               </tr>
             </thead>
             <tbody style={{ background: "#FFFFFF" }}>
               <tr style={{ borderTop: "1px solid #E2E8F0" }}>
-                <td className="py-1.5 px-3" style={{ color: "#475569" }}>Check Time</td>
-                <td className="py-1.5 px-3" style={{ color: "#0F172A" }}>2–4 hours</td>
-                <td className="py-1.5 px-3" style={{ color: "#0066CC" }}>{"< 5 sec"}</td>
+                <td className="py-2 px-3" style={{ color: "#475569" }}>Check Time</td>
+                <td className="py-2 px-3" style={{ color: "#0F172A" }}>2–4 hours</td>
+                <td className="py-2 px-3" style={{ color: "#0066CC" }}>{"< 5 sec"}</td>
               </tr>
               <tr style={{ borderTop: "1px solid #E2E8F0" }}>
-                <td className="py-1.5 px-3" style={{ color: "#475569" }}>Fields Checked</td>
-                <td className="py-1.5 px-3" style={{ color: "#0F172A" }}>~10</td>
-                <td className="py-1.5 px-3" style={{ color: "#0066CC" }}>40+</td>
+                <td className="py-2 px-3" style={{ color: "#475569" }}>Fields Checked</td>
+                <td className="py-2 px-3" style={{ color: "#0F172A" }}>~10</td>
+                <td className="py-2 px-3" style={{ color: "#0066CC" }}>40+</td>
               </tr>
             </tbody>
           </table>
@@ -402,7 +402,7 @@ function TradeguardTab({ onGetStarted }: { onGetStarted: () => void }) {
         <div className="flex flex-row gap-3">
           <button
             onClick={onGetStarted}
-            className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 btn-shine"
+            className="px-5 py-2.5 rounded-lg text-base font-bold transition-all duration-300 hover:scale-105 btn-shine"
             style={{
               background: "linear-gradient(90deg, #0066CC, #00A86B)",
               color: "#FFFFFF",
@@ -415,7 +415,7 @@ function TradeguardTab({ onGetStarted }: { onGetStarted: () => void }) {
             href="https://www.youtube.com/watch?v=LrHbm877l5g"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105"
+            className="px-5 py-2.5 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105"
             style={{ background: "transparent", border: "1.5px solid #CBD5E1", color: "#0F172A" }}
           >
             Watch Demo

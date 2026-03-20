@@ -130,7 +130,7 @@ export function Navigation() {
         >
           <div className="h-full flex items-center animate-marquee whitespace-nowrap">
             {[...Array(6)].map((_, i) => (
-              <span key={i} className="mx-8 text-[13px] font-bold text-white flex items-center gap-4">
+              <span key={i} className="mx-8 text-[15px] font-bold text-white flex items-center gap-4">
                 <span>Aegis Graham Bell Award 2026 Winner</span>
                 <span className="opacity-40">|</span>
                 <span>Karnataka Elevate 2025 Winner</span>
@@ -161,14 +161,14 @@ export function Navigation() {
 
           {/* Desktop Nav - Center with equal spacing */}
           <div className="hidden lg:flex items-center justify-center flex-1 gap-10">
-            <div 
-              className="relative"
-              onMouseEnter={() => setProductsOpen(true)}
-              onMouseLeave={() => setProductsOpen(false)}
-            >
-              <button className="flex items-center gap-1.5 text-white/80 hover:text-white text-[15px] font-semibold transition-colors">
-                Products <ChevronDown className={`w-4 h-4 transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
-              </button>
+          <div 
+            className="relative"
+            onMouseEnter={() => setProductsOpen(true)}
+            onMouseLeave={() => setProductsOpen(false)}
+          >
+            <button className="flex items-center gap-1.5 text-white/80 hover:text-white text-[16px] font-semibold transition-colors">
+              Products <ChevronDown className={`w-4 h-4 transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
+            </button>
               
               {/* Invisible bridge — prevents gap from closing dropdown */}
               <div className="absolute top-full left-0 right-0 h-3" />
@@ -188,8 +188,8 @@ export function Navigation() {
                       {product.icon}
                     </div>
                     <div>
-                      <div className="text-[14px] font-semibold" style={{ color: "#0F172A" }}>{product.name}</div>
-                      <div className="text-[12px]" style={{ color: "#64748B" }}>{product.tagline}</div>
+                      <div className="text-[15px] font-semibold" style={{ color: "#0F172A" }}>{product.name}</div>
+                      <div className="text-[13px]" style={{ color: "#64748B" }}>{product.tagline}</div>
                     </div>
                   </button>
                 ))}
@@ -202,7 +202,7 @@ export function Navigation() {
               onMouseEnter={() => setCompanyOpen(true)}
               onMouseLeave={() => setCompanyOpen(false)}
             >
-              <button className="flex items-center gap-1.5 text-white/80 hover:text-white text-[15px] font-semibold transition-colors py-4">
+              <button className="flex items-center gap-1.5 text-white/80 hover:text-white text-[16px] font-semibold transition-colors py-4">
                 Company <ChevronDown className={`w-4 h-4 transition-transform ${companyOpen ? 'rotate-180' : ''}`} />
               </button>
               
@@ -220,94 +220,13 @@ export function Navigation() {
                     <Link
                       key={link.name}
                       href={link.href}
-                      className="block px-4 py-2.5 rounded-lg text-[14px] font-medium transition-all hover:bg-[#F1F5F9]"
+                      className="block px-4 py-2.5 rounded-lg text-[15px] font-medium transition-all hover:bg-[#F1F5F9]"
                       style={{ color: "#0F172A" }}
                       onClick={() => setCompanyOpen(false)}
                     >
                       {link.name}
                     </Link>
                   )
-                )}
-              </div>
-            </div>
-            <Link href="/newsletter" className="text-white/80 hover:text-white text-[15px] font-semibold transition-colors">Newsletter</Link>
-            <Link href="/careers" className="text-white/80 hover:text-white text-[15px] font-semibold transition-colors">Careers</Link>
-          </div>
-
-          {/* Right side - Social icons + Book Demo */}
-          <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
-            <div className="flex items-center gap-2">
-              <a href="https://www.youtube.com/@LIQUIDMIND_AI" target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
-                <Youtube className="w-5 h-5 text-white/70 hover:text-white" />
-              </a>
-              <a href="https://www.linkedin.com/company/liquid-mind-product-consulting-inc./" target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
-                <Linkedin className="w-5 h-5 text-white/70 hover:text-white" />
-              </a>
-              <a href="mailto:support@liquidmind.ai"
-                className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
-                <Mail className="w-5 h-5 text-white/70 hover:text-white" />
-              </a>
-            </div>
-            
-            <Link href="/book-demo" className="px-6 py-2.5 rounded-lg text-[15px] font-bold btn-shine transition-all hover:scale-105"
-              style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}>
-              Book Demo
-            </Link>
-          </div>
-
-          {/* Mobile menu button */}
-          <button
-            className="lg:hidden text-white p-1"
-            onClick={() => {
-              setMobileMenuOpen(!mobileMenuOpen)
-              if (mobileMenuOpen) { setMobileProductsOpen(false); setMobileCompanyOpen(false) }
-            }}
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Menu — slides down from navbar */}
-        <div
-          className={`lg:hidden fixed left-0 right-0 z-40 overflow-y-auto transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}
-          style={{
-            top: scrolled ? "72px" : "112px",
-            bottom: 0,
-            background: "#FFFFFF",
-            borderTop: "1px solid #E2E8F0",
-          }}
-        >
-          {/* Scrollable inner */}
-          <div className="px-4 pt-3 pb-28">
-
-            {/* Products accordion */}
-            <button
-              onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-              className="w-full flex items-center justify-between py-3.5 text-[15px] font-semibold"
-              style={{ color: "#0F172A", borderBottom: "1px solid #E2E8F0" }}
-            >
-              Products
-              <ChevronDown className={`w-4 h-4 transition-transform`} style={{ color: "#64748B", transform: mobileProductsOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
-            </button>
-            {mobileProductsOpen && (
-              <div className="py-2 mb-1">
-                {products.map((product) => (
-                  <button
-                    key={product.name}
-                    onClick={() => { navigateToProduct(product); setMobileMenuOpen(false) }}
-                    className="w-full flex items-center gap-3 px-2 py-2.5 rounded-xl transition-colors hover:bg-[#F8FAFC]"
-                  >
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{ background: `linear-gradient(135deg, ${product.gradientFrom}, ${product.gradientTo})` }}>
-                      {product.icon}
-                    </div>
-                    <div className="text-left">
-                      <div className="text-[13px] font-semibold" style={{ color: "#0F172A" }}>{product.name}</div>
-                      <div className="text-[11px]" style={{ color: "#64748B" }}>{product.tagline}</div>
-                    </div>
-                  </button>
                 ))}
               </div>
             )}
@@ -376,7 +295,7 @@ export function Navigation() {
               </div>
               <Link
                 href="/book-demo"
-                className="px-5 py-2.5 rounded-full text-[13px] font-bold btn-shine"
+                className="px-5 py-2.5 rounded-full text-[15px] font-bold btn-shine"
                 style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -389,8 +308,8 @@ export function Navigation() {
 
       {/* Mobile bottom bar */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex" style={{ background: "#FFFFFF", borderTop: "1px solid #E2E8F0" }}>
-        <a href="https://wa.me/919845592468" className="flex-1 py-3 text-center text-[#0F172A] font-semibold text-sm border-r border-[#E2E8F0]">WhatsApp</a>
-        <Link href="/book-demo" className="flex-1 py-3 text-center font-semibold text-sm" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}>Book Demo</Link>
+        <a href="https://wa.me/919845592468" className="flex-1 py-3 text-center text-[#0F172A] font-semibold text-base border-r border-[#E2E8F0]">WhatsApp</a>
+        <Link href="/book-demo" className="flex-1 py-3 text-center font-semibold text-base" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}>Book Demo</Link>
       </div>
     </>
   )
