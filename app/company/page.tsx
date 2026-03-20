@@ -255,7 +255,7 @@ export default function CompanyPage() {
 
             <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #E2E8F0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
               <div className="relative h-[260px] sm:h-[300px] overflow-hidden" style={{ background: "#F0F4F8" }}>
-                <Image src="/images/elevate-award.jpg" alt="Karnataka Elevate" fill className="object-cover object-center" />
+                <Image src="/images/elevate-felicitation.jpg" alt="Karnataka Elevate" fill className="object-cover object-top" />
               </div>
               {/* Card footer */}
               <div className="p-4 sm:p-5" style={{ background: "#FAFBFC", borderTop: "1px solid #E2E8F0" }}>
