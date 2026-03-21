@@ -1,19 +1,21 @@
 import type { Metadata, Viewport } from 'next'
-import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { PHProvider } from './providers'
 import './globals.css'
 
-const plusJakarta = Plus_Jakarta_Sans({ 
+const inter = Inter({ 
   subsets: ["latin"],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-sans'
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-sans',
+  display: 'swap',
 })
 
 const jetbrainsMono = JetBrains_Mono({ 
   subsets: ["latin"],
-  weight: ['400', '600'],
-  variable: '--font-mono'
+  weight: ['400', '500'],
+  variable: '--font-mono',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -42,7 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${plusJakarta.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         <PHProvider>
           {children}
         </PHProvider>

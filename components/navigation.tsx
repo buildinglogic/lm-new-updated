@@ -1,59 +1,39 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, ChevronDown, Youtube, Linkedin, Mail } from "lucide-react"
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { trackNavClick, trackExternalLinkClicked } from "@/lib/amplitude"
 
 const products = [
   {
-    name: "Tradeguard",
-    tagline: "Document Mismatch Detection",
-    description: "Cross-checks 40+ fields between your Shipping Bill and Invoice in under 5 seconds.",
-    stats: ["40+ fields", "< 5 sec"],
-    color: "#0066CC",
-    gradientFrom: "#0066CC",
-    gradientTo: "#0052A3",
-    href: "/#products",
-    tabId: "tradeguard",
+    name: "TradeGuard",
+    tagline: "Document Verification",
+    href: "/tradeguard",
     icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-      </svg>
-    ),
-  },
-  {
-    name: "Patram AI",
-    tagline: "Export Intelligence Advisor",
-    description: "Instant customs rules, duty rates and compliance checklists for 190+ countries.",
-    stats: ["190+ countries", "Live policy data"],
-    color: "#00A86B",
-    gradientFrom: "#00A86B",
-    gradientTo: "#008B5E",
-    href: "/#products",
-    tabId: "patram",
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z" />
-        <path d="M9 12a3 3 0 1 1 6 0 3 3 0 1 1-6 0z" />
-        <path d="M12 9v6M9 12h6M10 8l4 8M14 8l-4 8" />
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
       </svg>
     ),
   },
   {
     name: "TariffIQ",
-    tagline: "HSN Classification & Duty",
-    description: "AI classifies your product to 8-digit ITC-HS and compares RoDTEP vs Drawback earnings.",
-    stats: ["95% accuracy", "RoDTEP vs Drawback"],
-    color: "#1B4F8A",
-    gradientFrom: "#1B4F8A",
-    gradientTo: "#2563EB",
-    href: "/#products",
-    tabId: "tariffiq",
+    tagline: "HSN Classification",
+    href: "/tariffiq",
     icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V13.5zm0 2.25h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V18zm2.498-6.75h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V13.5zm0 2.25h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V18zm2.504-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zm0 2.25h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V18zm2.498-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zM8.25 6h7.5v2.25h-7.5V6zM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 002.25 2.25h10.5a2.25 2.25 0 002.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0012 2.25z" />
+      </svg>
+    ),
+  },
+  {
+    name: "Patram AI",
+    tagline: "Export Intelligence",
+    href: "/patram",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
       </svg>
     ),
   },
@@ -62,14 +42,9 @@ const products = [
 const companyLinks = [
   { name: "About", href: "/company" },
   { name: "Mission", href: "/company#mission" },
-  { name: "Why Choose Us?", href: "/company#why-choose-us" },
-  { name: "Minds Behind Liquidmind AI", href: "/company#team" },
+  { name: "Why Choose Us", href: "/company#why-choose-us" },
+  { name: "Team", href: "/company#team" },
   { name: "Timeline", href: "/company/timeline" },
-  { name: "Map", href: "/company#map" },
-  { name: "Giving Back", href: "/company/giving-back" },
-  { name: "divider", href: "" },
-  { name: "Privacy Policy", href: "/legal/privacy-policy" },
-  { name: "Terms of Service", href: "/legal/terms" },
 ]
 
 export function Navigation() {
@@ -77,8 +52,6 @@ export function Navigation() {
   const [productsOpen, setProductsOpen] = useState(false)
   const [companyOpen, setCompanyOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [mobileProductsOpen, setMobileProductsOpen] = useState(false)
-  const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,113 +61,85 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollToSection = (href: string) => {
-    const id = href.replace("#", "").replace("/", "")
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-    setProductsOpen(false)
-    setMobileMenuOpen(false)
-  }
-
-  const navigateToProduct = (product: typeof products[0]) => {
-    trackNavClick(`Product: ${product.name}`)
-    // Store the selected tab in sessionStorage so ProductsSection can read it
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('selectedProductTab', product.tabId)
-    }
-
-    // Check if we're on the home page
-    if (window.location.pathname === '/') {
-      // Scroll to products section
-      const element = document.getElementById('products')
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" })
-      }
-      // Dispatch a custom event to change the tab
-      window.dispatchEvent(new CustomEvent('changeProductTab', { detail: product.tabId }))
-    } else {
-      // Navigate to home page — use real query param so ProductsSection can read it via window.location.search
-      window.location.href = `/?tab=${product.tabId}#products`
-    }
-    setProductsOpen(false)
-    setMobileMenuOpen(false)
-  }
-
   return (
     <>
-      {/* Award Announcement Bar - Marquee - High contrast blue */}
-      {!scrolled && (
-        <div
-          className="fixed top-0 left-0 right-0 z-50 h-10 overflow-hidden"
-          style={{ background: "#0066CC" }}
-        >
-          <div className="h-full flex items-center animate-marquee whitespace-nowrap">
-            {[...Array(6)].map((_, i) => (
-              <span key={i} className="mx-8 text-[14px] font-bold text-white flex items-center gap-4">
-                <span>Aegis Graham Bell Award 2026 Winner</span>
-                <span className="opacity-40">|</span>
-                <span>Karnataka Elevate 2025 Winner</span>
-                <span className="opacity-40">|</span>
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Main Navigation - Larger header */}
+      {/* Main Navigation - Apple-style glass nav */}
       <nav
-        className="fixed w-full z-50"
-        style={{ height: "72px", background: "#000000", top: scrolled ? "0" : "40px" }}
+        className={`fixed w-full z-50 transition-all duration-500 ${
+          scrolled 
+            ? 'glass-nav border-b border-black/[0.04]' 
+            : 'bg-white/80 backdrop-blur-xl'
+        }`}
+        style={{ height: "52px" }}
       >
-        <div className="w-full h-full px-4 lg:px-8 flex items-center justify-between">
-          {/* Logo - Far Left, Smaller size */}
-          <Link href="/" className="flex items-center h-full py-3 flex-shrink-0 transition-transform duration-200 active:scale-95">
+        <div className="content-full h-full px-6 lg:px-10 flex items-center justify-between">
+          {/* Logo */}
+          <Link 
+            href="/" 
+            className="flex items-center h-full flex-shrink-0 transition-opacity duration-200 hover:opacity-70"
+            onClick={() => trackNavClick("Logo")}
+          >
             <Image
               src="/images/liquidmind-logo.png"
               alt="Liquidmind"
-              width={150}
-              height={40}
-              className="h-10 w-auto object-contain"
+              width={130}
+              height={32}
+              className="h-7 w-auto object-contain"
+              style={{ filter: 'brightness(0)' }}
               priority
             />
           </Link>
 
-          {/* Desktop Nav - Center with equal spacing */}
-          <div className="hidden lg:flex items-center justify-center flex-1 gap-10">
+          {/* Desktop Nav - Center */}
+          <div className="hidden lg:flex items-center justify-center flex-1 gap-8">
+            {/* Products Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setProductsOpen(true)}
               onMouseLeave={() => setProductsOpen(false)}
             >
-              <button className="flex items-center gap-1.5 text-white/80 hover:text-white text-[16px] font-semibold transition-colors">
-                Products <ChevronDown className={`w-4 h-4 transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
+              <button 
+                className="flex items-center gap-1 text-[13px] font-medium transition-colors"
+                style={{ color: scrolled ? 'var(--text-primary)' : 'var(--text-primary)' }}
+              >
+                Products 
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${productsOpen ? 'rotate-180' : ''}`} />
               </button>
 
-              {/* Invisible bridge — prevents gap from closing dropdown */}
-              <div className="absolute top-full left-0 right-0 h-3" />
-
+              {/* Dropdown */}
               <div
-                className={`absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-[300px] p-2 rounded-xl transition-all duration-300 ${productsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
-                style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", boxShadow: "0 25px 60px rgba(0,0,0,0.2)" }}
+                className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-300 ${
+                  productsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
+                }`}
               >
-                {products.map((product) => (
-                  <button
-                    key={product.name}
-                    onClick={() => navigateToProduct(product)}
-                    className="w-full text-left px-4 py-3 rounded-lg transition-all hover:bg-[#F1F5F9] flex items-center gap-3 group"
-                  >
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{ background: `linear-gradient(135deg, ${product.gradientFrom}, ${product.gradientTo})` }}>
-                      {product.icon}
-                    </div>
-                    <div>
-                      <div className="text-[14px] font-semibold" style={{ color: "#0F172A" }}>{product.name}</div>
-                      <div className="text-[12px]" style={{ color: "#64748B" }}>{product.tagline}</div>
-                    </div>
-                  </button>
-                ))}
+                <div 
+                  className="w-[280px] p-2 rounded-2xl bg-white border border-black/[0.04]"
+                  style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
+                >
+                  {products.map((product) => (
+                    <Link
+                      key={product.name}
+                      href={product.href}
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors hover:bg-[var(--bg-tertiary)] group"
+                      onClick={() => { trackNavClick(`Product: ${product.name}`); setProductsOpen(false) }}
+                    >
+                      <div 
+                        className="w-9 h-9 rounded-xl flex items-center justify-center transition-colors"
+                        style={{ background: 'var(--bg-tertiary)', color: 'var(--text-primary)' }}
+                      >
+                        {product.icon}
+                      </div>
+                      <div>
+                        <div className="text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                          {product.name}
+                        </div>
+                        <div className="text-[12px]" style={{ color: 'var(--text-tertiary)' }}>
+                          {product.tagline}
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -204,201 +149,204 @@ export function Navigation() {
               onMouseEnter={() => setCompanyOpen(true)}
               onMouseLeave={() => setCompanyOpen(false)}
             >
-              <button className="flex items-center gap-1.5 text-white/80 hover:text-white text-[16px] font-semibold transition-colors py-4">
-                Company <ChevronDown className={`w-4 h-4 transition-transform ${companyOpen ? 'rotate-180' : ''}`} />
+              <button 
+                className="flex items-center gap-1 text-[13px] font-medium transition-colors"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Company 
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${companyOpen ? 'rotate-180' : ''}`} />
               </button>
 
-              {/* Invisible bridge to prevent gap from closing dropdown */}
-              <div className="absolute top-full left-0 right-0 h-3" />
-
               <div
-                className={`absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-[280px] p-2 rounded-xl transition-all duration-300 ${companyOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
-                style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", boxShadow: "0 25px 60px rgba(0,0,0,0.2)" }}
+                className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-300 ${
+                  companyOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
+                }`}
               >
-                {companyLinks.map((link) =>
-                  link.name === "divider" ? (
-                    <div key="divider" className="my-1 mx-2" style={{ height: "1px", background: "#E2E8F0" }} />
-                  ) : (
+                <div 
+                  className="w-[200px] p-2 rounded-2xl bg-white border border-black/[0.04]"
+                  style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
+                >
+                  {companyLinks.map((link) => (
                     <Link
                       key={link.name}
                       href={link.href}
-                      className="block px-4 py-2.5 rounded-lg text-[15px] font-medium transition-all hover:bg-[#F1F5F9]"
-                      style={{ color: "#0F172A" }}
+                      className="block px-3 py-2 rounded-xl text-[13px] font-medium transition-colors hover:bg-[var(--bg-tertiary)]"
+                      style={{ color: 'var(--text-primary)' }}
                       onClick={() => { trackNavClick(link.name); setCompanyOpen(false) }}
                     >
                       {link.name}
                     </Link>
-                  )
-                )}
+                  ))}
+                </div>
               </div>
             </div>
-            <Link href="/newsletter" onClick={() => trackNavClick("Newsletter")} className="text-white/80 hover:text-white text-[16px] font-semibold transition-colors">Newsletter</Link>
-            <Link href="/careers" onClick={() => trackNavClick("Careers")} className="text-white/80 hover:text-white text-[16px] font-semibold transition-colors">Careers</Link>
+
+            <Link 
+              href="/newsletter" 
+              onClick={() => trackNavClick("Newsletter")} 
+              className="text-[13px] font-medium transition-colors hover:opacity-70"
+              style={{ color: 'var(--text-primary)' }}
+            >
+              Newsletter
+            </Link>
+            
+            <Link 
+              href="/careers" 
+              onClick={() => trackNavClick("Careers")} 
+              className="text-[13px] font-medium transition-colors hover:opacity-70"
+              style={{ color: 'var(--text-primary)' }}
+            >
+              Careers
+            </Link>
           </div>
 
-          {/* Right side - Social icons + Book Demo */}
+          {/* Right side - CTA */}
           <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
-            <div className="flex items-center gap-2">
-              <a href="https://www.youtube.com/@LIQUIDMIND_AI" target="_blank" rel="noopener noreferrer"
-                onClick={() => trackExternalLinkClicked("https://www.youtube.com/@LIQUIDMIND_AI")}
-                className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
-                <Youtube className="w-5 h-5 text-white/70 hover:text-white" />
-              </a>
-              <a href="https://www.linkedin.com/company/liquid-mind-product-consulting-inc./" target="_blank" rel="noopener noreferrer"
-                onClick={() => trackExternalLinkClicked("https://www.linkedin.com/company/liquid-mind-product-consulting-inc./")}
-                className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
-                <Linkedin className="w-5 h-5 text-white/70 hover:text-white" />
-              </a>
-              <a href="mailto:support@liquidmind.ai"
-                onClick={() => trackExternalLinkClicked("mailto:support@liquidmind.ai")}
-                className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
-                <Mail className="w-5 h-5 text-white/70 hover:text-white" />
-              </a>
-            </div>
-
-            <Link href="/book-demo" onClick={() => trackNavClick("Book Demo")} className="px-6 py-2.5 rounded-lg text-[16px] font-bold btn-shine transition-all hover:scale-105"
-              style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}>
+            <Link 
+              href="/book-demo" 
+              onClick={() => trackNavClick("Book Demo")} 
+              className="btn-apple-primary text-[13px] py-2 px-5"
+            >
               Book Demo
             </Link>
           </div>
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden text-white p-1"
-            onClick={() => {
-              setMobileMenuOpen(!mobileMenuOpen)
-              if (mobileMenuOpen) { setMobileProductsOpen(false); setMobileCompanyOpen(false) }
-            }}
+            className="lg:hidden p-2 -mr-2 transition-opacity hover:opacity-70"
+            style={{ color: 'var(--text-primary)' }}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
-        </div>
-
-        {/* Mobile Menu — slides down from navbar */}
-        <div
-          className={`lg:hidden fixed left-0 right-0 z-40 overflow-y-auto transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}
-          style={{
-            top: scrolled ? "72px" : "112px",
-            bottom: 0,
-            background: "#FFFFFF",
-            borderTop: "1px solid #E2E8F0",
-          }}
-        >
-          {/* Scrollable inner */}
-          <div className="px-4 pt-3 pb-28">
-
-            {/* Products accordion */}
-            <button
-              onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-              className="w-full flex items-center justify-between py-3.5 text-[16px] font-semibold"
-              style={{ color: "#0F172A", borderBottom: "1px solid #E2E8F0" }}
-            >
-              Products
-              <ChevronDown className={`w-4 h-4 transition-transform`} style={{ color: "#64748B", transform: mobileProductsOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
-            </button>
-            {mobileProductsOpen && (
-              <div className="py-2 mb-1">
-                {products.map((product) => (
-                  <button
-                    key={product.name}
-                    onClick={() => { navigateToProduct(product); setMobileMenuOpen(false) }}
-                    className="w-full flex items-center gap-3 px-2 py-2.5 rounded-xl transition-colors hover:bg-[#F8FAFC]"
-                  >
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{ background: `linear-gradient(135deg, ${product.gradientFrom}, ${product.gradientTo})` }}>
-                      {product.icon}
-                    </div>
-                    <div className="text-left">
-                      <div className="text-[15px] font-semibold" style={{ color: "#0F172A" }}>{product.name}</div>
-                      <div className="text-[13px]" style={{ color: "#64748B" }}>{product.tagline}</div>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* Company accordion */}
-            <button
-              onClick={() => setMobileCompanyOpen(!mobileCompanyOpen)}
-              className="w-full flex items-center justify-between py-3.5 text-[16px] font-semibold"
-              style={{ color: "#0F172A", borderBottom: mobileCompanyOpen ? "none" : "1px solid #E2E8F0" }}
-            >
-              Company
-              <ChevronDown className="w-4 h-4 transition-transform" style={{ color: "#64748B", transform: mobileCompanyOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
-            </button>
-            {mobileCompanyOpen && (
-              <div className="py-2 mb-1" style={{ borderBottom: "1px solid #E2E8F0" }}>
-                {companyLinks.map((link) =>
-                  link.name === "divider" ? (
-                    <div key="divider" className="my-1.5 mx-2" style={{ height: "1px", background: "#F1F5F9" }} />
-                  ) : (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      className="block px-2 py-2.5 rounded-xl text-[15px] font-medium transition-colors hover:bg-[#F8FAFC]"
-                      style={{ color: "#475569" }}
-                      onClick={() => { trackNavClick(link.name); setMobileMenuOpen(false) }}
-                    >
-                      {link.name}
-                    </Link>
-                  )
-                )}
-              </div>
-            )}
-
-            {/* Flat links */}
-            <Link href="/newsletter"
-              className="flex items-center py-3.5 text-[16px] font-semibold"
-              style={{ color: "#0F172A", borderBottom: "1px solid #E2E8F0" }}
-              onClick={() => { trackNavClick("Newsletter"); setMobileMenuOpen(false) }}>
-              Newsletter
-            </Link>
-            <Link href="/careers"
-              className="flex items-center py-3.5 text-[16px] font-semibold"
-              style={{ color: "#0F172A", borderBottom: "1px solid #E2E8F0" }}
-              onClick={() => { trackNavClick("Careers"); setMobileMenuOpen(false) }}>
-              Careers
-            </Link>
-
-            {/* Social + Book Demo */}
-            <div className="pt-5 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <a href="https://www.youtube.com/@LIQUIDMIND_AI" target="_blank" rel="noopener noreferrer"
-                  onClick={() => trackExternalLinkClicked("https://www.youtube.com/@LIQUIDMIND_AI")}
-                  className="w-9 h-9 rounded-full flex items-center justify-center"
-                  style={{ background: "#F1F5F9" }}>
-                  <Youtube className="w-4 h-4" style={{ color: "#0066CC" }} />
-                </a>
-                <a href="https://www.linkedin.com/company/liquid-mind-product-consulting-inc./" target="_blank" rel="noopener noreferrer"
-                  onClick={() => trackExternalLinkClicked("https://www.linkedin.com/company/liquid-mind-product-consulting-inc./")}
-                  className="w-9 h-9 rounded-full flex items-center justify-center"
-                  style={{ background: "#F1F5F9" }}>
-                  <Linkedin className="w-4 h-4" style={{ color: "#0066CC" }} />
-                </a>
-                <a href="mailto:support@liquidmind.ai"
-                  onClick={() => trackExternalLinkClicked("mailto:support@liquidmind.ai")}
-                  className="w-9 h-9 rounded-full flex items-center justify-center"
-                  style={{ background: "#F1F5F9" }}>
-                  <Mail className="w-4 h-4" style={{ color: "#0066CC" }} />
-                </a>
-              </div>
-              <Link
-                href="/book-demo"
-                className="px-5 py-2.5 rounded-full text-[15px] font-bold btn-shine"
-                style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}
-                onClick={() => { trackNavClick("Book Demo"); setMobileMenuOpen(false) }}
-              >
-                Book Demo
-              </Link>
-            </div>
-          </div>
         </div>
       </nav>
 
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`lg:hidden fixed inset-0 z-40 transition-all duration-300 ${
+          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        style={{ background: 'rgba(0,0,0,0.2)', backdropFilter: 'blur(4px)' }}
+        onClick={() => setMobileMenuOpen(false)}
+      />
+
+      {/* Mobile Menu Panel */}
+      <div
+        className={`lg:hidden fixed top-[52px] left-0 right-0 bottom-0 z-50 bg-white overflow-y-auto transition-all duration-300 ${
+          mobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'
+        }`}
+      >
+        <div className="px-6 py-4">
+          {/* Products */}
+          <div className="mb-6">
+            <div className="text-[11px] font-semibold uppercase tracking-wide mb-3" style={{ color: 'var(--text-tertiary)' }}>
+              Products
+            </div>
+            {products.map((product) => (
+              <Link
+                key={product.name}
+                href={product.href}
+                className="flex items-center justify-between py-3 border-b border-black/[0.04] group"
+                onClick={() => { trackNavClick(`Product: ${product.name}`); setMobileMenuOpen(false) }}
+              >
+                <div className="flex items-center gap-3">
+                  <div 
+                    className="w-10 h-10 rounded-xl flex items-center justify-center"
+                    style={{ background: 'var(--bg-tertiary)', color: 'var(--text-primary)' }}
+                  >
+                    {product.icon}
+                  </div>
+                  <div>
+                    <div className="text-[15px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                      {product.name}
+                    </div>
+                    <div className="text-[13px]" style={{ color: 'var(--text-tertiary)' }}>
+                      {product.tagline}
+                    </div>
+                  </div>
+                </div>
+                <ArrowRight className="w-4 h-4 text-[var(--text-tertiary)] group-hover:translate-x-1 transition-transform" />
+              </Link>
+            ))}
+          </div>
+
+          {/* Company */}
+          <div className="mb-6">
+            <div className="text-[11px] font-semibold uppercase tracking-wide mb-3" style={{ color: 'var(--text-tertiary)' }}>
+              Company
+            </div>
+            {companyLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="flex items-center justify-between py-3 border-b border-black/[0.04]"
+                onClick={() => { trackNavClick(link.name); setMobileMenuOpen(false) }}
+              >
+                <span className="text-[15px] font-medium" style={{ color: 'var(--text-primary)' }}>
+                  {link.name}
+                </span>
+                <ArrowRight className="w-4 h-4 text-[var(--text-tertiary)]" />
+              </Link>
+            ))}
+          </div>
+
+          {/* Other links */}
+          <div className="mb-8">
+            <Link
+              href="/newsletter"
+              className="flex items-center justify-between py-3 border-b border-black/[0.04]"
+              onClick={() => { trackNavClick("Newsletter"); setMobileMenuOpen(false) }}
+            >
+              <span className="text-[15px] font-medium" style={{ color: 'var(--text-primary)' }}>
+                Newsletter
+              </span>
+              <ArrowRight className="w-4 h-4 text-[var(--text-tertiary)]" />
+            </Link>
+            <Link
+              href="/careers"
+              className="flex items-center justify-between py-3 border-b border-black/[0.04]"
+              onClick={() => { trackNavClick("Careers"); setMobileMenuOpen(false) }}
+            >
+              <span className="text-[15px] font-medium" style={{ color: 'var(--text-primary)' }}>
+                Careers
+              </span>
+              <ArrowRight className="w-4 h-4 text-[var(--text-tertiary)]" />
+            </Link>
+          </div>
+
+          {/* CTA */}
+          <Link 
+            href="/book-demo" 
+            className="btn-apple-primary w-full justify-center"
+            onClick={() => { trackNavClick("Book Demo"); setMobileMenuOpen(false) }}
+          >
+            Book Demo
+          </Link>
+        </div>
+      </div>
+
       {/* Mobile bottom bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex" style={{ background: "#FFFFFF", borderTop: "1px solid #E2E8F0" }}>
-        <a href="https://wa.me/919845592468" onClick={() => trackExternalLinkClicked("https://wa.me/919845592468")} className="flex-1 py-3 text-center text-[#0F172A] font-semibold text-[16px] border-r border-[#E2E8F0]">WhatsApp</a>
-        <Link href="/book-demo" onClick={() => trackNavClick("Book Demo")} className="flex-1 py-3 text-center font-semibold text-[16px]" style={{ background: "linear-gradient(90deg, #0066CC, #00A86B)", color: "#FFFFFF" }}>Book Demo</Link>
+      <div 
+        className="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex bg-white border-t border-black/[0.04]"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+      >
+        <a 
+          href="https://wa.me/919845592468" 
+          onClick={() => trackExternalLinkClicked("https://wa.me/919845592468")} 
+          className="flex-1 py-3.5 text-center text-[14px] font-medium border-r border-black/[0.04]"
+          style={{ color: 'var(--text-primary)' }}
+        >
+          WhatsApp
+        </a>
+        <Link 
+          href="/book-demo" 
+          onClick={() => trackNavClick("Book Demo")} 
+          className="flex-1 py-3.5 text-center font-medium text-[14px] text-white"
+          style={{ background: 'var(--accent-blue)' }}
+        >
+          Book Demo
+        </Link>
       </div>
     </>
   )
